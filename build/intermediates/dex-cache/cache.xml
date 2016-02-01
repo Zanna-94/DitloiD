@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/tizianomenichelli/.gradle/caches/modules-2/files-2.1/com.readystatesoftware.sqliteasset/sqliteassethelper/2.0.1/d5f02e4a4d65ec0fbb339f2e4228723d1540bb9f/sqliteassethelper-2.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d5f02e4a4d65ec0fbb339f2e4228723d1540bb9f">
+        <dex dex="/Users/tizianomenichelli/Desktop/ProgettoMP/app/build/intermediates/pre-dexed/debug/sqliteassethelper-2.0.1-ddee616615d0b06030e8f4528d8b5dded2122336.jar" />
+    </item>
+
+</items>

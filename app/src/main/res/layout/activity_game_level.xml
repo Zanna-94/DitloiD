@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="3">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tvNewDitloid"
+        android:id="@+id/tvNewDitloid"
+        android:layout_weight="2.12"
+        android:textSize="50dp"
+        android:height="10dp"
+        android:layout_gravity="center"
+        style="@style/AppTheme"
+        android:editable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etSolution"
+        android:capitalize="none"
+        android:layout_weight="1.02" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="94dp"
+        android:id="@+id/tvVisualizeHelp"
+        android:allowUndo="false"
+        android:autoText="false"
+        android:gravity="center_horizontal"
+        android:layout_weight="0.50" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get Hint"
+            android:id="@+id/btnGetHelp"
+            android:layout_gravity="right"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btnCheckSolution"
+            android:id="@+id/btnCheckSolution"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="88dp">
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/tvStars"
+            android:text="21 "
+            android:textSize="30dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="171dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="30"
+            android:id="@+id/tvCredits"
+            android:gravity="right"
+            android:textSize="30dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</LinearLayout>
