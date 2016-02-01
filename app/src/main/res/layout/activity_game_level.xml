@@ -18,6 +18,15 @@
         android:focusableInTouchMode="true"
         android:gravity="center" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Cultura Generale"
+        android:id="@+id/tvCategory"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
