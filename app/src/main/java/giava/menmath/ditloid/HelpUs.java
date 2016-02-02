@@ -23,7 +23,6 @@ public class HelpUs extends AppCompatActivity {
         btnNewDitloid = (Button) findViewById(R.id.btnNewDitloid);
         btnSignalError = (Button) findViewById(R.id.btnSignalError);
         btnGiveTip = (Button) findViewById(R.id.btnGiveTip);
-        btnEstimate = (Button) findViewById(R.id.btnEstimate);
 
         MyClick mc = new MyClick();
 
@@ -67,10 +66,6 @@ public class HelpUs extends AppCompatActivity {
                 startActivity(SignalError);
             }
             if (v.getId() == R.id.btnGiveTip) {
-                Intent GiveTip = new Intent(HelpUs.this, GiveTip.class);
-                startActivity(GiveTip);
-            }
-            if (v.getId() == R.id.btnEstimate) {
                 Intent GiveTip = new Intent(HelpUs.this, GiveTip.class);
                 startActivity(GiveTip);
             }

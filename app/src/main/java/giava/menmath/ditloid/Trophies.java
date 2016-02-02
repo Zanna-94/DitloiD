@@ -4,12 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 /**
- * Created by tizianomenichelli on 30/01/16.
+ * Created by tizianomenichelli on 02/02/16.
  */
-public class SignalError extends AppCompatActivity {
-    @Override
+public class Trophies extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signal_error);
+        setContentView(R.layout.activity_trophies);
     }
 }

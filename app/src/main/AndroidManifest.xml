@@ -24,16 +24,36 @@
             android:label="@string/title_activity_game" >
         </activity>
         <activity
+            android:name=".Challenge"
+            android:label="@string/strChallenge" >
+        </activity>
+        <activity
+            android:name=".Trophies"
+            android:label="@string/strTrophies" >
+        </activity>
+        <activity
+            android:name=".Rules"
+            android:label="@string/strRules" >
+        </activity>
+        <activity
             android:name=".HelpUs"
-            android:label="@string/title_activity_game" >
+            android:label="@string/strHelpUs" >
         </activity>
         <activity
             android:name=".NewDitloid"
-            android:label="@string/title_activity_game" >
+            android:label="@string/strNewDitloid" >
         </activity>
         <activity
             android:name=".NewDitloidSend"
-            android:label="@string/title_activity_game" >
+            android:label="@string/strNewDitloid" >
+        </activity>
+        <activity
+            android:name=".SignalError"
+            android:label="@string/strSignalError" >
+        </activity>
+        <activity
+            android:name=".GiveTip"
+            android:label="@string/strGiveTip" >
         </activity>
     </application>
 

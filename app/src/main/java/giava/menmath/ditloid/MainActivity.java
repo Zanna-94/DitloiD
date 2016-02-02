@@ -23,6 +23,13 @@ public class MainActivity extends AppCompatActivity {
         btnRules = (Button) findViewById(R.id.btnRules);
         btnHelpUs = (Button) findViewById(R.id.btnHelpUs);
 
+        MyClick mc = new MyClick();
+
+        btnPlay.setOnClickListener(mc);
+        btnChallenge.setOnClickListener(mc);
+        btnTrophies.setOnClickListener(mc);
+        btnRules.setOnClickListener(mc);
+        btnHelpUs.setOnClickListener(mc);
 
         btnPlay.setOnClickListener(new View.OnClickListener() {
 
@@ -64,5 +71,32 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public class MyClick implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            if (v.getId() == R.id.btnPlay) {
+                Intent startGame = new Intent(MainActivity.this, Game.class);
+                startActivity(startGame);
+            }
+            if (v.getId() == R.id.btnChallenge) {
+                Intent startChallenge = new Intent(MainActivity.this, Challenge.class);
+                startActivity(startChallenge);
+            }
+            if (v.getId() == R.id.btnTrophies) {
+                Intent Trophies = new Intent(MainActivity.this, Trophies.class);
+                startActivity(Trophies);
+            }
+            if (v.getId() == R.id.btnRules) {
+                Intent readRules = new Intent(MainActivity.this, Rules.class);
+                startActivity(readRules);
+            }
+            if (v.getId() == R.id.btnHelpUs) {
+                Intent Help = new Intent(MainActivity.this, HelpUs.class);
+                startActivity(Help);
+            }
+        }
     }
 }
