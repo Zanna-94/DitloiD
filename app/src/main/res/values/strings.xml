@@ -9,18 +9,19 @@
     <string name="strChallenge">Challenge</string>
     <string name="strTrophies">Trophies and Statistics</string>
     <string name="strHelpDescription">
-        Vuoi aiutarci a migliorare questa applicazione?
-        Seleziona una delle opzioni qui sotto:
+        Do you want to help us improving this app?
+        Choose one of these options:
     </string>
-    <string name="strNewDitloid">Suggerisci un ditloide</string>
-    <string name="strSignalError">Segnalaci un problema dell\'applicazione</string>
-    <string name="strGiveTip">Dacci un suggerimento</string>
-    <string name="strNewEnigma">Inserisci il tuo ditloide</string>
-    <string name="strNewSolution">Inserisci la soluzione del tuo ditloide</string>
-    <string name="strNewCategory">Inserisci la categoria del tuo ditloide</string>
-    <string name="strNewDitloidText">Complimenti! Hai inviato un nuovo Ditloide! \nIl tuo Ditloide sarà valutato dal nostro team e, se verrà ritenuto opportuno, potrai rivederlo all\'interno del gioco! \nGrazie per la tua collaborazione!</string>
-    <string name="strNewSends">Invia!</string>
-    <string name="strEstimate">Valuta i nuovi ditloidi proposti dagli utenti</string>
+    <string name="strNewDitloid">Suggest a ditloid</string>
+    <string name="strSignalError">Inform us about a problem in the app</string>
+    <string name="strGiveTip">Give us a suggestion</string>
+    <string name="strNewEnigma">Insert your ditloid</string>
+    <string name="strNewSolution">Insert your ditloid solution</string>
+    <string name="strNewCategory">Insert a category for your ditloid</string>
+    <string name="strNewDitloidText">Congratulations! You\'ve just sent a new ditloid!\nYour ditloid will be evaluated by our team and other players! If it will be considered worthwhile, you\'ll be able to see it in the game!\nThanks for your collaboration!</string>
+    <string name="strNewSends">Send!</string>
+    <string name="strEstimate">Evaluate new ditloids from users</string>
     <string name="tvNewDitloid">365 G in un A</string>
     <string name="btnCheckSolution">Check!</string>
+    <string name="getHint">Get hint</string>
 </resources>
