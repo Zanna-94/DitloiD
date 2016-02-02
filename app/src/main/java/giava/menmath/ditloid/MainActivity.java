@@ -30,25 +30,6 @@ public class MainActivity extends AppCompatActivity {
         btnTrophies.setOnClickListener(mc);
         btnRules.setOnClickListener(mc);
         btnHelpUs.setOnClickListener(mc);
-
-        btnPlay.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent startGame = new Intent(MainActivity.this, Game.class);
-                startActivity(startGame);
-            }
-        });
-
-        btnHelpUs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent Help = new Intent(MainActivity.this, HelpUs.class);
-                startActivity(Help);
-            }
-        });
-
-
     }
 
     @Override
@@ -78,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.btnPlay) {
-                Intent startGame = new Intent(MainActivity.this, Game.class);
+                Intent startGame = new Intent(MainActivity.this, GameLevel.class);
                 startActivity(startGame);
             }
             if (v.getId() == R.id.btnChallenge) {

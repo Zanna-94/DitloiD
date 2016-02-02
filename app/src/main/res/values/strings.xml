@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">DitloiD</string>
     <string name="title_activity_game">Game</string>
-    <string name="title_activity_challenge">Challenge</string>
+    <string name="title_activity_game_level">Level 1</string>
 
     <string name="action_settings">Settings</string>
     <string name="strPlay">Play!</string>
@@ -23,12 +23,14 @@
     <string name="strNewDitloidText">Congratulations! You\'ve just sent a new ditloid!\nYour ditloid will be evaluated by our team and other players! If it will be considered worthwhile, you\'ll be able to see it in the game!\nThanks for your collaboration!</string>
     <string name="strNewSend">Send!</string>
     <string name="strEstimate">Evaluate new ditloids from users</string>
-    <string name="tvNewDitloid">365 G in un A</string>
-    <string name="btnCheckSolution">Check!</string>
-    <string name="getHint">Get hint</string>
+    <string name="strEnigma">365 G in un A</string>
+    <string name="strCheckSolution">Check!</string>
+    <string name="strGetHint">Get hint</string>
+    <string name="strGetCategory">Get Category</string>
     <string name="strSignalError2">Segnalaci qui l\'errore che hai riscontrato all\'interno dell\'applicazione:</string>
     <string name="strActivityRules">Qui andremo a scriverci tutte le regole</string>
     <string name="strBackToGame">Back to Game</string>
     <string name="strGiveTip2">Scrivi qui un tuo suggerimento che ci permetterà di migliorare la nostra app</string>
+    <string name="strProvaHelp">Provaaaaaa (Otta gay)</string>
 </resources>
 

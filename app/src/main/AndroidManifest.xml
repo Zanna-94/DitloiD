@@ -24,6 +24,10 @@
             android:label="@string/title_activity_game" >
         </activity>
         <activity
+            android:name=".GameLevel"
+            android:label="@string/title_activity_game_level" >
+        </activity>
+        <activity
             android:name=".Challenge"
             android:label="@string/strChallenge" >
         </activity>

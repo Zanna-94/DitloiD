@@ -7,20 +7,9 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Level1"
-        android:id="@+id/tvLevel"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:textSize="20dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/tvNewDitloid"
+        android:layout_height="137dp"
+        android:text="@string/strEnigma"
         android:id="@+id/tvNewDitloid"
-        android:layout_weight="2.12"
         android:textSize="50dp"
         android:height="10dp"
         android:layout_gravity="center"
@@ -35,26 +24,45 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="General Culture"
         android:id="@+id/tvCategory"
-        android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:visibility="invisible" />
 
-    <EditText
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/etSolution"
-        android:capitalize="none"
-        android:layout_weight="1.02"
-        android:fontFeatureSettings="@string/abc_capital_off" />
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etSolution"
+            android:capitalize="none"
+            android:layout_weight="1.02"
+            android:fontFeatureSettings="@string/abc_capital_off" />
+
+        <Button
+            android:background="@drawable/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/strCheckSolution"
+            android:id="@+id/btnCheckSolution"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp"/>
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="94dp"
-        android:id="@+id/tvVisualizeHelp"
+        android:layout_height="168dp"
+        android:id="@+id/tvHelp"
         android:allowUndo="false"
         android:autoText="false"
         android:gravity="center_horizontal"
-        android:layout_weight="0.63" />
+        android:visibility="invisible"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/strProvaHelp" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -66,27 +74,27 @@
             android:background="@drawable/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/getHint"
-            android:id="@+id/btnGetHelp"
-            android:layout_gravity="right"
-            android:layout_weight="1"
+            android:text="@string/strGetCategory"
+            android:id="@+id/btnGetCategory"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="1dp"
-            android:layout_marginTop="1dp"/>
+            android:layout_marginTop="1dp"
+            android:layout_weight="1" />
 
         <Button
             android:background="@drawable/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btnCheckSolution"
-            android:id="@+id/btnCheckSolution"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
+            android:text="@string/strGetHint"
+            android:id="@+id/btnGetHint"
+            android:layout_gravity="right"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="1dp"
-            android:layout_marginTop="1dp"/>
+            android:layout_marginTop="1dp"
+            android:layout_weight="1" />
+
     </LinearLayout>
 
     <LinearLayout
