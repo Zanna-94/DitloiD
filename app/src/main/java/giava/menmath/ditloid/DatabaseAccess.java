@@ -42,7 +42,7 @@ public class DatabaseAccess {
      * Open the database connection.
      */
     public void open() {
-        this.database = db.getWritableDatabase();
+        this.database = db.getReadableDatabase();
     }
 
     /**
@@ -61,12 +61,7 @@ public class DatabaseAccess {
      */
     public List<String> getDitloids() {
         List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT id, " +
-                "enigma FROM Enigma, " +
-                "solution FROM Soluzione, " +
-                "category FROM Categoria, " +
-                "difficulty FROM Difficoltà, " +
-                "clue FROM Indizio", null);
+        Cursor cursor = database.rawQuery("SELECT Enigma from ditloid" , null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             list.add(cursor.getString(0));

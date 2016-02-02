@@ -18,7 +18,7 @@
     <string name="strNewEnigma">Inserisci il tuo ditloide</string>
     <string name="strNewSolution">Inserisci la soluzione del tuo ditloide</string>
     <string name="strNewCategory">Inserisci la categoria del tuo ditloide</string>
-    <string name="strNewDitloidText">Complimenti! Hai inviato un nuovo ditloide; questo sarà valutato dal nostro team e dagli altri utenti del gioco! Se verrà ritenuto opportuno potrai rivederlo all\'interno del gioco stesso!</string>
+    <string name="strNewDitloidText">Complimenti! Hai inviato un nuovo Ditloide! \nIl tuo Ditloide sarà valutato dal nostro team e, se verrà ritenuto opportuno, potrai rivederlo all\'interno del gioco! \nGrazie per la tua collaborazione!</string>
     <string name="strNewSends">Invia!</string>
     <string name="strEstimate">Valuta i nuovi ditloidi proposti dagli utenti</string>
     <string name="tvNewDitloid">365 G in un A</string>
