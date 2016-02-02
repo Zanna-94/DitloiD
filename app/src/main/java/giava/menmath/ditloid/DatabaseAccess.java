@@ -71,5 +71,64 @@ public class DatabaseAccess {
         return list;
     }
 
+    public List<String> getSolutions() {
+        List<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT Soluzione from ditloid" , null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            list.add(cursor.getString(0));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
 
+    public List<String> getCategory() {
+        List<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT Categoria from ditloid" , null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            list.add(cursor.getString(0));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
+
+
+    public List<Integer> getDifficulty() {
+        List<Integer> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT Difficoltà from ditloid" , null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            list.add(cursor.getInt(0));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
+
+    public List<String> getHint() {
+        List<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT Indizio from ditloid" , null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            list.add(cursor.getString(0));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
+
+//    public List<Integer> getLevel() {
+//        List<Integer> list = new ArrayList<>();
+//        Cursor cursor = database.rawQuery("SELECT Livello from ditloid" , null);
+//        cursor.moveToFirst();
+//        while (!cursor.isAfterLast()) {
+//            list.add(cursor.getInt(0));
+//            cursor.moveToNext();
+//        }
+//        cursor.close();
+//        return list;
+//    }
 }

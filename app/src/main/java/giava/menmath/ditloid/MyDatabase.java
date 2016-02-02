@@ -4,7 +4,7 @@ import android.content.Context;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 /**
- * Database Column{ Enigma: TEXT ; Soluzione: TEXT ; Categoria: TEXT; Difficoltà: INTEGER ; Indizio: TEXT}
+ * Database Column{ Enigma: TEXT ; Soluzione: TEXT ; Categoria: TEXT; Difficoltà: INTEGER ; Indizio: TEXT; Livello: INTEGER}
  */
 
 public class MyDatabase extends SQLiteAssetHelper {

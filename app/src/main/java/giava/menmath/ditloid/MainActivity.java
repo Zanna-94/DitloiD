@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.btnPlay) {
-                Intent startGame = new Intent(MainActivity.this, GameLevel.class);
+                Intent startGame = new Intent(MainActivity.this, Game.class);
                 startActivity(startGame);
             }
             if (v.getId() == R.id.btnChallenge) {
