@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -22,7 +23,7 @@ import java.util.Set;
 /**
  * @Author Emanuele Vannacci , Tiziano Menichelli , Simone Mattogno , Gianluca Giallatini
  *
- * @See Challenge
+ * @see Challenge
  *
  * The class provides some services for bluetooth connection.
  * MainActivity calls it when the user click on the buttton btnChallenge.
@@ -31,7 +32,7 @@ import java.util.Set;
  */
 public class FriendConnection extends AppCompatActivity {
 
-    private Button btnConnect = (Button) findViewById(R.id.btnConnect);
+    private Button btnConnect;
 
     private static final int REQUEST_ENABLE_BT = 1;
 
@@ -59,29 +60,44 @@ public class FriendConnection extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_connection);
 
-//      Check if Bluetooth is supported by device
+        btnConnect = (Button) findViewById(R.id.btnConnect);
+
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+//      Check if Bluetooth is supported by device
         if (mBluetoothAdapter == null) {
-            //TODO
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Bluetooth no supported")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            finish();
+                            dialog.dismiss();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+
         }
 
-/*
 
-        if (!mBluetoothAdapter.isEnabled()) {
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-        }
-*/
-
-//      it makes the local device discoverable to other devices
+//      it makes the local device discoverable to other devices and active bluetooth if it isn't actived
         Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
         discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
         startActivity(discoverableIntent);
 
         mReceiver = new MyBroadcastReceiver();
 
-//      Set Listener. Whene Click on Button searches new devices to connect and play
+//      Set Listener. When Click on Button searches new devices to pair
         btnConnect.setOnClickListener(new MyClick());
+
+        myListView.setOnItemClickListener(new MyOnItemClickListener());
+
+
+//        start manage connection like server
+        BServer server = new BServer(mBluetoothAdapter);
+        server.start();
 
     }
 
@@ -93,7 +109,7 @@ public class FriendConnection extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            if(!mBluetoothAdapter.isEnabled()){
+            if (!mBluetoothAdapter.isEnabled()) {
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
             }
@@ -102,11 +118,36 @@ public class FriendConnection extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * Class provides a Listener for a ListeView. The system shows a dialog with a inner ListView
+     * that contains available devices (name and address) for bluetooth connection. The user can
+     * choose one of them and the Listener retrieves the correct device through the MAC address.
+     * Then Client thread is started.
+     */
+    public class MyOnItemClickListener implements AdapterView.OnItemClickListener {
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            String s = BTArrayAdapter.getItem(position);
+            String[] parts = s.split("\\s*\\r?\\n\\s*");
+            String address = parts[1];
+
+            BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
+
+            BClient client = new BClient(device, mBluetoothAdapter);
+            client.start();
+
+        }
+
+    }
+
     /**
      * Class provides method to receive information from devices nearby.
      * The process is asynchronous and it usually involves an inquiry scan of about 12 seconds
      */
-    public class MyBroadcastReceiver extends BroadcastReceiver{
+    public class MyBroadcastReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -148,14 +189,14 @@ public class FriendConnection extends AppCompatActivity {
             for (BluetoothDevice device : pairedDevices)
                 BTArrayAdapter.add(device.getName() + "\n" + device.getAddress());
 
-/*            // Button OK
-            popDialog.setPositiveButton("Pair",
+            // Button Cancel
+            popDialog.setPositiveButton("Cancel",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                         }
 
-                    });*/
+                    });
 
             IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
             registerReceiver(mReceiver, filter);
@@ -186,12 +227,15 @@ public class FriendConnection extends AppCompatActivity {
 
     protected void onDestroy() {
         super.onDestroy();
-        if(mBluetoothAdapter != null)
-            mBluetoothAdapter.cancelDiscovery();
-        unregisterReceiver(mReceiver);
+        try {
+            if (mBluetoothAdapter != null)
+                mBluetoothAdapter.cancelDiscovery();
+
+            unregisterReceiver(mReceiver);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
-
-
 
 
 }

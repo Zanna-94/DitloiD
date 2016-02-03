@@ -51,6 +51,9 @@
         <activity
             android:name=".GiveTip"
             android:label="@string/strGiveTip"></activity>
+        <activity
+            android:name=".FriendConnection"
+            android:label="@string/strGiveTip"></activity>
     </application>
 
 </manifest>
