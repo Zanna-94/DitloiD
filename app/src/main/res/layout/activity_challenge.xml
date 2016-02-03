@@ -1,6 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="5.5"
+    android:background="#a4f8fa">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvNewDitloid"
+        android:textSize="50sp"
+        android:height="10dp"
+        android:layout_gravity="center"
+        style="@style/AppTheme"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:layout_weight="3" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/tvCategory"
+        android:gravity="center_horizontal"
+        android:textSize="25sp"
+        android:visibility="invisible"
+        android:layout_weight=".5" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+        <EditText
+            android:layout_width="262dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/etSolution"
+            android:capitalize="none"
+            android:fontFeatureSettings="@string/abc_capital_off"
+            android:layout_marginTop="20dp"
+            android:inputType="none" />
+
+        <Button
+            android:background="@drawable/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/strCheckSolution"
+            android:id="@+id/btnCheck"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="0dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="2">
+
+        <Chronometer
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/chronometer" />
+    </LinearLayout>
 
 </LinearLayout>

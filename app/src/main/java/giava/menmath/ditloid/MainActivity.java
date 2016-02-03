@@ -63,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(startGame);
             }
             if (v.getId() == R.id.btnChallenge) {
-                Intent startChallenge = new Intent(MainActivity.this, Challenge.class);
+
+                Intent startChallenge = new Intent(MainActivity.this, FriendConnection.class);
                 startActivity(startChallenge);
             }
             if (v.getId() == R.id.btnTrophies) {
@@ -80,4 +81,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+
+
+
+
 }

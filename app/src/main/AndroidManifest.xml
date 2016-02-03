@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="giava.menmath.ditloid" >
+    package="giava.menmath.ditloid">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,44 +23,34 @@
         </activity>
         <activity
             android:name=".Game"
-            android:label="@string/title_activity_game" >
-        </activity>
+            android:label="@string/title_activity_game"></activity>
         <activity
             android:name=".GameLevel"
-            android:label="@string/title_activity_game_level" >
-        </activity>
+            android:label="@string/title_activity_game_level"></activity>
         <activity
             android:name=".Challenge"
-            android:label="@string/strChallenge" >
-        </activity>
+            android:label="@string/strChallenge"></activity>
         <activity
             android:name=".Trophies"
-            android:label="@string/strTrophies" >
-        </activity>
+            android:label="@string/strTrophies"></activity>
         <activity
             android:name=".Rules"
-            android:label="@string/strRules" >
-        </activity>
+            android:label="@string/strRules"></activity>
         <activity
             android:name=".HelpUs"
-            android:label="@string/strHelpUs" >
-        </activity>
+            android:label="@string/strHelpUs"></activity>
         <activity
             android:name=".NewDitloid"
-            android:label="@string/strNewDitloid" >
-        </activity>
+            android:label="@string/strNewDitloid"></activity>
         <activity
             android:name=".NewDitloidSend"
-            android:label="@string/strNewDitloid" >
-        </activity>
+            android:label="@string/strNewDitloid"></activity>
         <activity
             android:name=".SignalError"
-            android:label="@string/strSignalError" >
-        </activity>
+            android:label="@string/strSignalError"></activity>
         <activity
             android:name=".GiveTip"
-            android:label="@string/strGiveTip" >
-        </activity>
+            android:label="@string/strGiveTip"></activity>
     </application>
 
 </manifest>
