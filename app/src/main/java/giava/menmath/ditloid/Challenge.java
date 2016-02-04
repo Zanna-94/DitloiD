@@ -29,7 +29,5 @@ public class Challenge extends AppCompatActivity {
 
     }
 
-
-
 }
 

@@ -131,4 +131,40 @@ public class DatabaseAccess {
 //        cursor.close();
 //        return list;
 //    }
+//
+//   public List<Integer> getRisolto() {
+//        List<Integer> list = new ArrayList<>();
+//        Cursor cursor = database.rawQuery("SELECT Risolto from ditloid" , null);
+//        cursor.moveToFirst();
+//        while (!cursor.isAfterLast()) {
+//            list.add(cursor.getInt(0));
+//            cursor.moveToNext();
+//        }
+//        cursor.close();
+//        return list;
+//    }
+//
+//   public List<Integer> getLevel() {
+//        List<Integer> list = new ArrayList<>();
+//        Cursor cursor = database.rawQuery("SELECT Categoria_Sbloccata from ditloid" , null);
+//        cursor.moveToFirst();
+//        while (!cursor.isAfterLast()) {
+//            list.add(cursor.getInt(0));
+//            cursor.moveToNext();
+//        }
+//        cursor.close();
+//        return list;
+//    }
+//
+//   public List<Integer> getLevel() {
+//        List<Integer> list = new ArrayList<>();
+//        Cursor cursor = database.rawQuery("SELECT Indizio_Sbloccato from ditloid" , null);
+//        cursor.moveToFirst();
+//        while (!cursor.isAfterLast()) {
+//            list.add(cursor.getInt(0));
+//            cursor.moveToNext();
+//        }
+//        cursor.close();
+//        return list;
+//    }
 }
