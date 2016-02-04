@@ -24,13 +24,12 @@
         </activity>
         <activity
             android:name=".Game"
-            android:label="@string/title_activity_game"></activity>
-        <activity
-            android:name=".GameLevel"
-            android:label="@string/title_activity_game_level"></activity>
+            android:label="@string/title_activity_game">
+        </activity>
         <activity
             android:name=".Challenge"
-            android:label="@string/strChallenge"></activity>
+            android:label="@string/strChallenge">
+        </activity>
         <activity
             android:name=".Trophies"
             android:label="@string/strTrophies"></activity>
@@ -57,7 +56,7 @@
             android:label="@string/strFriendConnection"/>
         <activity
             android:name=".FragmentPagerSupport"
-            android:label="@string/strEnigma"/>
+            android:label="@string/title_activity_game_level"/>
     </application>
 
 </manifest>

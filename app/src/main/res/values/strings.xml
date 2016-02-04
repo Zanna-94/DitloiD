@@ -23,16 +23,16 @@
     <string name="strNewDitloidText">Congratulations! You\'ve just sent a new ditloid!\nYour ditloid will be evaluated by our team and other players! If it will be considered worthwhile, you\'ll be able to see it in the game!\nThanks for your collaboration!</string>
     <string name="strNewSend">Send!</string>
     <string name="strEstimate">Evaluate new ditloids from users</string>
-    <string name="strEnigma">365 G in un A</string>
     <string name="strCheckSolution">Check!</string>
-    <string name="strGetHint">Get hint</string>
-    <string name="strGetCategory">Get Category</string>
+    <string name="strGetHint">Get hint (5 cr.)</string>
+    <string name="strGetCategory">Get Category (1 cr.)</string>
     <string name="strSignalError2">Segnalaci qui l\'errore che hai riscontrato all\'interno dell\'applicazione:</string>
     <string name="strActivityRules">Qui andremo a scriverci tutte le regole</string>
     <string name="strBackToGame">Back to Game</string>
     <string name="strGiveTip2">Scrivi qui un tuo suggerimento che ci permetterà di migliorare la nostra app</string>
     <string name="strConnect">Connect with your friend!</string>
     <string name="strFriendConnection">Connection with friends</string>
+    <string name="strEnigma">Prova</string>
 
 </resources>
 

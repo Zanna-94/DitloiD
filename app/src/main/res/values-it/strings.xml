@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">DitloiD</string>
     <string name="action_settings">Impostazioni</string>
-    <string name="btnCheckSolution">Prova!</string>
     <string name="strChallenge">Sfida</string>
     <string name="strEstimate">Valuta i nuovi ditloidi proposti dagli utenti</string>
     <string name="strGiveTip">Dacci un suggerimento</string>
@@ -15,13 +14,20 @@
     <string name="strNewDitloid">Suggerisci un ditloide</string>
     <string name="strNewDitloidText">Complimenti! Hai inviato un nuovo ditloide! \nIl tuo ditloide sarà valutato dal nostro team e dagli altri utenti del gioco! Se verrà ritenuto opportuno potrai rivederlo all\'interno del gioco stesso!\nGrazie per la collaborazione!</string>
     <string name="strNewEnigma">Inserisci il tuo ditloide</string>
-    <string name="strNewSends">Invia!</string>
     <string name="strNewSolution">Inserisci la soluzione del tuo ditloide</string>
     <string name="strPlay">Gioca!</string>
     <string name="strRules">Regolamento</string>
     <string name="strSignalError">Segnalaci un problema dell\'applicazione</string>
     <string name="strTrophies">Trofei e Statistiche</string>
     <string name="title_activity_game">Gioco</string>
-    <string name="tvNewDitloid">365 G in un A</string>
-    <string name="getHint">Suggerimento</string>
+    <string name="strCheckSolution">Prova!</string>
+    <string name="strConnect">Connettiti con i tuoi amici</string>
+    <string name="strBackToGame">Ritorna al gioco</string>
+    <string name="strActivityRules">Regole</string>
+    <string name="strFriendConnection">Connettiti con i tuoi amici</string>
+    <string name="strGetCategory">Ottieni categoria (1 cr.)</string>
+    <string name="strGetHint">Ottieni indizio (1 cr.)</string>
+    <string name="strGiveTip2"></string>
+    <string name="strNewSend">Invia!</string>
+    <string name="title_activity_game_level">Livello 1</string>
 </resources>

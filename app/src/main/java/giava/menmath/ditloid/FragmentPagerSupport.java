@@ -1,5 +1,7 @@
 package giava.menmath.ditloid;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -18,8 +20,6 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
-import static giava.menmath.ditloid.GameLevel.*;
-
 /**
  * Created by tizianomenichelli on 03/02/16.
  */
@@ -30,6 +30,9 @@ public class FragmentPagerSupport extends FragmentActivity {
 
     MyAdapter mAdapter;
     ViewPager mPager;
+
+    SharedPreferences prefs = MyApplication.getAppContext().
+            getSharedPreferences("giava.menmath.ditloid.app", Context.MODE_PRIVATE);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +63,7 @@ public class FragmentPagerSupport extends FragmentActivity {
 
     public static class ArrayListFragment extends ListFragment {
 
-        private int credits = 10; //TODO
-        private int stars = 0;
+        private int credits = 20; //TODO
 
         int mNum;
 
@@ -98,19 +100,18 @@ public class FragmentPagerSupport extends FragmentActivity {
 
             View v = inflater.inflate(R.layout.activity_game_level, container, false);
 
+            Integer level = 1;
             View tvNewDitloid = v.findViewById(R.id.tvNewDitloid);
             View tvLevel = v.findViewById(R.id.tvLevel);
             final View tvCategory = v.findViewById(R.id.tvCategory);
             final View tvHelp = v.findViewById(R.id.tvHelp);
             final View tvCredits = v.findViewById(R.id.tvCredits);
-            final View tvStars = v.findViewById(R.id.tvStars);
             final View etSolution = v.findViewById(R.id.etSolution);
             final View btnCheck = v.findViewById(R.id.btnCheck);
             final View btnGetCategory = v.findViewById(R.id.btnGetCategory);
             final View btnGetHint = v.findViewById(R.id.btnGetHint);
 
-            ((TextView)tvLevel).setText("Level 1." + (mNum + 1));
-            ((TextView)tvStars).setText(String.format("%d", stars));
+            ((TextView)tvLevel).setText("Level " + level + "." + (mNum + 1));
             ((TextView)tvCredits).setText(String.format("%d", credits));
 
             DatabaseAccess databaseAccess = DatabaseAccess.getInstance(MyApplication.getAppContext());
@@ -131,10 +132,9 @@ public class FragmentPagerSupport extends FragmentActivity {
                     String check = ((EditText) etSolution).getText().toString().toLowerCase();
                     if (check.equals(correct)) {
                         Toast.makeText(MyApplication.getAppContext(), "Complimenti! Livello superato", Toast.LENGTH_SHORT).show();
-                        stars += difficulty;
-                        ((TextView) tvStars).setText(String.format("%d", stars));
+                        credits += difficulty;
+                        ((TextView) tvCredits).setText(String.format("%d", credits));
                         btnCheck.setClickable(false);
-                        //TODO avanzamento fragment, blocco livello
                     } else {
                         Toast.makeText(MyApplication.getAppContext(), "Hai sbagliato! Riprova", Toast.LENGTH_SHORT).show();
                     }
@@ -147,7 +147,7 @@ public class FragmentPagerSupport extends FragmentActivity {
                 public void onClick(View v) {
                     if (credits >= 1) {
                         credits -= 1;
-                        ((TextView)tvCredits).setText("10"); //TODO
+                        ((TextView)tvCredits).setText(String.format("%d", credits)); //TODO
                         btnGetCategory.setClickable(false);
                         tvCategory.setVisibility(View.VISIBLE);
                     }
@@ -158,8 +158,8 @@ public class FragmentPagerSupport extends FragmentActivity {
 
                 @Override
                 public void onClick(View v) {
-                    if (credits >= 3) {
-                        credits -= 3;
+                    if (credits >= 5) {
+                        credits -= 5;
                         ((TextView)tvCredits).setText(String.format("%d", credits));
                         btnGetHint.setClickable(false);
                         tvHelp.setVisibility(View.VISIBLE);
