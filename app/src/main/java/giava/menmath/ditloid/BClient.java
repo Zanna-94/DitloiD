@@ -3,14 +3,19 @@ package giava.menmath.ditloid;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 
 import java.io.IOException;
 import java.util.UUID;
 
+import java.util.Set;
+
 /**
  * @Author Emanuele Vannacci , Tiziano Menichelli , Simone Mattogno , Gianluca Giallatini
  *
- * @see FriendConnection
+ * @see Challenge
  * @see BServer
  */
 
@@ -57,6 +62,8 @@ class BClient extends Thread {
 
         // Do work to manage the connection (in a separate thread)
 //        manageConnectedSocket(mmSocket);
+
+
     }
 
     /** Will cancel an in-progress connection, and close the socket */

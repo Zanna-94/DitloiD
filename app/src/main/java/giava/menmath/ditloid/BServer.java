@@ -10,7 +10,7 @@ import java.util.UUID;
 /**
  * @Author Emanuele Vannacci , Tiziano Menichelli , Simone Mattogno , Gianluca Giallatini
  *
- * @see FriendConnection
+ * @see Challenge
  * @see BClient
  *
  * Class provides the server side of bluetooth connection.

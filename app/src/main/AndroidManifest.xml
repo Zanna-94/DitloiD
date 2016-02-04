@@ -52,9 +52,6 @@
             android:name=".GiveTip"
             android:label="@string/strGiveTip"/>
         <activity
-            android:name=".FriendConnection"
-            android:label="@string/strFriendConnection"/>
-        <activity
             android:name=".FragmentPagerSupport"
             android:label="@string/title_activity_game_level"/>
     </application>
