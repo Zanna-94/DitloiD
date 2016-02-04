@@ -26,13 +26,25 @@ class BServer extends Thread {
 
     final UUID MY_UUID = UUID.fromString("e627cb94-ca85-11e5-9956-625662870761");
 
-    private final BluetoothServerSocket mmServerSocket;
+    private  BluetoothServerSocket mmServerSocket;
 
     private BluetoothAdapter mBluetoothAdapter;
 
+    /**
+     * Default Costructor
+     * @param mBluetoothAdapter
+     */
     public BServer(BluetoothAdapter mBluetoothAdapter) {
 
         this.mBluetoothAdapter = mBluetoothAdapter;
+
+    }
+
+    public void run() {
+        BluetoothSocket socket = null;
+
+        //wait
+        while(!mBluetoothAdapter.isEnabled());
 
         // Use a temporary object that is later assigned to mmServerSocket,
         // because mmServerSocket is final
@@ -42,11 +54,9 @@ class BServer extends Thread {
             tmp = mBluetoothAdapter.listenUsingRfcommWithServiceRecord(deviceName, MY_UUID);
         } catch (IOException e) {
         }
-        mmServerSocket = tmp;
-    }
 
-    public void run() {
-        BluetoothSocket socket = null;
+        mmServerSocket = tmp;
+
         // Keep listening until exception occurs or a socket is returned
         while (true) {
             try {

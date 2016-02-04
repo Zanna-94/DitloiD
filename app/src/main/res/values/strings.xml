@@ -33,5 +33,6 @@
     <string name="strGiveTip2">Scrivi qui un tuo suggerimento che ci permetterà di migliorare la nostra app</string>
     <string name="strProvaHelp">Provaaaaaa (Otta gay)</string>
     <string name="btnConnect">Connect with your friend!</string>
+    <string name="strFriendConnection">Connect with your friend!</string>
 </resources>
 

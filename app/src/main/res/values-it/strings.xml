@@ -24,4 +24,5 @@
     <string name="title_activity_game">Gioco</string>
     <string name="tvNewDitloid">365 G in un A</string>
     <string name="getHint">Suggerimento</string>
+    <string name="strFriendConnection">Connettiti con un tuo amico!</string>
 </resources>

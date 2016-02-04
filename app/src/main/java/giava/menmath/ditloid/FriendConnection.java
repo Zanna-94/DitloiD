@@ -22,9 +22,8 @@ import java.util.Set;
 
 /**
  * @Author Emanuele Vannacci , Tiziano Menichelli , Simone Mattogno , Gianluca Giallatini
- *
  * @see Challenge
- *
+ * <p/>
  * The class provides some services for bluetooth connection.
  * MainActivity calls it when the user click on the buttton btnChallenge.
  * On creation state , the class provides a check out of  bluetooth connection service
@@ -90,12 +89,8 @@ public class FriendConnection extends AppCompatActivity {
         mReceiver = new MyBroadcastReceiver();
 
 //      Set Listener. When Click on Button searches new devices to pair
-        btnConnect.setOnClickListener(new MyClick());
+        btnConnect.setOnClickListener(new MySearchClick());
 
-        myListView.setOnItemClickListener(new MyOnItemClickListener());
-
-
-//        start manage connection like server
         BServer server = new BServer(mBluetoothAdapter);
         server.start();
 
@@ -105,19 +100,18 @@ public class FriendConnection extends AppCompatActivity {
      * Listener for btnConnect. On click it Shows dialog with available devices and allows
      * to select one of them to start game.
      */
-    public class MyClick implements View.OnClickListener {
+    public class MySearchClick implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
             if (!mBluetoothAdapter.isEnabled()) {
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+            }else{
+                showBTDialog();
             }
-
-            showBTDialog();
         }
     }
-
 
     /**
      * Class provides a Listener for a ListeView. The system shows a dialog with a inner ListView
@@ -133,33 +127,19 @@ public class FriendConnection extends AppCompatActivity {
             String s = BTArrayAdapter.getItem(position);
             String[] parts = s.split("\\s*\\r?\\n\\s*");
             String address = parts[1];
+            System.out.println(address);
 
             BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
 
             BClient client = new BClient(device, mBluetoothAdapter);
             client.start();
 
+
+            Intent challenge = new Intent(FriendConnection.this, Challenge.class);
+            startActivity(challenge);
+
         }
 
-    }
-
-    /**
-     * Class provides method to receive information from devices nearby.
-     * The process is asynchronous and it usually involves an inquiry scan of about 12 seconds
-     */
-    public class MyBroadcastReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            // When discovery finds a device
-            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-                // Get the BluetoothDevice object from the Intent
-                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                // Add the name and address to an array adapter to show in a ListView
-                BTArrayAdapter.add(device.getName() + "\n" + device.getAddress());
-            }
-        }
     }
 
     /**
@@ -177,6 +157,7 @@ public class FriendConnection extends AppCompatActivity {
 
         // create the arrayAdapter that contains the BTDevices, and set it to a ListView
         myListView = (ListView) viewLayout.findViewById(R.id.BTList);
+        myListView.setOnItemClickListener(new MyOnItemClickListener());
 
         BTArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         myListView.setAdapter(BTArrayAdapter);
@@ -224,7 +205,40 @@ public class FriendConnection extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == REQUEST_ENABLE_BT ) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
 
+                if (mBluetoothAdapter.isEnabled())
+                    showBTDialog();
+            }
+        }
+    }
+
+    /**
+     * Class provides method to receive information from devices nearby.
+     * The process is asynchronous and it usually involves an inquiry scan of about 12 seconds
+     */
+    public class MyBroadcastReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            // When discovery finds a device
+            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                // Get the BluetoothDevice object from the Intent
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                // Add the name and address to an array adapter to show in a ListView
+                BTArrayAdapter.add(device.getName() + "\n" + device.getAddress());
+            }
+        }
+    }
+
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         try {
