@@ -25,12 +25,8 @@ public class Challenge extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_challenge);
+        setContentView(R.layout.activity_search_connection);
 
     }
 
-
-
-
 }
-

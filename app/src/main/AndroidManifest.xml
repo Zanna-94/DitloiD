@@ -8,10 +8,12 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name="giava.menmath.ditloid.MyApplication">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
@@ -23,34 +25,40 @@
         </activity>
         <activity
             android:name=".Game"
-            android:label="@string/title_activity_game"></activity>
+            android:label="@string/title_activity_game"/>
         <activity
             android:name=".GameLevel"
-            android:label="@string/title_activity_game_level"></activity>
+            android:label="@string/title_activity_game_level"/>
         <activity
             android:name=".Challenge"
-            android:label="@string/strChallenge"></activity>
+            android:label="@string/strChallenge"/>
         <activity
             android:name=".Trophies"
-            android:label="@string/strTrophies"></activity>
+            android:label="@string/strTrophies"/>
         <activity
             android:name=".Rules"
-            android:label="@string/strRules"></activity>
+            android:label="@string/strRules"/>
         <activity
             android:name=".HelpUs"
-            android:label="@string/strHelpUs"></activity>
+            android:label="@string/strHelpUs"/>
         <activity
             android:name=".NewDitloid"
-            android:label="@string/strNewDitloid"></activity>
+            android:label="@string/strNewDitloid"/>
         <activity
             android:name=".NewDitloidSend"
-            android:label="@string/strNewDitloid"></activity>
+            android:label="@string/strNewDitloid"/>
         <activity
             android:name=".SignalError"
-            android:label="@string/strSignalError"></activity>
+            android:label="@string/strSignalError"/>
         <activity
             android:name=".GiveTip"
-            android:label="@string/strGiveTip"></activity>
+            android:label="@string/strGiveTip"/>
+        <activity
+            android:name=".FriendConnection"
+            android:label="@string/strFriendConnection"/>
+        <activity
+            android:name=".FragmentPagerSupport"
+            android:label="@string/strEnigma"/>
     </application>
 
 </manifest>

@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             }
             if (v.getId() == R.id.btnChallenge) {
 
-                Intent startChallenge = new Intent(MainActivity.this, FriendConnection.class);
+                Intent startChallenge = new Intent(MainActivity.this, FragmentPagerSupport.class);
                 startActivity(startChallenge);
             }
             if (v.getId() == R.id.btnTrophies) {

@@ -31,7 +31,8 @@
     <string name="strActivityRules">Qui andremo a scriverci tutte le regole</string>
     <string name="strBackToGame">Back to Game</string>
     <string name="strGiveTip2">Scrivi qui un tuo suggerimento che ci permetterà di migliorare la nostra app</string>
-    <string name="strProvaHelp">Provaaaaaa (Otta gay)</string>
-    <string name="btnConnect">Connect with your friend!</string>
+    <string name="strConnect">Connect with your friend!</string>
+    <string name="strFriendConnection">Connection with friends</string>
+
 </resources>
 

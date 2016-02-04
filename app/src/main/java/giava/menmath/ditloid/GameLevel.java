@@ -46,18 +46,16 @@ public class GameLevel extends AppCompatActivity {
         btnGetCategory.setOnClickListener(mc);
         btnGetHint.setOnClickListener(mc);
 
-        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-        databaseAccess.open();
-        List<String> ditloids = databaseAccess.getDitloids();
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(MyApplication.getAppContext());
 
-        tvNewDitloid.setText(ditloids.get(44));
+        databaseAccess.open();
+        tvNewDitloid.setText(databaseAccess.getDitloids().get(44));
         Correct = databaseAccess.getSolutions().get(44);
         tvCategory.setText(databaseAccess.getCategory().get(44));
         tvHelp.setText(databaseAccess.getHint().get(44));
         tvCredits.setText(String.format("%d", credits));
         tvStars.setText(String.format("%d",stars));
         difficulty = databaseAccess.getDifficulty().get(44);
-
         databaseAccess.close();
     }
 
@@ -89,8 +87,7 @@ public class GameLevel extends AppCompatActivity {
     }
 
     public void checkSolution() {
-        EditText sol1 = (EditText) (findViewById(R.id.etSolution));
-        String check = sol1.getText().toString().toLowerCase();
+        String check = etSolution.getText().toString().toLowerCase();
         if (check.equals(Correct)) {
             Toast.makeText(this, "Complimenti! Livello superato", Toast.LENGTH_SHORT).show();
             stars += difficulty;
