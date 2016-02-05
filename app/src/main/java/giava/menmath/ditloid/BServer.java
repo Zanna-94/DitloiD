@@ -9,10 +9,9 @@ import java.util.UUID;
 
 /**
  * @Author Emanuele Vannacci , Tiziano Menichelli , Simone Mattogno , Gianluca Giallatini
- *
  * @see Challenge
  * @see BClient
- *
+ * <p/>
  * Class provides the server side of bluetooth connection.
  * It creates a BloetoothServerSocket that listen all possible connection request.
  * The first request that arrives is accepted and a Socket is created.
@@ -21,21 +20,26 @@ import java.util.UUID;
 
 class BServer extends Thread {
 
-    BluetoothAdapter myDevice = BluetoothAdapter.getDefaultAdapter();
+    private Challenge father;
+
+    private BluetoothAdapter myDevice = BluetoothAdapter.getDefaultAdapter();
+
     final String deviceName = myDevice.getName();
 
     final UUID MY_UUID = UUID.fromString("e627cb94-ca85-11e5-9956-625662870761");
 
-    private  BluetoothServerSocket mmServerSocket;
+    private BluetoothServerSocket mmServerSocket;
 
     private BluetoothAdapter mBluetoothAdapter;
 
     /**
      * Default Costructor
+     *
      * @param mBluetoothAdapter
      */
-    public BServer(BluetoothAdapter mBluetoothAdapter) {
+    public BServer(BluetoothAdapter mBluetoothAdapter, Challenge father) {
 
+        this.father = father;
         this.mBluetoothAdapter = mBluetoothAdapter;
 
     }
@@ -44,7 +48,7 @@ class BServer extends Thread {
         BluetoothSocket socket = null;
 
         //wait
-        while(!mBluetoothAdapter.isEnabled());
+        while (!mBluetoothAdapter.isEnabled()) ;
 
         // Use a temporary object that is later assigned to mmServerSocket,
         // because mmServerSocket is final
@@ -74,6 +78,8 @@ class BServer extends Thread {
                 break;
             }
         }
+
+        father.playLikeServer(socket);
     }
 
     /**

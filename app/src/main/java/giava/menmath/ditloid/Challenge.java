@@ -3,6 +3,7 @@ package giava.menmath.ditloid;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -21,14 +22,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.Set;
-
 /**
  * Created by tizianomenichelli on 02/02/16.
  */
 
 public class Challenge extends AppCompatActivity {
 
+    private ProgressDialog waitingDialog;
 
     /**
      * Thread implements Client side. It creates a socket to comunicate with another player
@@ -51,11 +51,6 @@ public class Challenge extends AppCompatActivity {
     private ArrayAdapter<String> BTArrayAdapter;
 
     /**
-     * Bluetooth devices that are already pair.
-     */
-    private Set<BluetoothDevice> pairedDevices;
-
-    /**
      * Broadcast receiver that provides services to
      */
     private MyBroadcastReceiver mReceiver;
@@ -63,34 +58,20 @@ public class Challenge extends AppCompatActivity {
     /**
      * Socket through the Application can communicate with other connected device
      */
-    private BluetoothSocket msocket;
+    private BluetoothSocket mSocket;
 
     /* Class provides bluetooth service */
     private BluetoothAdapter mBluetoothAdapter;
 
-    /**
-     * Refers to itself to perform data transfer with thread:
-     * Client and Server can obtain instance of thi Class to send socket object
-     */
-    private Challenge instance;
 
-    /**
-     * @see BClient
-     * @see BServer
-     *
-     * @return Challenge
-     */
-    public Challenge getIstance(){
-        return instance;
-    }
-
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_challenge);
 
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        if(!mBluetoothAdapter.isEnabled()) {
+        if (!mBluetoothAdapter.isEnabled()) {
             Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
             discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
             startActivity(discoverableIntent);
@@ -98,10 +79,18 @@ public class Challenge extends AppCompatActivity {
 
         mReceiver = new MyBroadcastReceiver();
 
-        instance= this;
-
         showServerOrClientDialog();
 
+
+    }
+
+    public void playLikeClient(BluetoothSocket socket){
+        //TODO
+    }
+
+    public void playLikeServer(BluetoothSocket socket){
+        waitingDialog.dismiss();
+        //TODO
     }
 
     /**
@@ -122,7 +111,7 @@ public class Challenge extends AppCompatActivity {
 
             BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
 
-            client = new BClient(device, mBluetoothAdapter);
+            client = new BClient(device, mBluetoothAdapter, Challenge.this);
             client.start();
         }
 
@@ -157,7 +146,11 @@ public class Challenge extends AppCompatActivity {
         final LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         final View viewLayout = inflater.inflate(R.layout.bt_dialog, (ViewGroup) findViewById(R.id.bt_list));
 
-        popDialog.setTitle("Paired Bluetooth Devices");
+        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+        registerReceiver(mReceiver, filter);
+        mBluetoothAdapter.startDiscovery();
+
+        popDialog.setTitle("Discovered Bluetooth Devices");
         popDialog.setView(viewLayout);
 
         // create the arrayAdapter that contains the BTDevices, and set it to a ListView
@@ -168,46 +161,18 @@ public class Challenge extends AppCompatActivity {
         myListView.setAdapter(BTArrayAdapter);
 
 
-        // get paired devices
-        pairedDevices = mBluetoothAdapter.getBondedDevices();
-        if (pairedDevices.size() > 0) {
-            // put it's one to the adapter
-            for (BluetoothDevice device : pairedDevices)
-                BTArrayAdapter.add(device.getName() + "\n" + device.getAddress());
+        // Button Cancel
+        popDialog.setPositiveButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        finish();
+                    }
 
-            // Button Cancel
-            popDialog.setPositiveButton("Cancel",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                            finish();
-                        }
+                });
 
-                    });
-
-            IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-            registerReceiver(mReceiver, filter);
-            mBluetoothAdapter.startDiscovery();
-
-            popDialog.create();
-            popDialog.show();
-
-            BTArrayAdapter.clear();
-
-        } else {
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("No device connected")
-                    .setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.dismiss();
-                        }
-                    });
-            AlertDialog alert = builder.create();
-            alert.show();
-
-        }
+        popDialog.create();
+        popDialog.show();
 
     }
 
@@ -215,18 +180,24 @@ public class Challenge extends AppCompatActivity {
      * The system shows a dialog to the user. He can choose if wait for a friend's request
      * to play or search available devices in the place.
      */
-    private void showServerOrClientDialog(){
+    private void showServerOrClientDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("do you want Wait for friend's request or Search neighbors device?")
                 .setCancelable(false)
                 .setPositiveButton("Wait", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        server = new BServer(mBluetoothAdapter);
+
+                        server = new BServer(mBluetoothAdapter, Challenge.this);
                         server.start();
 
-                        if(mBluetoothAdapter.getScanMode()
+                        if (mBluetoothAdapter.getScanMode()
                                 != BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE)
-                            Toast.makeText(Challenge.this, "your device is not discoverable!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Challenge.this, "your device is not discoverable!",
+                                    Toast.LENGTH_SHORT).show();
+
+                        //Waiting for a connection request
+                        waitingDialog = ProgressDialog.show(Challenge.this, "",
+                                "Please wait...", true);
 
                         dialog.dismiss();
                     }
@@ -235,6 +206,7 @@ public class Challenge extends AppCompatActivity {
         builder.setNegativeButton("Search", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 showDeviceListDialog();
+
                 dialog.dismiss();
 
             }

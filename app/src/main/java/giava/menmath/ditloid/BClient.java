@@ -1,5 +1,6 @@
 package giava.menmath.ditloid;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -20,6 +21,7 @@ import java.util.Set;
  */
 
 class BClient extends Thread {
+
     private final BluetoothSocket mmSocket;
     private final BluetoothDevice mmDevice;
 
@@ -27,8 +29,11 @@ class BClient extends Thread {
 
     final UUID MY_UUID = UUID.fromString("e627cb94-ca85-11e5-9956-625662870761");
 
-    public BClient(BluetoothDevice device, BluetoothAdapter mBluetoothAdapter) {
+    Challenge father;
 
+    public BClient(BluetoothDevice device, BluetoothAdapter mBluetoothAdapter, Challenge father) {
+
+        this.father = father;
         this.mBluetoothAdapter= mBluetoothAdapter;
 
         // Use a temporary object that is later assigned to mmSocket,
@@ -60,10 +65,11 @@ class BClient extends Thread {
             return;
         }
 
-        // Do work to manage the connection (in a separate thread)
-//        manageConnectedSocket(mmSocket);
+        father.playLikeClient(mmSocket);
+    }
 
-
+    public BluetoothSocket getSocket(){
+        return mmSocket;
     }
 
     /** Will cancel an in-progress connection, and close the socket */
