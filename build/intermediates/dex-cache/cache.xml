@@ -2,39 +2,39 @@
 <items version="2" >
 
     <item
-        jar="/Users/tizianomenichelli/Desktop/DitloiD/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
-        <dex dex="/Users/tizianomenichelli/Desktop/DitloiD/app/build/intermediates/pre-dexed/debug/classes-c7b0f604c7801cf73e9d399d8a9b762d1ddedd3b.jar" />
-    </item>
-    <item
-        jar="/Users/tizianomenichelli/Desktop/DitloiD/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
-        <dex dex="/Users/tizianomenichelli/Desktop/DitloiD/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1-dcc730a3520e9df82bb19ca33ee0c28359b8bf81.jar" />
-    </item>
-    <item
-        jar="/Users/tizianomenichelli/Desktop/DitloiD/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
-        <dex dex="/Users/tizianomenichelli/Desktop/DitloiD/app/build/intermediates/pre-dexed/debug/classes-2ff5d0be4e6834596e74cf8e27c3d1355e7a34f4.jar" />
-    </item>
-    <item
-        jar="/Users/tizianomenichelli/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
+        jar="/Users/simonemattogno/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
-        <dex dex="/Users/tizianomenichelli/Desktop/DitloiD/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1-a2472fdb0b656105cdf2597a45ee26afaf27c8bb.jar" />
+        <dex dex="/Users/simonemattogno/AndroidStudioProjects/DitloiD/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1-db607b9170b0ea3bd8e6bc300ce8162fdb71260f.jar" />
     </item>
     <item
-        jar="/Users/tizianomenichelli/.gradle/caches/modules-2/files-2.1/com.readystatesoftware.sqliteasset/sqliteassethelper/2.0.1/d5f02e4a4d65ec0fbb339f2e4228723d1540bb9f/sqliteassethelper-2.0.1.jar"
+        jar="/Users/simonemattogno/.gradle/caches/modules-2/files-2.1/com.readystatesoftware.sqliteasset/sqliteassethelper/2.0.1/d5f02e4a4d65ec0fbb339f2e4228723d1540bb9f/sqliteassethelper-2.0.1.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="d5f02e4a4d65ec0fbb339f2e4228723d1540bb9f">
-        <dex dex="/Users/tizianomenichelli/Desktop/DitloiD/app/build/intermediates/pre-dexed/debug/sqliteassethelper-2.0.1-ddee616615d0b06030e8f4528d8b5dded2122336.jar" />
+        <dex dex="/Users/simonemattogno/AndroidStudioProjects/DitloiD/app/build/intermediates/pre-dexed/debug/sqliteassethelper-2.0.1-7c2cc636f28abf41fedf532b53616318564a6c58.jar" />
+    </item>
+    <item
+        jar="/Users/simonemattogno/AndroidStudioProjects/DitloiD/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/Users/simonemattogno/AndroidStudioProjects/DitloiD/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1-c32a22bf75e09d9659f3f0d32ac38c569b6d3fee.jar" />
+    </item>
+    <item
+        jar="/Users/simonemattogno/AndroidStudioProjects/DitloiD/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="/Users/simonemattogno/AndroidStudioProjects/DitloiD/app/build/intermediates/pre-dexed/debug/classes-0a95dc76259757c2b05463a158663c76121f0d6e.jar" />
+    </item>
+    <item
+        jar="/Users/simonemattogno/AndroidStudioProjects/DitloiD/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="/Users/simonemattogno/AndroidStudioProjects/DitloiD/app/build/intermediates/pre-dexed/debug/classes-894af0745947eab28f84b07feb841afa0b26e5f0.jar" />
     </item>
 
 </items>

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#a4f8fa">
+    android:background="@drawable/background">
 
     <TextView
         android:layout_width="wrap_content"
@@ -18,5 +18,9 @@
         android:text="@string/strBackToGame"
         android:id="@+id/btnBack"
         android:layout_gravity="right"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="#8a2b01"
+        android:textSize="18dp"
+        android:textStyle="bold" />
 </LinearLayout>
