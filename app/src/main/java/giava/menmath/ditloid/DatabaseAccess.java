@@ -120,6 +120,31 @@ public class DatabaseAccess {
         return list;
     }
 
+    public Ditloid getById(Integer id){
+
+        Ditloid ditloid = new Ditloid();
+        ditloid.setId(id);
+
+        String query = "SELECT Soluzione from ditloid where id = ?";
+        String[] ID = {id.toString()};
+
+        Cursor cursor = database.rawQuery(query, ID);
+        cursor.moveToLast();
+        if(cursor.getCount()!= 1){
+            cursor.close();
+            return null;
+        }
+
+        ditloid.setSoluction(cursor.getString(cursor.getColumnIndex("Soluzione")));
+        ditloid.setCategory(cursor.getString(cursor.getColumnIndex("Categoria")));
+        ditloid.setEnigma(cursor.getString(cursor.getColumnIndex("Enigma")));
+        ditloid.setHint(cursor.getString(cursor.getColumnIndex("Indizio")));
+        ditloid.setDifficulty(cursor.getInt(cursor.getColumnIndex("Difficoltà")));
+
+        return ditloid;
+
+    }
+
 //    public List<Integer> getLevel() {
 //        List<Integer> list = new ArrayList<>();
 //        Cursor cursor = database.rawQuery("SELECT Livello from ditloid" , null);

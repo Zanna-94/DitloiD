@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tvNewDitloid"
+        android:id="@+id/tvDitloid"
         android:textSize="50sp"
         android:height="10dp"
         android:layout_gravity="center"
@@ -52,7 +52,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="15dp"
             android:layout_marginTop="0dp"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#8a2b01" />
     </LinearLayout>

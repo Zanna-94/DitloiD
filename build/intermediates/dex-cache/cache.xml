@@ -2,39 +2,39 @@
 <items version="2" >
 
     <item
-        jar="/Users/simonemattogno/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
-        <dex dex="/Users/simonemattogno/AndroidStudioProjects/DitloiD/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1-db607b9170b0ea3bd8e6bc300ce8162fdb71260f.jar" />
-    </item>
-    <item
-        jar="/Users/simonemattogno/.gradle/caches/modules-2/files-2.1/com.readystatesoftware.sqliteasset/sqliteassethelper/2.0.1/d5f02e4a4d65ec0fbb339f2e4228723d1540bb9f/sqliteassethelper-2.0.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="d5f02e4a4d65ec0fbb339f2e4228723d1540bb9f">
-        <dex dex="/Users/simonemattogno/AndroidStudioProjects/DitloiD/app/build/intermediates/pre-dexed/debug/sqliteassethelper-2.0.1-7c2cc636f28abf41fedf532b53616318564a6c58.jar" />
-    </item>
-    <item
-        jar="/Users/simonemattogno/AndroidStudioProjects/DitloiD/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
-        <dex dex="/Users/simonemattogno/AndroidStudioProjects/DitloiD/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1-c32a22bf75e09d9659f3f0d32ac38c569b6d3fee.jar" />
-    </item>
-    <item
-        jar="/Users/simonemattogno/AndroidStudioProjects/DitloiD/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
-        <dex dex="/Users/simonemattogno/AndroidStudioProjects/DitloiD/app/build/intermediates/pre-dexed/debug/classes-0a95dc76259757c2b05463a158663c76121f0d6e.jar" />
-    </item>
-    <item
-        jar="/Users/simonemattogno/AndroidStudioProjects/DitloiD/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
+        jar="/home/emanuele/Scrivania/MP/DitloiD/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="5c5699834e9722f1c288fea2de82725d078ba127">
-        <dex dex="/Users/simonemattogno/AndroidStudioProjects/DitloiD/app/build/intermediates/pre-dexed/debug/classes-894af0745947eab28f84b07feb841afa0b26e5f0.jar" />
+        <dex dex="/home/emanuele/Scrivania/MP/DitloiD/app/build/intermediates/pre-dexed/debug/classes-c97645876fcee9e1b9e970632edabe5b30bf21f2.jar" />
+    </item>
+    <item
+        jar="/home/emanuele/Scrivania/MP/DitloiD/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="/home/emanuele/Scrivania/MP/DitloiD/app/build/intermediates/pre-dexed/debug/classes-54e2e9b678672d6dda23d7fc4da90827374ce97c.jar" />
+    </item>
+    <item
+        jar="/home/emanuele/.gradle/caches/modules-2/files-2.1/com.readystatesoftware.sqliteasset/sqliteassethelper/2.0.1/d5f02e4a4d65ec0fbb339f2e4228723d1540bb9f/sqliteassethelper-2.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d5f02e4a4d65ec0fbb339f2e4228723d1540bb9f">
+        <dex dex="/home/emanuele/Scrivania/MP/DitloiD/app/build/intermediates/pre-dexed/debug/sqliteassethelper-2.0.1-4549d2ade422824855636735a0628f52da63e512.jar" />
+    </item>
+    <item
+        jar="/home/emanuele/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="/home/emanuele/Scrivania/MP/DitloiD/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1-52554a70d2dc7acdd707d8276d7f5404aa1151b2.jar" />
+    </item>
+    <item
+        jar="/home/emanuele/Scrivania/MP/DitloiD/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/home/emanuele/Scrivania/MP/DitloiD/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1-dd75a2de8a6cdb04f244b118b7c46d558c924fdd.jar" />
     </item>
 
 </items>
