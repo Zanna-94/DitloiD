@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">DitloiD</string>
-    <string name="title_activity_game">Game</string>
+    <string name="title_activity_game" translatable="false">Game</string>
     <string name="title_activity_game_level">Level 1</string>
 
     <string name="action_settings">Settings</string>
@@ -33,6 +33,13 @@
     <string name="strConnect">Connect with your friend!</string>
     <string name="strFriendConnection">Connection with friends</string>
     <string name="strEnigma">Prova</string>
-
+    <string name="title_paired_devices">Paired Device</string>
+    <string name="title_other_devices">other devices</string>
+    <string name="btnScan">Scan</string>
+    <string name="none_paired">No devices have been paired</string>
+    <string name="scanning">scanning for devices...</string>
+    <string name="select_device">select a device to connect</string>
+    <string name="none_found">No devices found</string>
+    <string name="bt_not_enabled_leaving">Bluetooth non enable</string>
 </resources>
 

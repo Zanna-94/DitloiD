@@ -78,13 +78,8 @@ public class MainActivity extends AppCompatActivity {
             }
             if (v.getId() == R.id.btnChallenge) {
 
-               /* it makes the local device  discoverable to other devices and active
-                bluetooth if it isn't actived*/
-                Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-                discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
-                startActivityForResult(discoverableIntent, REQUEST_ENABLE_BT);
-
-//                See onActivityResult
+                Intent challenge = new Intent(MainActivity.this, BluetoothChallenge.class);
+                startActivity(challenge);
 
             }
             if (v.getId() == R.id.btnTrophies) {
@@ -102,35 +97,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Methos check out bluetooth connection. If the device don't support bluetooth
-     * it shows an alert dialog.
-     */
-    private void CheckBluetoothSupport() {
-        if (mBluetoothAdapter == null) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Bluetooth no supported")
-                    .setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            finish();
-                            dialog.dismiss();
-                        }
-                    });
-            AlertDialog alert = builder.create();
-            alert.show();
-        }
 
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_ENABLE_BT)
-//            if (resultCode ==  RESULT_OK)
-                if (mBluetoothAdapter.isEnabled()) {
-                    Intent startChallenge = new Intent(MainActivity.this, Challenge.class);
-                    startActivity(startChallenge);
-                }
-
-    }
 }
+
+
+

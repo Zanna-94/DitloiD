@@ -30,4 +30,12 @@
     <string name="strGiveTip2"></string>
     <string name="strNewSend">Invia!</string>
     <string name="title_activity_game_level">Livello 1</string>
+    <string name="title_paired_devices">Dispositivi accoppiati</string>
+    <string name="title_other_devices">altri</string>
+    <string name="btnScan">Scansiona</string>
+    <string name="none_paired">Nessun dispositivo accoppiato</string>
+    <string name="scanning">scansione in corso...</string>
+    <string name="select_device">seleziona un dispositivo per connetterti</string>
+    <string name="none_found">nessun dispositivo</string>
+    <string name="bt_not_enabled_leaving">Bluetooth non attivo</string>
 </resources>
