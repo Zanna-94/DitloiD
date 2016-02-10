@@ -64,10 +64,10 @@
         android:layout_gravity="center_horizontal"
         android:layout_weight="2">
 
-        <Chronometer
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/chronometer" />
+            android:id="@+id/tvTimer" />
     </LinearLayout>
 
 </LinearLayout>

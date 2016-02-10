@@ -9,7 +9,7 @@ public class Ditloid {
 
     private String enigma;
 
-    private String soluction;
+    private String solution;
 
     private String category;
 
@@ -20,9 +20,9 @@ public class Ditloid {
     public Ditloid() {
     }
 
-    public Ditloid(String enigma, String soluction, String category, String hint, int difficulty) {
+    public Ditloid(String enigma, String solution, String category, String hint, int difficulty) {
         this.enigma = enigma;
-        this.soluction = soluction;
+        this.solution = solution;
         this.category = category;
         this.hint = hint;
         this.difficulty = difficulty;
@@ -44,12 +44,12 @@ public class Ditloid {
         this.enigma = enigma;
     }
 
-    public String getSoluction() {
-        return soluction;
+    public String getSolution() {
+        return solution;
     }
 
-    public void setSoluction(String soluction) {
-        this.soluction = soluction;
+    public void setSolution(String soluction) {
+        this.solution = solution;
     }
 
     public String getCategory() {

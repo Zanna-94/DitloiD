@@ -61,7 +61,7 @@ public class DatabaseAccess {
      */
     public List<String> getDitloids() {
         List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT Enigma from ditloid" , null);
+        Cursor cursor = database.rawQuery("SELECT Enigma from ditloid", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             list.add(cursor.getString(0));
@@ -73,7 +73,7 @@ public class DatabaseAccess {
 
     public List<String> getSolutions() {
         List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT Soluzione from ditloid" , null);
+        Cursor cursor = database.rawQuery("SELECT Soluzione from ditloid", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             list.add(cursor.getString(0));
@@ -85,7 +85,7 @@ public class DatabaseAccess {
 
     public List<String> getCategory() {
         List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT Categoria from ditloid" , null);
+        Cursor cursor = database.rawQuery("SELECT Categoria from ditloid", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             list.add(cursor.getString(0));
@@ -98,7 +98,7 @@ public class DatabaseAccess {
 
     public List<Integer> getDifficulty() {
         List<Integer> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT Difficoltà from ditloid" , null);
+        Cursor cursor = database.rawQuery("SELECT Difficoltà from ditloid", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             list.add(cursor.getInt(0));
@@ -110,7 +110,7 @@ public class DatabaseAccess {
 
     public List<String> getHint() {
         List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT Indizio from ditloid" , null);
+        Cursor cursor = database.rawQuery("SELECT Indizio from ditloid", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             list.add(cursor.getString(0));
@@ -120,22 +120,22 @@ public class DatabaseAccess {
         return list;
     }
 
-    public Ditloid getById(Integer id){
+    public Ditloid getById(Integer id) {
 
         Ditloid ditloid = new Ditloid();
         ditloid.setId(id);
 
-        String query = "SELECT Soluzione from ditloid where id = ?";
-        String[] ID = {id.toString()};
+        String query = "SELECT * from ditloid where ROWID ='"+id+"' Limit 1";
 
-        Cursor cursor = database.rawQuery(query, ID);
+        Cursor cursor = database.rawQuery(query, null);
+
         cursor.moveToLast();
-        if(cursor.getCount()!= 1){
+        if (cursor.getCount() != 1) {
             cursor.close();
             return null;
         }
 
-        ditloid.setSoluction(cursor.getString(cursor.getColumnIndex("Soluzione")));
+        ditloid.setSolution(cursor.getString(cursor.getColumnIndex("Soluzione")));
         ditloid.setCategory(cursor.getString(cursor.getColumnIndex("Categoria")));
         ditloid.setEnigma(cursor.getString(cursor.getColumnIndex("Enigma")));
         ditloid.setHint(cursor.getString(cursor.getColumnIndex("Indizio")));
@@ -143,6 +143,10 @@ public class DatabaseAccess {
 
         return ditloid;
 
+    }
+
+    public int getCount() {
+        return database.rawQuery("SELECT Enigma FROM ditloid", null).getCount();
     }
 
 //    public List<Integer> getLevel() {

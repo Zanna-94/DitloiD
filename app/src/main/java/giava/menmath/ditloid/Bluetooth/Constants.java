@@ -1,8 +1,8 @@
-package giava.menmath.ditloid;
+package giava.menmath.ditloid.Bluetooth;
 
 /**
  * Created by emanuele on 09/02/16.
- *
+ * <p/>
  * Defines several constants used between {@link BluetoothService} and the UI.
  */
 public interface Constants {
@@ -17,5 +17,8 @@ public interface Constants {
     // Key names received from the BluetoothService Handler
     public static final String DEVICE_NAME = "device_name";
     public static final String TOAST = "toast";
+
+    public static final String SERVER = "Server";
+    public static final String CLIENT = "Client";
 
 }

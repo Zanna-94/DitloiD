@@ -1,4 +1,4 @@
-package giava.menmath.ditloid;
+package giava.menmath.ditloid.Bluetooth;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -17,6 +17,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.Set;
+
+import giava.menmath.ditloid.R;
 
 /**
  * @author Emanuele Vannacci , Tiziano Menichelli , Simone Mattogno , Gianluca Giallatini;

@@ -1,4 +1,4 @@
-package giava.menmath.ditloid;
+package giava.menmath.ditloid.Bluetooth;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -55,8 +55,8 @@ public class BluetoothService {
      */
     public BluetoothService(Context context, Handler handler) {
         mAdapter = BluetoothAdapter.getDefaultAdapter();
-        mState = STATE_NONE;
         mHandler = handler;
+        setState(STATE_NONE);
     }
 
     /**
@@ -66,7 +66,6 @@ public class BluetoothService {
      */
     private synchronized void setState(int state) {
         mState = state;
-
         // Give the new state to the Handler so the UI Activity can update
         mHandler.obtainMessage(Constants.MESSAGE_STATE_CHANGE, state, -1).sendToTarget();
     }
@@ -200,7 +199,7 @@ public class BluetoothService {
      * @param out The bytes to write
      * @see ConnectedThread#write(byte[])
      */
-    public void write(byte[] out) {
+    public void write(byte[] out) throws IOException {
         // Create temporary object
         ConnectedThread r;
         // Synchronize a copy of the ConnectedThread
@@ -426,15 +425,13 @@ public class BluetoothService {
          *
          * @param buffer The bytes to write
          */
-        public void write(byte[] buffer) {
-            try {
+        public void write(byte[] buffer) throws IOException {
                 mmOutStream.write(buffer);
 
                 // Share the sent message back to the UI Activity
                 mHandler.obtainMessage(Constants.MESSAGE_WRITE, -1, -1, buffer)
                         .sendToTarget();
-            } catch (IOException e) {
-            }
+
         }
 
         public void cancel() {

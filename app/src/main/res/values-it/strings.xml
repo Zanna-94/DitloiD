@@ -38,4 +38,7 @@
     <string name="select_device">seleziona un dispositivo per connetterti</string>
     <string name="none_found">nessun dispositivo</string>
     <string name="bt_not_enabled_leaving">Bluetooth non attivo</string>
+    <string name="title_connected_to">connesso con</string>
+    <string name="title_not_connected">non connesso</string>
+    <string name="title_connecting">connessione...</string>
 </resources>

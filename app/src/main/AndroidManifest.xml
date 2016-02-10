@@ -50,10 +50,10 @@
             android:name=".FragmentPagerSupport"
             android:label="@string/title_activity_game_level" />
         <activity
-            android:name=".BluetoothChallenge"
+            android:name=".Bluetooth.BluetoothChallenge"
             android:label="@string/strChallenge" />
         <activity
-            android:name=".DeviceList"
+            android:name=".Bluetooth.DeviceList"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/select_device"
             android:theme="@android:style/Theme.Holo.Dialog"/>
