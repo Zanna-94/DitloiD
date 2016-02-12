@@ -24,7 +24,7 @@ public class NewDitloidSend extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent returnToMain = new Intent(NewDitloidSend.this, MainActivity.class);
+                Intent returnToMain = new Intent(NewDitloidSend.this, Main.class);
                 startActivity(returnToMain);
             }
         });

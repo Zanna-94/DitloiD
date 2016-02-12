@@ -48,5 +48,7 @@
     <string name="balance">you have draw!</string>
     <string name="Win">you are the winner!</string>
     <string name="loss">you lost!</string>
+    <string name="strItloi" translatable="false">itloi</string>
+    <string name="strContinue">click to continue</string>
 </resources>
 

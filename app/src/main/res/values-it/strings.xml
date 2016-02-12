@@ -44,4 +44,6 @@
     <string name="retry">riprova!</string>
     <string name="balance">Hai pareggiato!</string>
     <string name="loss">Hai perso!</string>
+    <string name="Win">hai vinto!</string>
+    <string name="strContinue">click per continuare</string>
 </resources>

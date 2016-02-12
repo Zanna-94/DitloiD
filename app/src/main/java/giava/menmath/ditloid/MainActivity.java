@@ -1,104 +1,67 @@
 package giava.menmath.ditloid;
 
-import android.bluetooth.BluetoothAdapter;
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-import giava.menmath.ditloid.Bluetooth.BluetoothChallenge;
+/**
+ * Created by simonemattogno on 05/02/16.
+ */
 
-public class MainActivity extends AppCompatActivity {
 
-    private Button btnPlay, btnChallenge, btnTrophies, btnRules, btnHelpUs;
+public class MainActivity  extends Activity {
 
-    /**
-     * Int value that provides request code for Bluetooth activation intent
-     */
-    private static final int REQUEST_ENABLE_BT = 1;
-
-    private BluetoothAdapter mBluetoothAdapter;
+    private TextView start, end, center, touch;
+    private Animation transition1, transition2, fade1, fade2;
+    private RelativeLayout screen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.bounce);
 
-        btnPlay = (Button) findViewById(R.id.btnPlay);
-        btnChallenge = (Button) findViewById(R.id.btnChallenge);
-        btnTrophies = (Button) findViewById(R.id.btnTrophies);
-        btnRules = (Button) findViewById(R.id.btnRules);
-        btnHelpUs = (Button) findViewById(R.id.btnHelpUs);
+        start = (TextView) findViewById(R.id.tvStartD);
+        end = (TextView) findViewById(R.id.tvEndD);
+        center = (TextView) findViewById(R.id.tvCenter);
+        touch = (TextView) findViewById(R.id.tvTouch);
+        screen = (RelativeLayout) findViewById(R.id.screen);
 
-        MyClick mc = new MyClick();
+        screen.setOnClickListener(new MyClick());
 
-        btnPlay.setOnClickListener(mc);
-        btnChallenge.setOnClickListener(mc);
-        btnTrophies.setOnClickListener(mc);
-        btnRules.setOnClickListener(mc);
-        btnHelpUs.setOnClickListener(mc);
+        transition1 = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.bounce_1);
+        transition2 = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.bounce_2);
+        fade1 = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.bounce_3);
+        fade2 = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.bounce_4);
 
-        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        // messaggio.startAnimation(bounce);
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        start.startAnimation(transition1);
+        end.startAnimation(transition2);
+        center.setVisibility(View.VISIBLE);
+        center.startAnimation(fade1);
+        touch.startAnimation(fade2);
     }
 
     public class MyClick implements View.OnClickListener {
-
         @Override
         public void onClick(View v) {
-            if (v.getId() == R.id.btnPlay) {
-                Intent startGame = new Intent(MainActivity.this, Game.class);
-                startActivity(startGame);
-            }
-            if (v.getId() == R.id.btnChallenge) {
-
-                Intent challenge = new Intent(MainActivity.this, BluetoothChallenge.class);
-                startActivity(challenge);
-
-            }
-            if (v.getId() == R.id.btnTrophies) {
-                Intent Trophies = new Intent(MainActivity.this, Trophies.class);
-                startActivity(Trophies);
-            }
-            if (v.getId() == R.id.btnRules) {
-                Intent readRules = new Intent(MainActivity.this, Rules.class);
-                startActivity(readRules);
-            }
-            if (v.getId() == R.id.btnHelpUs) {
-                Intent Help = new Intent(MainActivity.this, HelpUs.class);
-                startActivity(Help);
+            if (v.getId() == R.id.screen) {
+                Intent start = new Intent(MainActivity.this, Main.class);
+                startActivity(start);
+                finish();
             }
         }
     }
-
-
 }
+
 
 
 
