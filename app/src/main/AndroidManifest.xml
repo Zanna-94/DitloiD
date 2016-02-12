@@ -23,6 +23,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Main"
+            android:label="@string/strChallenge" />
+        <activity
             android:name=".Game"
             android:label="@string/title_activity_game" />
         <activity
