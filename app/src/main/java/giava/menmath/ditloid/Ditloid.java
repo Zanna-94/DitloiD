@@ -48,7 +48,7 @@ public class Ditloid {
         return solution;
     }
 
-    public void setSolution(String soluction) {
+    public void setSolution(String solution) {
         this.solution = solution;
     }
 

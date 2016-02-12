@@ -125,7 +125,7 @@ public class DatabaseAccess {
         Ditloid ditloid = new Ditloid();
         ditloid.setId(id);
 
-        String query = "SELECT * from ditloid where ROWID ='"+id+"' Limit 1";
+        String query = "SELECT * from ditloid where ROWID ='"+id+"'";
 
         Cursor cursor = database.rawQuery(query, null);
 
@@ -135,12 +135,13 @@ public class DatabaseAccess {
             return null;
         }
 
-        ditloid.setSolution(cursor.getString(cursor.getColumnIndex("Soluzione")));
         ditloid.setCategory(cursor.getString(cursor.getColumnIndex("Categoria")));
+        ditloid.setSolution(cursor.getString(cursor.getColumnIndex("Soluzione")));
         ditloid.setEnigma(cursor.getString(cursor.getColumnIndex("Enigma")));
         ditloid.setHint(cursor.getString(cursor.getColumnIndex("Indizio")));
         ditloid.setDifficulty(cursor.getInt(cursor.getColumnIndex("Difficoltà")));
 
+        cursor.close();
         return ditloid;
 
     }
