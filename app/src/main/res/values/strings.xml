@@ -44,5 +44,9 @@
     <string name="title_connected_to">connected to</string>
     <string name="title_not_connected">not connected</string>
     <string name="title_connecting">connecting...</string>
+    <string name="retry">retry!</string>
+    <string name="balance">you have draw!</string>
+    <string name="Win">you are the winner!</string>
+    <string name="loss">you lost!</string>
 </resources>
 

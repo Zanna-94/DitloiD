@@ -41,4 +41,7 @@
     <string name="title_connected_to">connesso con</string>
     <string name="title_not_connected">non connesso</string>
     <string name="title_connecting">connessione...</string>
+    <string name="retry">riprova!</string>
+    <string name="balance">Hai pareggiato!</string>
+    <string name="loss">Hai perso!</string>
 </resources>
