@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseAccess {
+
     private MyDatabase db;
     private SQLiteDatabase database;
     private static DatabaseAccess instance;

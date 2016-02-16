@@ -23,7 +23,7 @@ public class UserInfo implements Serializable{
 
     private UserInfo() {
         passedLevel = new HashMap<>();
-        credit=20;
+        credit=4;
     }
 
     public HashMap<Integer, ArrayList<Integer>> addPassedDitloid(Integer level, Integer id)
@@ -74,7 +74,11 @@ public class UserInfo implements Serializable{
     }
 
     public Integer subCredit(Integer num){
-        return credit -=num;
+        return credit -= num;
+    }
+
+    public Integer getCredit() {
+        return credit;
     }
 
 }

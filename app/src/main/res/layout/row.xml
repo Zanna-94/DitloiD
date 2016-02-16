@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvLevel"
-        android:textSize="25sp"
+        android:textSize="23sp"
         android:textStyle="bold"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -25,5 +25,47 @@
         android:layout_alignParentEnd="true"
         android:paddingRight="50dp" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivStar1"
+        android:layout_below="@+id/tvLevel"
+        android:layout_alignParentLeft="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivStar2"
+        android:layout_toRightOf="@+id/ivStar1"
+        android:layout_below="@+id/tvLevel" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivStar3"
+        android:layout_toRightOf="@+id/ivStar2"
+        android:layout_below="@+id/tvLevel" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/ivStar3"
+        android:id="@+id/ivStar4"
+        android:layout_below="@+id/tvLevel" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/ivStar4"
+        android:id="@+id/ivStar5"
+        android:layout_below="@+id/tvLevel" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvUnlock"
+        android:textSize="15sp"
+        android:visibility="gone"
+        android:layout_below="@+id/tvLevel"/>
 
 </RelativeLayout>

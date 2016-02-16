@@ -13,7 +13,7 @@ import giava.menmath.ditloid.Bluetooth.BluetoothChallenge;
 
 public class Main extends AppCompatActivity {
 
-    private Button btnPlay, btnChallenge, btnTrophies, btnRules, btnHelpUs;
+    private Button btnPlay, btnChallenge, btnRules, btnHelpUs;
 
     /**
      * Int value that provides request code for Bluetooth activation intent
@@ -29,7 +29,6 @@ public class Main extends AppCompatActivity {
 
         btnPlay = (Button) findViewById(R.id.btnPlay);
         btnChallenge = (Button) findViewById(R.id.btnChallenge);
-        btnTrophies = (Button) findViewById(R.id.btnTrophies);
         btnRules = (Button) findViewById(R.id.btnRules);
         btnHelpUs = (Button) findViewById(R.id.btnHelpUs);
 
@@ -37,7 +36,6 @@ public class Main extends AppCompatActivity {
 
         btnPlay.setOnClickListener(mc);
         btnChallenge.setOnClickListener(mc);
-        btnTrophies.setOnClickListener(mc);
         btnRules.setOnClickListener(mc);
         btnHelpUs.setOnClickListener(mc);
 
@@ -81,10 +79,6 @@ public class Main extends AppCompatActivity {
                 Intent challenge = new Intent(Main.this, BluetoothChallenge.class);
                 startActivity(challenge);
 
-            }
-            if (v.getId() == R.id.btnTrophies) {
-                Intent Trophies = new Intent(Main.this, Trophies.class);
-                startActivity(Trophies);
             }
             if (v.getId() == R.id.btnRules) {
                 Intent readRules = new Intent(Main.this, Rules.class);

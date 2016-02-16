@@ -45,7 +45,7 @@
     <string name="balance">Hai pareggiato!</string>
     <string name="loss">Hai perso!</string>
     <string name="Win">hai vinto!</string>
-    <string name="strContinue">click per continuare</string>
+    <string name="strContinue">Tocca lo schermo per continuare</string>
     <string name="strImpossibleSave">Impossibile salvare i progressi</string>
     <string name="strOneCredit">Hai guadagnato 1 credito!</string>
 </resources>

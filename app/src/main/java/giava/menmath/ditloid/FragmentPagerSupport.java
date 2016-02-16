@@ -20,6 +20,8 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
+import giava.menmath.ditloid.User.UserInfo;
+
 /**
  * Created by tizianomenichelli on 03/02/16.
  */
@@ -63,8 +65,9 @@ public class FragmentPagerSupport extends FragmentActivity {
 
     public static class ArrayListFragment extends ListFragment {
 
-        private int credits = 20; //TODO
+        UserInfo user = UserInfo.getInstance();
 
+        private int credit = user.getCredit();
         int mNum;
 
         /**
@@ -112,16 +115,19 @@ public class FragmentPagerSupport extends FragmentActivity {
             final View btnGetHint = v.findViewById(R.id.btnGetHint);
 
             ((TextView)tvLevel).setText("Level " + level + "." + (mNum + 1));
-            ((TextView)tvCredits).setText(String.format("%d", credits));
+            ((TextView)tvCredits).setText(String.format("%d", credit));
 
             DatabaseAccess databaseAccess = DatabaseAccess.getInstance(MyApplication.getAppContext());
+
             databaseAccess.open();
             ((TextView)tvNewDitloid).setText(databaseAccess.getDitloids().get(mNum));
+            ((EditText)etSolution).setText(databaseAccess.getDitloids().get(mNum));
             ((TextView)tvCategory).setText(databaseAccess.getCategory().get(mNum));
             ((TextView)tvHelp).setText(databaseAccess.getHint().get(mNum));
 
             final String correct = databaseAccess.getSolutions().get(mNum);
             final Integer difficulty = databaseAccess.getDifficulty().get(mNum);
+
             databaseAccess.close();
 
 
@@ -132,9 +138,12 @@ public class FragmentPagerSupport extends FragmentActivity {
                     String check = ((EditText) etSolution).getText().toString().toLowerCase();
                     if (check.equals(correct)) {
                         Toast.makeText(MyApplication.getAppContext(), "Complimenti! Livello superato", Toast.LENGTH_SHORT).show();
-                        credits += difficulty;
-                        ((TextView) tvCredits).setText(String.format("%d", credits));
+                        credit = user.addCredit(difficulty);
+                        ((TextView) tvCredits).setText(String.format("%d", credit));
                         btnCheck.setClickable(false);
+                        btnGetCategory.setClickable(false);
+                        btnGetHint.setClickable(false);
+                        ((EditText)etSolution).setKeyListener(null);
                     } else {
                         Toast.makeText(MyApplication.getAppContext(), "Hai sbagliato! Riprova", Toast.LENGTH_SHORT).show();
                     }
@@ -145,11 +154,12 @@ public class FragmentPagerSupport extends FragmentActivity {
 
                 @Override
                 public void onClick(View v) {
-                    if (credits >= 1) {
-                        credits -= 1;
-                        ((TextView)tvCredits).setText(String.format("%d", credits)); //TODO
+                    if (credit >= 1) {
+                        credit = user.subCredit(1);
+                        ((TextView)tvCredits).setText(String.format("%d", credit));
                         btnGetCategory.setClickable(false);
                         tvCategory.setVisibility(View.VISIBLE);
+                        Toast.makeText(MyApplication.getAppContext(), "Non hai abbastanza crediti!", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -158,11 +168,12 @@ public class FragmentPagerSupport extends FragmentActivity {
 
                 @Override
                 public void onClick(View v) {
-                    if (credits >= 5) {
-                        credits -= 5;
-                        ((TextView)tvCredits).setText(String.format("%d", credits));
+                    if (credit >= 5) {
+                        credit = user.subCredit(5);
+                        ((TextView)tvCredits).setText(String.format("%d", credit));
                         btnGetHint.setClickable(false);
                         tvHelp.setVisibility(View.VISIBLE);
+                        Toast.makeText(MyApplication.getAppContext(), "Non hai abbastanza crediti!", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

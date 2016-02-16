@@ -63,17 +63,35 @@ class LevelAdapter extends BaseAdapter {
             vi = inflater.inflate(R.layout.row, null);
 
         TextView text = (TextView) vi.findViewById(R.id.tvLevel);
+        TextView unlock = (TextView) vi.findViewById(R.id.tvUnlock);
         ImageView image = (ImageView) vi.findViewById(R.id.ivLock);
+        ImageView image_whStar1 = (ImageView) vi.findViewById(R.id.ivStar1);
+        ImageView image_whStar2 = (ImageView) vi.findViewById(R.id.ivStar2);
+        ImageView image_whStar3 = (ImageView) vi.findViewById(R.id.ivStar3);
+        ImageView image_whStar4 = (ImageView) vi.findViewById(R.id.ivStar4);
+        ImageView image_whStar5 = (ImageView) vi.findViewById(R.id.ivStar5);
 
         text.setText(level[position]);
 
         Integer passedLevel = userInfo.getLastPassedLevel();
 
+        if (position == 0) { //TODO (position*3)-risolti allora...
+            //TODO singoli if per ogni immagine
+            unlock.setVisibility(View.GONE);
+            image_whStar1.setImageResource(R.drawable.ic_whitestar_vuota);
+            image_whStar2.setImageResource(R.drawable.ic_whitestar_vuota);
+            image_whStar3.setImageResource(R.drawable.ic_black_star);
+            image_whStar4.setImageResource(R.drawable.ic_whitestar);
+            image_whStar5.setImageResource(R.drawable.ic_whitestar);
+        } else {
+            unlock.setVisibility(View.VISIBLE);
+            unlock.setText((position*3) + " more to unlock"); //TODO (position*3)-risolti
+        }
+
         if (position <= passedLevel - 1)
             image.setImageResource(R.drawable.ic_lock_open_black_24dp);
         else
             image.setImageResource(R.drawable.ic_lock_black_24dp);
-
 
         return vi;
     }
