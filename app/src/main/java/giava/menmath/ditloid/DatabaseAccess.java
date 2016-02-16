@@ -120,6 +120,10 @@ public class DatabaseAccess {
         return list;
     }
 
+    /**
+     * @param id : id in Database for researched ditloid
+     * @return {@link Ditloid}
+     */
     public Ditloid getById(Integer id) {
 
         Ditloid ditloid = new Ditloid();
@@ -140,6 +144,7 @@ public class DatabaseAccess {
         ditloid.setEnigma(cursor.getString(cursor.getColumnIndex("Enigma")));
         ditloid.setHint(cursor.getString(cursor.getColumnIndex("Indizio")));
         ditloid.setDifficulty(cursor.getInt(cursor.getColumnIndex("Difficoltà")));
+        ditloid.setLevel(cursor.getInt(cursor.getColumnIndex("Livello")));
 
         cursor.close();
         return ditloid;

@@ -50,5 +50,7 @@
     <string name="loss">you lost!</string>
     <string name="strItloi" translatable="false">itloi</string>
     <string name="strContinue">click to continue</string>
+    <string name="strImpossibleSave">Not possible save progress</string>
+    <string name="strOneCredit">You get 1 Credit!</string>
 </resources>
 

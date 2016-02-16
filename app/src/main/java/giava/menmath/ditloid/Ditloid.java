@@ -17,6 +17,8 @@ public class Ditloid {
 
     private int difficulty;
 
+    private int level;
+
     public Ditloid() {
     }
 
@@ -74,5 +76,13 @@ public class Ditloid {
 
     public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }

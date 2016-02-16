@@ -14,6 +14,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -26,6 +27,8 @@ import giava.menmath.ditloid.DatabaseAccess;
 import giava.menmath.ditloid.Ditloid;
 import giava.menmath.ditloid.MyApplication;
 import giava.menmath.ditloid.R;
+import giava.menmath.ditloid.User.UserDao;
+import giava.menmath.ditloid.User.UserInfo;
 
 /**
  * @author Emanuele Vannacci , Tiziano Menichelli , Simone Mattogno , Gianluca Giallatini;
@@ -42,6 +45,11 @@ import giava.menmath.ditloid.R;
 public class BluetoothChallenge extends AppCompatActivity {
 
     private String gameState = ChallengeState.INIT;
+
+    /**
+     * {@link UserInfo}
+     */
+    private UserInfo userInfo;
 
     // An user can have role of Client or Server in Bluetooth connection
     private String role;
@@ -103,6 +111,8 @@ public class BluetoothChallenge extends AppCompatActivity {
 
         btnCheck.setVisibility(View.INVISIBLE);
 
+        //keep the screen turned on
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -110,7 +120,13 @@ public class BluetoothChallenge extends AppCompatActivity {
         if (mBluetoothAdapter == null) {
             Toast.makeText(BluetoothChallenge.this, "Bluetooth is not available",
                     Toast.LENGTH_LONG).show();
-            finish();
+        }
+
+        try {
+            userInfo = UserDao.deserializza();
+        } catch (IOException e) {
+            e.printStackTrace();
+            userInfo = UserInfo.getInstance();
         }
 
         WaitOrSearch();
@@ -124,19 +140,11 @@ public class BluetoothChallenge extends AppCompatActivity {
         if (!mBluetoothAdapter.isEnabled()) {
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
-            // Otherwise, setup the chat session
-        } else if (mService == null) {
+        }
+        if (mService == null) {
             setup();
         }
 
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mService != null) {
-            mService.stop();
-        }
     }
 
     @Override
@@ -153,9 +161,13 @@ public class BluetoothChallenge extends AppCompatActivity {
                 mService.start();
             }
         }
+
     }
 
     private void setup() {
+
+        gameState = ChallengeState.INIT;
+
 
         // Initialize the send button with a listener that for click events
         btnCheck.setOnClickListener(new MyCheckButtonListener());
@@ -168,6 +180,29 @@ public class BluetoothChallenge extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        role = null;
+
+        if (timer != null)
+            timer.cancel();
+        if (mService != null)
+            mService.stop();
+
+        this.finish();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mService != null) {
+            mService.stop();
+        }
+        if (timer != null)
+            timer.cancel();
+        finish();
+    }
+
     protected class MyCheckButtonListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -176,19 +211,21 @@ public class BluetoothChallenge extends AppCompatActivity {
                 v.setClickable(false);
                 timer.cancel();
                 sendMessage(Post.GUESSED);
-                waitingDialog();
 
                 if (myFriendGuessed) {
                     setGameState(ChallengeState.BALANCE);
                     Toast.makeText(BluetoothChallenge.this, R.string.balance,
                             Toast.LENGTH_SHORT).show();
-                } else
+                    iDraw();
+                } else {
                     setGameState(ChallengeState.WAIT);
+                    Toast.makeText(BluetoothChallenge.this, "Hai indovinato!", Toast.LENGTH_SHORT).show();
+                    waitingDialog();
+                }
 
 
-            }
-
-            Toast.makeText(BluetoothChallenge.this, R.string.retry, Toast.LENGTH_SHORT).show();
+            } else
+                Toast.makeText(BluetoothChallenge.this, R.string.retry, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -201,7 +238,8 @@ public class BluetoothChallenge extends AppCompatActivity {
     private boolean guess() {
         if (ditloid != null)
             if (!etInput.getText().toString().equals(""))
-                if (ditloid.getSolution().equals(etInput.getText().toString()))
+                if (ditloid.getSolution().trim().compareToIgnoreCase(etInput.getText().toString().
+                        trim()) == 0)
                     return true;
 
         return false;
@@ -259,22 +297,25 @@ public class BluetoothChallenge extends AppCompatActivity {
                 switch (gameState) {
 
                     case ChallengeState.INIT:
-                        waitingDialog();
 
-                        //Init instance of random class
-                        long millis = System.currentTimeMillis();
-                        Random rand = new Random(millis);
+                        if (msg == null) {
+                            waitingDialog();
 
-                        DatabaseAccess dbAccess = DatabaseAccess.getInstance(MyApplication.getAppContext());
-                        dbAccess.open();
-                        int dbSize = dbAccess.getCount();
+                            //Init instance of random class
+                            long millis = System.currentTimeMillis();
+                            Random rand = new Random(millis);
 
-                        id = rand.nextInt(dbSize - 1) + 1; //exclude id=0
-                        ditloid = DatabaseAccess.getInstance(MyApplication.getAppContext())
-                                .getById(id);
+                            DatabaseAccess dbAccess = DatabaseAccess.getInstance(MyApplication.getAppContext());
+                            dbAccess.open();
+                            int dbSize = dbAccess.getCount();
 
-                        sendMessage(Integer.toString(id));
-                        setGameState(ChallengeState.ID_SENT);
+                            id = rand.nextInt(dbSize - 1) + 1; //exclude id=0
+                            ditloid = DatabaseAccess.getInstance(MyApplication.getAppContext())
+                                    .getById(id);
+
+                            sendMessage(Integer.toString(id));
+                            setGameState(ChallengeState.ID_SENT);
+                        }
 
                         break;
 
@@ -301,13 +342,15 @@ public class BluetoothChallenge extends AppCompatActivity {
                             setGameState(ChallengeState.BALANCE);
                             Toast.makeText(BluetoothChallenge.this, R.string.balance,
                                     Toast.LENGTH_SHORT).show();
-                            //TODO action if balance
+                            waitingDialog.dismiss();
+                            iDraw();
 
                         } else if (msg.equals(Post.TIMEOUT)) {
                             setGameState(ChallengeState.WIN);
                             Toast.makeText(BluetoothChallenge.this, R.string.Win,
                                     Toast.LENGTH_SHORT).show();
-                            //TODO action if i win
+                            waitingDialog.dismiss();
+                            iWin();
                         }
 
                         break;
@@ -318,13 +361,13 @@ public class BluetoothChallenge extends AppCompatActivity {
                             setGameState(ChallengeState.BALANCE);
                             Toast.makeText(BluetoothChallenge.this, R.string.balance,
                                     Toast.LENGTH_SHORT).show();
-                            //TODO action if balance
+                            iDraw();
 
                         } else if (msg.equals(Post.GUESSED)) {
-                            //TODO action if i lose
                             setGameState(ChallengeState.LOST);
                             Toast.makeText(BluetoothChallenge.this, R.string.loss,
                                     Toast.LENGTH_SHORT).show();
+                            iLose();
                         }
 
                         break;
@@ -364,7 +407,8 @@ public class BluetoothChallenge extends AppCompatActivity {
                             sendMessage(Post.START);
                             setGameState(ChallengeState.GAMING);
 
-                            waitingDialog.dismiss();
+                            if (waitingDialog != null)
+                                waitingDialog.dismiss();
 
                             game();
                         }
@@ -376,12 +420,18 @@ public class BluetoothChallenge extends AppCompatActivity {
                             setGameState(ChallengeState.WIN);
                             Toast.makeText(BluetoothChallenge.this, R.string.Win,
                                     Toast.LENGTH_SHORT).show();
-                            //TODO action if i win
+
+
+                            waitingDialog.dismiss();
+
+                            iWin();
+
                         } else if (msg.equals(Post.GUESSED)) {
                             setGameState(ChallengeState.BALANCE);
                             Toast.makeText(BluetoothChallenge.this, R.string.balance,
                                     Toast.LENGTH_SHORT).show();
-                            //TODO action if balance
+                            waitingDialog.dismiss();
+                            iDraw();
                         }
 
                         break;
@@ -391,12 +441,12 @@ public class BluetoothChallenge extends AppCompatActivity {
                             setGameState(ChallengeState.BALANCE);
                             Toast.makeText(BluetoothChallenge.this, R.string.balance,
                                     Toast.LENGTH_SHORT).show();
-                            //TODO action if Balance
+                            iDraw();
                         } else if (msg.equals(Post.TIMEOUT)) {
                             setGameState(ChallengeState.LOST);
                             Toast.makeText(BluetoothChallenge.this, R.string.loss,
                                     Toast.LENGTH_SHORT).show();
-                            //TODO action if i lose
+                            iLose();
                         }
 
                         break;
@@ -427,18 +477,101 @@ public class BluetoothChallenge extends AppCompatActivity {
                 btnCheck.setClickable(false);
                 if (getGameState().equals(ChallengeState.GAMING)) {
 
-                    sendMessage(Post.TIMEOUT);
-
                     if (myFriendTimeout) {
                         setGameState(ChallengeState.BALANCE);
                         Toast.makeText(BluetoothChallenge.this, R.string.balance,
                                 Toast.LENGTH_SHORT).show();
+                    } else if (myFriendGuessed) {
+                        setGameState(ChallengeState.TIMEOUT);
+                        Toast.makeText(BluetoothChallenge.this, R.string.loss,
+                                Toast.LENGTH_SHORT).show();
+                        iLose();
                     } else
                         setGameState(ChallengeState.TIMEOUT);
-
                 }
+
+                sendMessage(Post.TIMEOUT);
             }
         }.start();
+    }
+
+    private void iLose() {
+
+        //reset state for new challenge
+        gameState = ChallengeState.INIT;
+
+        //stop timer if not already timeout
+        if(timer!=null){
+            timer.cancel();
+        }
+
+        finish();
+
+    }
+
+    private void iWin() {
+
+        //reset state for new challenge
+        gameState = ChallengeState.INIT;
+
+        //stop timer if not already timeout
+        if(timer!=null){
+            timer.cancel();
+        }
+
+        userInfo.addCredit(1);
+
+        try {
+            UserDao.serializza(userInfo);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(BluetoothChallenge.this, R.string.strImpossibleSave, Toast.LENGTH_SHORT).show();
+        }
+
+        Toast.makeText(BluetoothChallenge.this, R.string.strOneCredit, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * action to perform in case of balance
+     */
+    private void iDraw() {
+
+        //reset state for new challenge
+        gameState = ChallengeState.INIT;
+
+        //stop timer if not already timeout
+        if(timer!=null){
+            timer.cancel();
+        }
+
+        //Dialog to propose another challenge
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("You draw. Do you want retry?")
+                .setCancelable(false)
+                .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+
+                        if (role == Constants.CLIENT)
+                            play(null);
+                        else if(role==Constants.SERVER){
+                            //wait for ditloid's id trasmission from client
+                        }
+
+                    }
+                });
+
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+
+                finish();
+
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
 
@@ -469,6 +602,8 @@ public class BluetoothChallenge extends AppCompatActivity {
         } catch (IOException e) {
             Toast.makeText(BluetoothChallenge.this, "send Message error",
                     Toast.LENGTH_SHORT).show();
+
+            mService.stop();
             finish();
         }
 
@@ -486,6 +621,7 @@ public class BluetoothChallenge extends AppCompatActivity {
         BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
         // Attempt to connect to the device
         mService.connect(device);
+
     }
 
     @Override
@@ -560,8 +696,8 @@ public class BluetoothChallenge extends AppCompatActivity {
                     break;
 
                 case Constants.MESSAGE_TOAST:
-                    Toast.makeText(BluetoothChallenge.this, msg.getData().getString(Constants.TOAST),
-                            Toast.LENGTH_SHORT).show();
+/*                    Toast.makeText(BluetoothChallenge.this, msg.getData().getString(Constants.TOAST),
+                            Toast.LENGTH_SHORT).show();*/
                     finish();
                     break;
 
@@ -583,11 +719,11 @@ public class BluetoothChallenge extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
 
-                        role = Constants.SERVER;
-
                         ensureDiscoverable();
                         if (mService.getState() != BluetoothService.STATE_LISTEN)
                             mService.start();
+
+                        role = Constants.SERVER;
 
                         //show progress dialog
                         waitingDialog();
@@ -625,6 +761,7 @@ public class BluetoothChallenge extends AppCompatActivity {
                 finish();
             }
         });
+
         waitingDialog.show();
     }
 
@@ -636,19 +773,5 @@ public class BluetoothChallenge extends AppCompatActivity {
         this.gameState = gameState;
     }
 
-    /* private void ConnectionProblemDialog() {
-
-        new AlertDialog.Builder(MyApplication.getAppContext())
-                .setTitle("Connession problem")
-                .setMessage("your friend is no longer available")
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                })
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
-    }
-*/
 
 }
