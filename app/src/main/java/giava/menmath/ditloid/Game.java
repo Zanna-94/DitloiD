@@ -58,9 +58,9 @@ public class Game extends AppCompatActivity {
                 "Level 6", "Level 7", "Level 8", "Level 9", "Level 10"};
 */
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1
-                , levelsList);
-        lvLevels.setAdapter(adapter);
+        LevelAdapter myAdapter = new LevelAdapter(this, levelsList);
+
+        lvLevels.setAdapter(myAdapter);
         lvLevels.setOnItemClickListener(new MyListener());
 
 
