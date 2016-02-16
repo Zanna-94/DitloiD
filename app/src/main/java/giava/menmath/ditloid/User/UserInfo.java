@@ -3,6 +3,7 @@ package giava.menmath.ditloid.User;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import giava.menmath.ditloid.Ditloid;
 
@@ -45,10 +46,27 @@ public class UserInfo implements Serializable{
 
     }
 
-    public void addPassedDitloid(Ditloid ditloid) throws Exception {
+    public HashMap<Integer, ArrayList<Integer>> addPassedDitloid(Ditloid ditloid)
+            throws Exception {
 
-        addPassedDitloid(ditloid.getLevel(), ditloid.getId() );
+        return addPassedDitloid(ditloid.getLevel(), ditloid.getId() );
 
+    }
+
+    public Integer getLastPassedLevel(){
+
+        if(passedLevel.isEmpty())
+            return 1;
+
+        return passedLevel.size();
+
+    }
+
+    public List<Integer> getPassedDitloids(Integer level){
+        if(passedLevel.containsKey(level))
+            return passedLevel.get(level);
+
+        return null;
     }
 
     public Integer addCredit(Integer num){
@@ -58,7 +76,5 @@ public class UserInfo implements Serializable{
     public Integer subCredit(Integer num){
         return credit -=num;
     }
-
-
 
 }
