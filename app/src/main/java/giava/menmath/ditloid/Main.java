@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.Locale;
+
 import giava.menmath.ditloid.Bluetooth.BluetoothChallenge;
 
 public class Main extends AppCompatActivity {

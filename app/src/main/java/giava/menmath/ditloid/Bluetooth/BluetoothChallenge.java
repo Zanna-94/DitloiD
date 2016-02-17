@@ -23,7 +23,10 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.Random;
 
-import giava.menmath.ditloid.DatabaseAccess;
+import giava.menmath.ditloid.Database.DBAccess;
+import giava.menmath.ditloid.Database.DatabaseAccess;
+import giava.menmath.ditloid.Database.DatabaseAccessFactory;
+import giava.menmath.ditloid.Database.TypeDB;
 import giava.menmath.ditloid.Ditloid;
 import giava.menmath.ditloid.MyApplication;
 import giava.menmath.ditloid.R;
@@ -31,7 +34,7 @@ import giava.menmath.ditloid.User.UserDao;
 import giava.menmath.ditloid.User.UserInfo;
 
 /**
- * @author Emanuele Vannacci , Tiziano Menichelli , Simone Mattogno , Gianluca Giallatini;
+ * @author Emanuele Vannacci
  * @see BluetoothService
  * @see DeviceList
  * @see ChallengeState
@@ -140,7 +143,7 @@ public class BluetoothChallenge extends AppCompatActivity {
         if (!mBluetoothAdapter.isEnabled()) {
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
-        }else if (mService == null) {
+        } else if (mService == null) {
             setup();
         }
 
@@ -304,13 +307,14 @@ public class BluetoothChallenge extends AppCompatActivity {
                             long millis = System.currentTimeMillis();
                             Random rand = new Random(millis);
 
-                            DatabaseAccess dbAccess = DatabaseAccess.getInstance(MyApplication.getAppContext());
+                            DatabaseAccessFactory factory = new DatabaseAccessFactory();
+                            DatabaseAccess dbAccess = factory.getDatabaseAccess(TypeDB.DB_CHALLENGE);
                             dbAccess.open();
                             int dbSize = dbAccess.getCount();
 
                             id = rand.nextInt(dbSize - 1) + 1; //exclude id=0
-                            ditloid = DatabaseAccess.getInstance(MyApplication.getAppContext())
-                                    .getById(id);
+                            ditloid = dbAccess.getById(id);
+                            dbAccess.close();
 
                             sendMessage(Integer.toString(id));
                             setGameState(ChallengeState.ID_SENT);
@@ -393,9 +397,11 @@ public class BluetoothChallenge extends AppCompatActivity {
 
                             id = Integer.valueOf(msg);
 
-                            DatabaseAccess dbAccess = DatabaseAccess.getInstance(MyApplication.getAppContext());
+                            DatabaseAccessFactory factory = new DatabaseAccessFactory();
+                            DatabaseAccess dbAccess = factory.getDatabaseAccess(TypeDB.DB_CHALLENGE);
                             dbAccess.open();
                             ditloid = dbAccess.getById(id);
+                            dbAccess.close();
 
                             tvEnigma.setText(ditloid.getEnigma());
                             tvCategoria.setText(ditloid.getCategory());
@@ -500,7 +506,7 @@ public class BluetoothChallenge extends AppCompatActivity {
         gameState = ChallengeState.INIT;
 
         //stop timer if not already timeout
-        if(timer!=null){
+        if (timer != null) {
             timer.cancel();
         }
 
@@ -514,7 +520,7 @@ public class BluetoothChallenge extends AppCompatActivity {
         gameState = ChallengeState.INIT;
 
         //stop timer if not already timeout
-        if(timer!=null){
+        if (timer != null) {
             timer.cancel();
         }
 
@@ -539,7 +545,7 @@ public class BluetoothChallenge extends AppCompatActivity {
         gameState = ChallengeState.INIT;
 
         //stop timer if not already timeout
-        if(timer!=null){
+        if (timer != null) {
             timer.cancel();
         }
 
@@ -551,11 +557,8 @@ public class BluetoothChallenge extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
 
-                        if (role == Constants.CLIENT)
+                        if (role.equals(Constants.CLIENT))
                             play(null);
-                        else if(role==Constants.SERVER){
-                            //wait for ditloid's id trasmission from client
-                        }
 
                     }
                 });

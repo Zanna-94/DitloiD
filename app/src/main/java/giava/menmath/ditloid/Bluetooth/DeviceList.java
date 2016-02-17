@@ -21,7 +21,7 @@ import java.util.Set;
 import giava.menmath.ditloid.R;
 
 /**
- * @author Emanuele Vannacci , Tiziano Menichelli , Simone Mattogno , Gianluca Giallatini;
+ * @author Emanuele Vannacci
  *         <p/>
  *         This Activity appears as a dialog. It lists any paired devices and
  *         devices detected in the area after discovery. When a device is chosen

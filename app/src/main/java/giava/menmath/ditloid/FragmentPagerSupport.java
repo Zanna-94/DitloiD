@@ -11,15 +11,13 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.util.List;
-
+import giava.menmath.ditloid.Database.DatabaseAccess;
+import giava.menmath.ditloid.Database.DatabaseAccessFactory;
+import giava.menmath.ditloid.Database.TypeDB;
 import giava.menmath.ditloid.User.UserInfo;
 
 /**
@@ -42,7 +40,7 @@ public class FragmentPagerSupport extends FragmentActivity {
         setContentView(R.layout.activity_game_level_x);
 
         mAdapter = new MyAdapter(getSupportFragmentManager());
-        mPager = (ViewPager)findViewById(R.id.pager);
+        mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
     }
 
@@ -114,16 +112,18 @@ public class FragmentPagerSupport extends FragmentActivity {
             final View btnGetCategory = v.findViewById(R.id.btnGetCategory);
             final View btnGetHint = v.findViewById(R.id.btnGetHint);
 
-            ((TextView)tvLevel).setText("Level " + level + "." + (mNum + 1));
-            ((TextView)tvCredits).setText(String.format("%d", credit));
+            ((TextView) tvLevel).setText("Level " + level + "." + (mNum + 1));
+            ((TextView) tvCredits).setText(String.format("%d", credit));
 
-            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(MyApplication.getAppContext());
+
+            DatabaseAccessFactory factory = new DatabaseAccessFactory();
+            DatabaseAccess databaseAccess = factory.getDatabaseAccess(TypeDB.DB_Game);
 
             databaseAccess.open();
-            ((TextView)tvNewDitloid).setText(databaseAccess.getDitloids().get(mNum));
-            ((EditText)etSolution).setText(databaseAccess.getDitloids().get(mNum));
-            ((TextView)tvCategory).setText(databaseAccess.getCategory().get(mNum));
-            ((TextView)tvHelp).setText(databaseAccess.getHint().get(mNum));
+            ((TextView) tvNewDitloid).setText(databaseAccess.getDitloids().get(mNum));
+            ((EditText) etSolution).setText(databaseAccess.getDitloids().get(mNum));
+            ((TextView) tvCategory).setText(databaseAccess.getCategory().get(mNum));
+            ((TextView) tvHelp).setText(databaseAccess.getHint().get(mNum));
 
             final String correct = databaseAccess.getSolutions().get(mNum);
             final Integer difficulty = databaseAccess.getDifficulty().get(mNum);
@@ -143,7 +143,7 @@ public class FragmentPagerSupport extends FragmentActivity {
                         btnCheck.setClickable(false);
                         btnGetCategory.setClickable(false);
                         btnGetHint.setClickable(false);
-                        ((EditText)etSolution).setKeyListener(null);
+                        ((EditText) etSolution).setKeyListener(null);
                     } else {
                         Toast.makeText(MyApplication.getAppContext(), "Hai sbagliato! Riprova", Toast.LENGTH_SHORT).show();
                     }
@@ -156,7 +156,7 @@ public class FragmentPagerSupport extends FragmentActivity {
                 public void onClick(View v) {
                     if (credit >= 1) {
                         credit = user.subCredit(1);
-                        ((TextView)tvCredits).setText(String.format("%d", credit));
+                        ((TextView) tvCredits).setText(String.format("%d", credit));
                         btnGetCategory.setClickable(false);
                         tvCategory.setVisibility(View.VISIBLE);
                         Toast.makeText(MyApplication.getAppContext(), "Non hai abbastanza crediti!", Toast.LENGTH_SHORT).show();
@@ -170,7 +170,7 @@ public class FragmentPagerSupport extends FragmentActivity {
                 public void onClick(View v) {
                     if (credit >= 5) {
                         credit = user.subCredit(5);
-                        ((TextView)tvCredits).setText(String.format("%d", credit));
+                        ((TextView) tvCredits).setText(String.format("%d", credit));
                         btnGetHint.setClickable(false);
                         tvHelp.setVisibility(View.VISIBLE);
                         Toast.makeText(MyApplication.getAppContext(), "Non hai abbastanza crediti!", Toast.LENGTH_SHORT).show();

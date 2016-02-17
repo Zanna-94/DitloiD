@@ -1,7 +1,9 @@
 package giava.menmath.ditloid.Bluetooth;
 
 /**
- * Created by emanuele on 10/02/16.
+ *@author Emanuele Vannacci
+ *
+ * String used in {@link BluetoothChallenge} to exchange message.
  */
 public interface ChallengeState {
 

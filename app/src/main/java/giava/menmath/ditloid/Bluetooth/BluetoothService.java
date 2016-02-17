@@ -15,7 +15,7 @@ import java.io.OutputStream;
 import java.util.UUID;
 
 /**
- * @author Emanuele Vannacci , Tiziano Menichelli , Simone Mattogno , Gianluca Giallatini;
+ * @author Emanuele Vannacci
  *         <p/>
  *         This class does all the work for setting up and managing Bluetooth
  *         connections with other devices. It has a thread that listens for

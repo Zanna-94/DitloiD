@@ -1,4 +1,4 @@
-package giava.menmath.ditloid;
+package giava.menmath.ditloid.Database;
 
 /**
  * Created by tizianomenichelli on 30/01/16.
@@ -11,32 +11,21 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseAccess {
+import giava.menmath.ditloid.Ditloid;
+
+public class DatabaseAccess implements DBAccess {
 
     private MyDatabase db;
     private SQLiteDatabase database;
-    private static DatabaseAccess instance;
 
     /**
-     * Private constructor to aboid object creation from outside classes.
+     * Default constructor
      *
-     * @param context
+     * @param context : Application context
+     * @param DbName  : Database name in assets directory
      */
-    private DatabaseAccess(Context context) {
-        this.db = new MyDatabase(context);
-    }
-
-    /**
-     * Return a singleton instance of DatabaseAccess.
-     *
-     * @param context the Context
-     * @return the instance of DabaseAccess
-     */
-    public static DatabaseAccess getInstance(Context context) {
-        if (instance == null) {
-            instance = new DatabaseAccess(context);
-        }
-        return instance;
+    public DatabaseAccess(Context context, String DbName) {
+        this.db = new MyDatabase(context, DbName);
     }
 
     /**
@@ -130,7 +119,7 @@ public class DatabaseAccess {
         Ditloid ditloid = new Ditloid();
         ditloid.setId(id);
 
-        String query = "SELECT * from ditloid where ROWID ='"+id+"'";
+        String query = "SELECT * from ditloid where ROWID ='" + id + "'";
 
         Cursor cursor = database.rawQuery(query, null);
 
@@ -143,9 +132,15 @@ public class DatabaseAccess {
         ditloid.setCategory(cursor.getString(cursor.getColumnIndex("Categoria")));
         ditloid.setSolution(cursor.getString(cursor.getColumnIndex("Soluzione")));
         ditloid.setEnigma(cursor.getString(cursor.getColumnIndex("Enigma")));
-        ditloid.setHint(cursor.getString(cursor.getColumnIndex("Indizio")));
-        ditloid.setDifficulty(cursor.getInt(cursor.getColumnIndex("Difficoltà")));
-        ditloid.setLevel(cursor.getInt(cursor.getColumnIndex("Livello")));
+
+        // in case of Challenge database not contains these columns
+        if (cursor.getColumnIndex("Indizio") == -1 || cursor.getColumnIndex("Difficoltà") == -1 ||
+                cursor.getColumnIndex("Livello") == -1) {
+            ditloid.setHint(cursor.getString(cursor.getColumnIndex("Indizio")));
+            ditloid.setDifficulty(cursor.getInt(cursor.getColumnIndex("Difficoltà")));
+            ditloid.setLevel(cursor.getInt(cursor.getColumnIndex("Livello")));
+        }
+
 
         cursor.close();
         return ditloid;
@@ -156,51 +151,4 @@ public class DatabaseAccess {
         return database.rawQuery("SELECT Enigma FROM ditloid", null).getCount();
     }
 
-//    public List<Integer> getLevel() {
-//        List<Integer> list = new ArrayList<>();
-//        Cursor cursor = database.rawQuery("SELECT Livello from ditloid" , null);
-//        cursor.moveToFirst();
-//        while (!cursor.isAfterLast()) {
-//            list.add(cursor.getInt(0));
-//            cursor.moveToNext();
-//        }
-//        cursor.close();
-//        return list;
-//    }
-//
-//   public List<Integer> getRisolto() {
-//        List<Integer> list = new ArrayList<>();
-//        Cursor cursor = database.rawQuery("SELECT Risolto from ditloid" , null);
-//        cursor.moveToFirst();
-//        while (!cursor.isAfterLast()) {
-//            list.add(cursor.getInt(0));
-//            cursor.moveToNext();
-//        }
-//        cursor.close();
-//        return list;
-//    }
-//
-//   public List<Integer> getLevel() {
-//        List<Integer> list = new ArrayList<>();
-//        Cursor cursor = database.rawQuery("SELECT Categoria_Sbloccata from ditloid" , null);
-//        cursor.moveToFirst();
-//        while (!cursor.isAfterLast()) {
-//            list.add(cursor.getInt(0));
-//            cursor.moveToNext();
-//        }
-//        cursor.close();
-//        return list;
-//    }
-//
-//   public List<Integer> getLevel() {
-//        List<Integer> list = new ArrayList<>();
-//        Cursor cursor = database.rawQuery("SELECT Indizio_Sbloccato from ditloid" , null);
-//        cursor.moveToFirst();
-//        while (!cursor.isAfterLast()) {
-//            list.add(cursor.getInt(0));
-//            cursor.moveToNext();
-//        }
-//        cursor.close();
-//        return list;
-//    }
 }

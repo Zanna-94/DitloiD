@@ -3,6 +3,7 @@ package giava.menmath.ditloid;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -14,7 +15,7 @@ import android.widget.TextView;
  */
 
 
-public class MainActivity  extends Activity {
+public class MainActivity  extends AppCompatActivity {
 
     private TextView start, end, center, touch;
     private Animation transition1, transition2, fade1, fade2;
