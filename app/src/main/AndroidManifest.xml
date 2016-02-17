@@ -48,15 +48,18 @@
             android:label="@string/strGiveTip" />
         <activity
             android:name=".FragmentPagerSupport"
-            android:label="@string/title_activity_game_level" />
+            android:label="@string/title_activity_game_level"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Bluetooth.BluetoothChallenge"
-            android:label="@string/strChallenge" />
+            android:label="@string/strChallenge"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Bluetooth.DeviceList"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/select_device"
-            android:theme="@android:style/Theme.Holo.Dialog"/>
+            android:theme="@android:style/Theme.Holo.Dialog" />
     </application>
 
 </manifest>

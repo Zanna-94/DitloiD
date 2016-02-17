@@ -111,6 +111,7 @@ public class BluetoothChallenge extends AppCompatActivity {
         btnCheck = (Button) findViewById(R.id.btnCheck);
 
         btnCheck.setVisibility(View.INVISIBLE);
+        etInput.setVisibility(View.INVISIBLE);
 
         //keep the screen turned on
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -123,12 +124,14 @@ public class BluetoothChallenge extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         }
 
-        try {
+       /* try {
             userInfo = UserDao.deserializza();
         } catch (IOException e) {
             e.printStackTrace();
             userInfo = UserInfo.getInstance();
-        }
+        }*/
+
+        userInfo=UserInfo.getInstance();
 
         WaitOrSearch();
     }
@@ -325,9 +328,13 @@ public class BluetoothChallenge extends AppCompatActivity {
 
                             tvEnigma.setText(ditloid.getEnigma());
                             tvCategoria.setText(ditloid.getCategory());
+                            System.out.println(ditloid.getCategory());
+
                             etInput.setText(ditloid.getEnigma());
+
                             btnCheck.setVisibility(View.VISIBLE);
                             btnCheck.setClickable(true);
+                            etInput.setVisibility(View.VISIBLE);
 
                             waitingDialog.dismiss();
 
@@ -403,9 +410,11 @@ public class BluetoothChallenge extends AppCompatActivity {
 
                             tvEnigma.setText(ditloid.getEnigma());
                             tvCategoria.setText(ditloid.getCategory());
+
                             etInput.setText(ditloid.getEnigma());
                             btnCheck.setVisibility(View.VISIBLE);
                             btnCheck.setClickable(true);
+                            etInput.setVisibility(View.VISIBLE);
 
                             sendMessage(Post.START);
                             setGameState(ChallengeState.GAMING);
@@ -524,12 +533,12 @@ public class BluetoothChallenge extends AppCompatActivity {
 
         userInfo.addCredit(1);
 
-        try {
-            UserDao.serializza(userInfo);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(BluetoothChallenge.this, R.string.strImpossibleSave, Toast.LENGTH_SHORT).show();
-        }
+//        try {
+//            UserDao.serializza(userInfo);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            Toast.makeText(BluetoothChallenge.this, R.string.strImpossibleSave, Toast.LENGTH_SHORT).show();
+//        }
 
         Toast.makeText(BluetoothChallenge.this, R.string.strOneCredit, Toast.LENGTH_SHORT).show();
     }

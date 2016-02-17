@@ -10,7 +10,7 @@ import giava.menmath.ditloid.Ditloid;
 /**
  * Created by emanuele on 15/02/16.
  */
-public class UserInfo implements Serializable{
+public  class UserInfo implements Serializable{
 
     private static UserInfo ourInstance = new UserInfo();
 
