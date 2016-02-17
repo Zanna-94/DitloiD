@@ -119,7 +119,7 @@ public class DatabaseAccess implements DBAccess {
         Ditloid ditloid = new Ditloid();
         ditloid.setId(id);
 
-        String query = "SELECT * from ditloid where ROWID ='" + id + "'";
+        String query = "SELECT * from ditloid where ROWID ='" + id + "'  LIMIT 0,1";
 
         Cursor cursor = database.rawQuery(query, null);
 
@@ -135,12 +135,15 @@ public class DatabaseAccess implements DBAccess {
 
         // in case of Challenge database not contains these columns
         if (cursor.getColumnIndex("Indizio") == -1 || cursor.getColumnIndex("Difficoltà") == -1 ||
-                cursor.getColumnIndex("Livello") == -1) {
-            ditloid.setHint(cursor.getString(cursor.getColumnIndex("Indizio")));
-            ditloid.setDifficulty(cursor.getInt(cursor.getColumnIndex("Difficoltà")));
-            ditloid.setLevel(cursor.getInt(cursor.getColumnIndex("Livello")));
+                cursor.getColumnIndex("Livello") == -1){
+
+            cursor.close();
+            return ditloid;
         }
 
+        ditloid.setHint(cursor.getString(cursor.getColumnIndex("Indizio")));
+        ditloid.setDifficulty(cursor.getInt(cursor.getColumnIndex("Difficoltà")));
+        ditloid.setLevel(cursor.getInt(cursor.getColumnIndex("Livello")));
 
         cursor.close();
         return ditloid;

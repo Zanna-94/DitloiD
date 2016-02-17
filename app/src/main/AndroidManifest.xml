@@ -29,9 +29,6 @@
             android:name=".Game"
             android:label="@string/title_activity_game" />
         <activity
-            android:name=".Trophies"
-            android:label="@string/strTrophies" />
-        <activity
             android:name=".Rules"
             android:label="@string/strRules" />
         <activity

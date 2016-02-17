@@ -23,12 +23,10 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.Random;
 
-import giava.menmath.ditloid.Database.DBAccess;
 import giava.menmath.ditloid.Database.DatabaseAccess;
 import giava.menmath.ditloid.Database.DatabaseAccessFactory;
 import giava.menmath.ditloid.Database.TypeDB;
 import giava.menmath.ditloid.Ditloid;
-import giava.menmath.ditloid.MyApplication;
 import giava.menmath.ditloid.R;
 import giava.menmath.ditloid.User.UserDao;
 import giava.menmath.ditloid.User.UserInfo;

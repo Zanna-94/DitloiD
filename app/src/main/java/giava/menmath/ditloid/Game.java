@@ -47,11 +47,11 @@ public class Game extends AppCompatActivity {
         lvLevels = (ListView) findViewById(R.id.lvLevels);
 
         ArrayList<String> alLevels = new ArrayList<>();
-        for (int i = 1; i <= LEVEL_NUM; i++){
+        for (int i = 1; i <= LEVEL_NUM; i++) {
             alLevels.add("Level " + i);
         }
 
-        levelsList =  alLevels.toArray(levelsList);
+        levelsList = alLevels.toArray(levelsList);
 
         LevelAdapter myAdapter = new LevelAdapter(this, levelsList);
 
@@ -60,11 +60,10 @@ public class Game extends AppCompatActivity {
 
 
         try {
-            userInfo= UserDao.deserializza();
+            userInfo = UserDao.deserializza();
         } catch (IOException e) {
             e.printStackTrace();
             userInfo = UserInfo.getInstance();
-            Toast.makeText(Game.this, "Benvenuto!", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -75,7 +74,7 @@ public class Game extends AppCompatActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
             int clickedLevel = position + 1;
-            if(clickedLevel <= userInfo.getLastPassedLevel()){
+            if (clickedLevel <= userInfo.getLastPassedLevel()) {
                 Intent startLevel = new Intent(Game.this, FragmentPagerSupport.class);
                 startActivity(startLevel);
                 startLevel.putExtra("Level", clickedLevel);

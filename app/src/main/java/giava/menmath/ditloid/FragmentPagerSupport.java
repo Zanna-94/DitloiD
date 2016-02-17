@@ -159,8 +159,9 @@ public class FragmentPagerSupport extends FragmentActivity {
                         ((TextView) tvCredits).setText(String.format("%d", credit));
                         btnGetCategory.setClickable(false);
                         tvCategory.setVisibility(View.VISIBLE);
+                    } else
                         Toast.makeText(MyApplication.getAppContext(), "Non hai abbastanza crediti!", Toast.LENGTH_SHORT).show();
-                    }
+
                 }
             });
 
@@ -173,8 +174,9 @@ public class FragmentPagerSupport extends FragmentActivity {
                         ((TextView) tvCredits).setText(String.format("%d", credit));
                         btnGetHint.setClickable(false);
                         tvHelp.setVisibility(View.VISIBLE);
+                    } else
                         Toast.makeText(MyApplication.getAppContext(), "Non hai abbastanza crediti!", Toast.LENGTH_SHORT).show();
-                    }
+
                 }
             });
 
