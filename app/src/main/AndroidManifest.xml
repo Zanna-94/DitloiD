@@ -49,7 +49,7 @@
         <activity
             android:name=".FragmentPagerSupport"
             android:label="@string/title_activity_game_level"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Bluetooth.BluetoothChallenge"
             android:label="@string/strChallenge"

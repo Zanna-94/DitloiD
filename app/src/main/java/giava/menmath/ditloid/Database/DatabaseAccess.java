@@ -150,6 +150,44 @@ public class DatabaseAccess implements DBAccess {
 
     }
 
+    @Override
+    public ArrayList<Ditloid> getByLevel(Integer level) {
+
+        ArrayList<Ditloid> ditloids = new ArrayList<>();
+
+        String query = "SELECT * from ditloid where Livello ='" + level + "'  LIMIT 5";
+        Cursor cursor = database.rawQuery(query, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Ditloid dit = new Ditloid();
+
+            dit.setCategory(cursor.getString(cursor.getColumnIndex("Categoria")));
+            dit.setSolution(cursor.getString(cursor.getColumnIndex("Soluzione")));
+            dit.setEnigma(cursor.getString(cursor.getColumnIndex("Enigma")));
+
+            // in case of Challenge database not contains these columns
+            if (cursor.getColumnIndex("Indizio") == -1 || cursor.getColumnIndex("Difficoltà") == -1 ||
+                    cursor.getColumnIndex("Livello") == -1){
+
+                break;
+            }
+
+            dit.setHint(cursor.getString(cursor.getColumnIndex("Indizio")));
+            dit.setDifficulty(cursor.getInt(cursor.getColumnIndex("Difficoltà")));
+            dit.setLevel(cursor.getInt(cursor.getColumnIndex("Livello")));
+
+
+
+            ditloids.add(dit);
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return ditloids;
+
+    }
+
     public int getCount() {
         return database.rawQuery("SELECT Enigma FROM ditloid", null).getCount();
     }

@@ -32,6 +32,8 @@ public interface DBAccess {
 
     Ditloid getById(Integer id);
 
+    ArrayList<Ditloid> getByLevel(Integer level);
+
     int getCount();
 
 }

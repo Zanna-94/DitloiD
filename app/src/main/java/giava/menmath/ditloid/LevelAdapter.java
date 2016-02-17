@@ -25,7 +25,6 @@ class LevelAdapter extends BaseAdapter {
     UserInfo userInfo;
 
     public LevelAdapter(Context context, String[] level) {
-        // TODO Auto-generated constructor stub
         this.context = context;
         this.level = level;
         inflater = (LayoutInflater) context
