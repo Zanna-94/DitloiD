@@ -140,8 +140,7 @@ public class BluetoothChallenge extends AppCompatActivity {
         if (!mBluetoothAdapter.isEnabled()) {
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
-        }
-        if (mService == null) {
+        }else if (mService == null) {
             setup();
         }
 
