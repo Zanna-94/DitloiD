@@ -1,7 +1,9 @@
-package giava.menmath.ditloid;
+package giava.menmath.ditloid.Game;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import giava.menmath.ditloid.Game.Game;
 
 public class MyAdapter extends FragmentPagerAdapter {
 

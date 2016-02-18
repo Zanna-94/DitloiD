@@ -1,4 +1,4 @@
-package giava.menmath.ditloid;
+package giava.menmath.ditloid.Game;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import java.io.IOException;
 
+import giava.menmath.ditloid.R;
 import giava.menmath.ditloid.User.UserDao;
 import giava.menmath.ditloid.User.UserInfo;
 

@@ -1,4 +1,4 @@
-package giava.menmath.ditloid;
+package giava.menmath.ditloid.Game;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 
 import java.io.IOException;
 
+import giava.menmath.ditloid.R;
 import giava.menmath.ditloid.User.UserDao;
 import giava.menmath.ditloid.User.UserInfo;
 

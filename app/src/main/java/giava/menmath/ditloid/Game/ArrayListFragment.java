@@ -1,4 +1,4 @@
-package giava.menmath.ditloid;
+package giava.menmath.ditloid.Game;
 
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -9,12 +9,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import giava.menmath.ditloid.Database.DatabaseAccess;
 import giava.menmath.ditloid.Database.DatabaseAccessFactory;
 import giava.menmath.ditloid.Database.TypeDB;
+import giava.menmath.ditloid.Ditloid;
+import giava.menmath.ditloid.MyApplication;
+import giava.menmath.ditloid.R;
 import giava.menmath.ditloid.User.UserInfo;
 
 

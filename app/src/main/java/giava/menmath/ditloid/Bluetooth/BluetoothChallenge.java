@@ -8,6 +8,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
@@ -122,16 +123,9 @@ public class BluetoothChallenge extends AppCompatActivity {
         if (mBluetoothAdapter == null) {
             Toast.makeText(BluetoothChallenge.this, "Bluetooth is not available",
                     Toast.LENGTH_LONG).show();
+            finish();
         }
 
-       /* try {
-            userInfo = UserDao.deserializza();
-        } catch (IOException e) {
-            e.printStackTrace();
-            userInfo = UserInfo.getInstance();
-        }*/
-
-        userInfo=UserInfo.getInstance();
 
         WaitOrSearch();
     }
@@ -153,6 +147,18 @@ public class BluetoothChallenge extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+
+        //Obtain user info to modify credit in case of win
+        try{
+            userInfo = UserDao.deserializza();
+            System.out.println("deserializzazione success");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("deserializzazione failed");
+            userInfo = UserInfo.getInstance();
+        }
+
 
         // Performing this check in onResume() covers the case in which BT was
         // not enabled during onStart(), so we were paused to enable it...
@@ -183,30 +189,8 @@ public class BluetoothChallenge extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        role = null;
-
-        if (timer != null)
-            timer.cancel();
-        if (mService != null)
-            mService.stop();
-
-        this.finish();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mService != null) {
-            mService.stop();
-        }
-        if (timer != null)
-            timer.cancel();
-        finish();
-    }
-
     protected class MyCheckButtonListener implements View.OnClickListener {
+
         @Override
         public void onClick(View v) {
             if (guess() && getGameState().equals(ChallengeState.GAMING)) {
@@ -223,7 +207,7 @@ public class BluetoothChallenge extends AppCompatActivity {
                 } else {
                     setGameState(ChallengeState.WAIT);
                     Toast.makeText(BluetoothChallenge.this, "Hai indovinato!", Toast.LENGTH_SHORT).show();
-                    waitingDialog();
+                    waitingDialog(R.string.strWaitFriend);
                 }
 
 
@@ -231,8 +215,6 @@ public class BluetoothChallenge extends AppCompatActivity {
                 Toast.makeText(BluetoothChallenge.this, R.string.retry, Toast.LENGTH_SHORT).show();
         }
     }
-
-
     /**
      * Check if solution typed by User is the correct solution for the ditloid.
      *
@@ -247,6 +229,7 @@ public class BluetoothChallenge extends AppCompatActivity {
 
         return false;
     }
+
 
     /**
      * Updates the status on the action bar.
@@ -290,7 +273,6 @@ public class BluetoothChallenge extends AppCompatActivity {
         }
     }
 
-
     private void play(String msg) {
 
         int id;
@@ -302,7 +284,7 @@ public class BluetoothChallenge extends AppCompatActivity {
                     case ChallengeState.INIT:
 
                         if (msg == null) {
-                            waitingDialog();
+                            waitingDialog(R.string.strWaitConnection);
 
                             //Init instance of random class
                             long millis = System.currentTimeMillis();
@@ -477,6 +459,7 @@ public class BluetoothChallenge extends AppCompatActivity {
         }
     }
 
+
     public void game() {
 
         timer = new CountDownTimer(60000, 1000) {
@@ -533,13 +516,6 @@ public class BluetoothChallenge extends AppCompatActivity {
 
         userInfo.addCredit(1);
 
-//        try {
-//            UserDao.serializza(userInfo);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            Toast.makeText(BluetoothChallenge.this, R.string.strImpossibleSave, Toast.LENGTH_SHORT).show();
-//        }
-
         Toast.makeText(BluetoothChallenge.this, R.string.strOneCredit, Toast.LENGTH_SHORT).show();
     }
 
@@ -583,7 +559,6 @@ public class BluetoothChallenge extends AppCompatActivity {
         alert.show();
     }
 
-
     /**
      * Sends a message.
      *
@@ -617,6 +592,7 @@ public class BluetoothChallenge extends AppCompatActivity {
         }
 
     }
+
 
     /**
      * Establish connection with other divice
@@ -657,7 +633,6 @@ public class BluetoothChallenge extends AppCompatActivity {
                 }
         }
     }
-
 
     /**
      * The Handler that gets information back from the BluetoothChatService
@@ -716,6 +691,7 @@ public class BluetoothChallenge extends AppCompatActivity {
         }
     };
 
+
     /**
      * The system shows a dialog to the user. He can choose if wait for a friend's request
      * to play or search available devices in the place.
@@ -735,7 +711,7 @@ public class BluetoothChallenge extends AppCompatActivity {
                         role = Constants.SERVER;
 
                         //show progress dialog
-                        waitingDialog();
+                        waitingDialog(R.string.strWaitConnection);
                     }
                 });
 
@@ -758,10 +734,11 @@ public class BluetoothChallenge extends AppCompatActivity {
     /**
      * Show in the UI a Progress dialog
      */
-    private void waitingDialog() {
+    private void waitingDialog(int res) {
         //Waiting for a connection request
         waitingDialog = new ProgressDialog(BluetoothChallenge.this);
-        waitingDialog.setMessage("Wait connection!");
+
+        waitingDialog.setMessage(getString(res));
         waitingDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
 
             @Override
@@ -772,6 +749,45 @@ public class BluetoothChallenge extends AppCompatActivity {
         });
 
         waitingDialog.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        role = null;
+
+        if (timer != null)
+            timer.cancel();
+        if (mService != null)
+            mService.stop();
+
+        this.finish();
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+
+        try{
+            UserDao.serializza(userInfo);
+            System.out.println("serializzazione success");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("serializzazione failed");
+            Toast.makeText(BluetoothChallenge.this, R.string.strImpossibleSave,
+                    Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mService != null) {
+            mService.stop();
+        }
+        if (timer != null)
+            timer.cancel();
+        finish();
     }
 
     public String getGameState() {

@@ -51,4 +51,6 @@
     <string name="strLevelPassed">Complimenti, hai risolto il ditloide!</string>
     <string name="strLevelNotPassed">Hai sbagliato, riprova!</string>
     <string name="strNotEnoughCredit">Non hai abbastanza crediti!</string>
+    <string name="strWaitConnection">In connessione...</string>
+    <string name="strWaitFriend">Aspetta l\'altro partecipante!</string>
 </resources>

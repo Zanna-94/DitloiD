@@ -54,5 +54,7 @@
     <string name="strLevelPassed">Congratulation, you have solved the ditloid!</string>
     <string name="strLevelNotPassed">I\'m sorry retry!</string>
     <string name="strNotEnoughCredit">Not enough credit!</string>
+    <string name="strWaitConnection">Wait for connection!</string>
+    <string name="strWaitFriend">Wait your friend!</string>
 </resources>
 

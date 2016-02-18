@@ -26,7 +26,7 @@
             android:name=".Main"
             android:label="@string/strChallenge" />
         <activity
-            android:name=".Game"
+            android:name=".Game.Game"
             android:label="@string/title_activity_game" />
         <activity
             android:name=".Rules"
@@ -47,7 +47,7 @@
             android:name=".GiveTip"
             android:label="@string/strGiveTip" />
         <activity
-            android:name=".FragmentPagerSupport"
+            android:name=".Game.FragmentPagerSupport"
             android:label="@string/title_activity_game_level"
             android:screenOrientation="portrait" />
         <activity
