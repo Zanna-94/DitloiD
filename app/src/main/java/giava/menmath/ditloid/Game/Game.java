@@ -14,9 +14,6 @@ import giava.menmath.ditloid.R;
 import giava.menmath.ditloid.User.UserDao;
 import giava.menmath.ditloid.User.UserInfo;
 
-/**
- * Created by tizianomenichelli on 28/01/16.
- */
 
 public class Game extends AppCompatActivity {
 
@@ -29,7 +26,7 @@ public class Game extends AppCompatActivity {
     /**
      * Info about the user and his progress
      */
-    private UserInfo userInfo;
+    private UserInfo user;
 
     private ListView lvLevels;
     private String[] levelsList = new String[LEVEL_NUM];
@@ -49,28 +46,48 @@ public class Game extends AppCompatActivity {
 
         levelsList = alLevels.toArray(levelsList);
 
-        LevelAdapter myAdapter = new LevelAdapter(this, levelsList);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        deserializza();
+
+        LevelAdapter myAdapter = new LevelAdapter(this, levelsList, user);
         lvLevels.setAdapter(myAdapter);
         lvLevels.setOnItemClickListener(new MyListener());
 
-
-        try {
-            userInfo = UserDao.deserializza();
-        } catch (IOException e) {
-            e.printStackTrace();
-            userInfo = UserInfo.getInstance();
-        }
-
     }
 
+
+    public void serializza() {
+        if (user != null) {
+            try {
+                UserDao.serializza(user);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void deserializza() {
+        try {
+            user = UserDao.deserializza();
+            System.out.println("deserializza ok");
+        } catch (IOException e) {
+            e.printStackTrace();
+            user = UserInfo.getInstance();
+            System.out.println("deserializza failed");
+        }
+    }
 
     protected class MyListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
             int clickedLevel = position + 1;
-            if (clickedLevel <= userInfo.getLastPassedLevel()) {
+            if (clickedLevel <= user.getLastPassedLevel()) {
                 Intent startLevel = new Intent(Game.this, FragmentPagerSupport.class);
                 startActivity(startLevel);
                 startLevel.putExtra("Level", clickedLevel);

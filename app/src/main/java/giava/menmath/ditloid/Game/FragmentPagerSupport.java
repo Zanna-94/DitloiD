@@ -23,8 +23,6 @@ public class FragmentPagerSupport extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_level_x);
 
-        deserializza();
-
         Bundle extras = getIntent().getExtras();
         Integer value = 1;
         if (extras != null)
@@ -33,10 +31,24 @@ public class FragmentPagerSupport extends FragmentActivity {
 
         mAdapter = new MyAdapter(getSupportFragmentManager(), value);
         mPager = (ViewPager) findViewById(R.id.pager);
+
+        deserializza();
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        serializza();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         mPager.setAdapter(mAdapter);
     }
 
-     public static void serializza(){
+    public static void serializza(){
 
         if(user!=null){
             try {
@@ -50,11 +62,11 @@ public class FragmentPagerSupport extends FragmentActivity {
     public static void deserializza(){
         try {
             user = UserDao.deserializza();
-            System.out.println("Data get");
+            System.out.println("deserializza ok");
         } catch (IOException e) {
             e.printStackTrace();
             user = UserInfo.getInstance();
-            System.out.println("Data not get");
+            System.out.println("deserializza failed");
         }
     }
 

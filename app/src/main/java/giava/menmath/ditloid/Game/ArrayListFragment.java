@@ -10,7 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-
 import giava.menmath.ditloid.Database.DatabaseAccess;
 import giava.menmath.ditloid.Database.DatabaseAccessFactory;
 import giava.menmath.ditloid.Database.TypeDB;
@@ -25,7 +24,7 @@ public class ArrayListFragment extends ListFragment {
     private static int level;
 
     //ditloids for the right level
-    ArrayList<Ditloid> ditloids;
+    Ditloid ditloid;
 
     private TextView tvNewDitloid;
     private TextView tvLevel;
@@ -41,8 +40,6 @@ public class ArrayListFragment extends ListFragment {
     private int mNum;
 
     private UserInfo user;
-    private int credit;
-
 
     /**
      * Create a new instance of CountingFragment, providing "num"
@@ -70,8 +67,16 @@ public class ArrayListFragment extends ListFragment {
         super.onCreate(savedInstanceState);
         mNum = getArguments() != null ? getArguments().getInt("num") : 1;
 
-        FragmentPagerSupport activity = (FragmentPagerSupport) getActivity();
-        user = activity.getUser();
+        user = FragmentPagerSupport.getUser();
+
+        //Obtain DatabaseAccess object to communicate with db
+        DatabaseAccessFactory factory = new DatabaseAccessFactory();
+        DatabaseAccess databaseAccess = factory.getDatabaseAccess(TypeDB.DB_Game);
+        databaseAccess.open();
+
+        ditloid = databaseAccess.getByLevel(level).get(mNum);
+
+        databaseAccess.close();
 
     }
 
@@ -97,49 +102,62 @@ public class ArrayListFragment extends ListFragment {
         btnGetHint = (Button) v.findViewById(R.id.btnGetHint);
 
         tvLevel.setText(String.format("Level %d.%d", level, mNum + 1));
+
         tvCredits.setText(String.format("%d", user.getCredit()));
+        tvNewDitloid.setText(ditloid.getEnigma());
+        tvCategory.setText(ditloid.getCategory());
+        tvHelp.setText(ditloid.getHint());
+        etSolution.setText(ditloid.getEnigma());
 
 
-        //Obtain DatabaseAccess object to communicate with db
-        DatabaseAccessFactory factory = new DatabaseAccessFactory();
-        DatabaseAccess databaseAccess = factory.getDatabaseAccess(TypeDB.DB_Game);
-        databaseAccess.open();
-
-        ditloids = databaseAccess.getByLevel(level);
-
-/*
-        tvNewDitloid.setText(databaseAccess.getDitloids().get(mNum));
-        etSolution.setText(databaseAccess.getDitloids().get(mNum));
-        tvCategory.setText(databaseAccess.getCategory().get(mNum));
-        tvHelp.setText(databaseAccess.getHint().get(mNum));
-
-        String correct = databaseAccess.getSolutions().get(mNum);
-        Integer difficulty = databaseAccess.getDifficulty().get(mNum);
-*/
-
-        databaseAccess.close();
-
-        tvNewDitloid.setText(ditloids.get(mNum).getEnigma());
-        etSolution.setText(ditloids.get(mNum).getEnigma());
-        tvCategory.setText(ditloids.get(mNum).getCategory());
-        tvHelp.setText(ditloids.get(mNum).getHint());
-
-
+        //SetListener must be here because they make button clickable
         btnCheck.setOnClickListener(new CheckListener());
         btnGetCategory.setOnClickListener(new CategoryListener());
         btnGetHint.setOnClickListener(new HintListener());
+
+
+
+        //if Level already passed by user
+        if (user.getPassedLevel() != null &&
+                user.getPassedDitloids(level)!= null &&
+                user.getPassedDitloids(level).contains(mNum)) {
+
+            etSolution.setText(ditloid.getSolution());
+            btnCheck.setClickable(false);
+            btnGetCategory.setClickable(false);
+            btnGetHint.setClickable(false);
+        }
+
+        if (user.getHintGet() != null &&
+                user.getHintGet().containsKey(level)) {
+
+            ArrayList<Integer> positions = user.getHintGet().get(level);
+            if (positions!= null && positions.contains(mNum)) {
+                tvHelp.setVisibility(View.VISIBLE);
+                btnGetHint.setClickable(false);
+            }
+        }
+
+        if (user.getCategoryGet() != null &&
+                user.getCategoryGet().containsKey(level)) {
+
+            ArrayList<Integer> positions = user.getCategoryGet().get(level);
+            if (positions!= null && positions.contains(mNum)) {
+                tvCategory.setVisibility(View.VISIBLE);
+                btnGetCategory.setClickable(false);
+            }
+        }
+
 
         return v;
 
     }
 
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        FragmentPagerSupport activity = (FragmentPagerSupport) getActivity();
-        activity.serializza();
     }
-
 
     private class CheckListener implements View.OnClickListener {
 
@@ -147,13 +165,14 @@ public class ArrayListFragment extends ListFragment {
         public void onClick(View v) {
 
             String check = etSolution.getText().toString().toLowerCase().trim();
-            String correct = ditloids.get(mNum).getSolution().toLowerCase().trim();
+            String correct = ditloid.getSolution().toLowerCase().trim();
 
             if (check.equals(correct)) {
+
+                // Update view
                 Toast.makeText(MyApplication.getAppContext(), R.string.strLevelPassed,
                         Toast.LENGTH_SHORT).show();
 
-                user.addCredit(ditloids.get(mNum).getDifficulty());
 
                 tvCredits.setText(String.format("%d", user.getCredit()));
 
@@ -161,6 +180,16 @@ public class ArrayListFragment extends ListFragment {
                 btnGetCategory.setClickable(false);
                 btnGetHint.setClickable(false);
                 etSolution.setKeyListener(null);
+
+                //Update user data
+                user.addCredit(ditloid.getDifficulty());
+                try {
+                    user.addPassedDitloid(level, mNum);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(MyApplication.getAppContext(), R.string.strImpossibleSave,
+                            Toast.LENGTH_SHORT).show();
+                }
 
             } else {
                 Toast.makeText(MyApplication.getAppContext(), R.string.strLevelNotPassed,
@@ -176,12 +205,16 @@ public class ArrayListFragment extends ListFragment {
 
             if (user.getCredit() >= 1) {
 
-                user.subCredit(1);
-
+                //Update view
                 tvCredits.setText(String.format("%d", user.getCredit()));
 
                 btnGetCategory.setClickable(false);
                 tvCategory.setVisibility(View.VISIBLE);
+
+                //Update Data user
+                user.subCredit(1);
+                user.addCategoryGet(level, mNum);
+
 
             } else
                 Toast.makeText(MyApplication.getAppContext(), R.string.strNotEnoughCredit,
@@ -196,11 +229,13 @@ public class ArrayListFragment extends ListFragment {
         public void onClick(View v) {
             if (user.getCredit() >= 5) {
 
-                user.subCredit(5);
 
                 tvCredits.setText(String.format("%d", user.getCredit()));
                 btnGetHint.setClickable(false);
                 tvHelp.setVisibility(View.VISIBLE);
+
+                user.subCredit(5);
+                user.addHintGet(level, mNum);
 
             } else
                 Toast.makeText(MyApplication.getAppContext(), R.string.strNotEnoughCredit,
@@ -208,7 +243,6 @@ public class ArrayListFragment extends ListFragment {
 
         }
     }
-
 
 
 }
