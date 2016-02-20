@@ -88,7 +88,7 @@ public class UserInfo implements Serializable {
     public Integer getLastPassedLevel() {
 
         if (passedLevel.isEmpty())
-            return 1;
+            return 0;
 
         return passedLevel.size();
 
