@@ -47,7 +47,7 @@
     <string name="strContinue">Tocca lo schermo per continuare</string>
     <string name="strImpossibleSave">Impossibile salvare i progressi</string>
     <string name="strOneCredit">Hai guadagnato 1 credito!</string>
-    <string name="strLevelPassed">Complimenti, hai risolto il ditloide! Hai ottenuto </string>
+    <string name="strLevelPassed">Complimenti, hai risolto il ditloide! Crediti ottenuti: </string>
     <string name="strLevelNotPassed">Hai sbagliato, riprova!</string>
     <string name="strNotEnoughCredit">Non hai abbastanza crediti!</string>
     <string name="strWaitConnection">In connessione...</string>

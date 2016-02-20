@@ -51,7 +51,7 @@
     <string name="strContinue">Touch the screen to continue</string>
     <string name="strImpossibleSave">Not possible save progress</string>
     <string name="strOneCredit">You get 1 Credit!</string>
-    <string name="strLevelPassed">Congratulation, you have solved the ditloid! You have obtained </string>
+    <string name="strLevelPassed">Congratulation, you have solved the ditloid! Credits obtained:  </string>
     <string name="strNewCredits"> credits</string>
     <string name="strLevelNotPassed">I\'m sorry retry!</string>
     <string name="strNotEnoughCredit">Not enough credit!</string>
