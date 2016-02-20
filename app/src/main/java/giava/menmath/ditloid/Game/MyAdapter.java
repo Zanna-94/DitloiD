@@ -26,4 +26,8 @@ public class MyAdapter extends FragmentPagerAdapter {
         return ArrayListFragment.newInstance(position, level);
     }
 
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
 }

@@ -13,7 +13,7 @@ import giava.menmath.ditloid.User.UserInfo;
 
 public class FragmentPagerSupport extends FragmentActivity {
 
-    private MyAdapter mAdapter;
+    private static MyAdapter mAdapter;
     private ViewPager mPager;
 
     private static UserInfo  user;
@@ -71,6 +71,10 @@ public class FragmentPagerSupport extends FragmentActivity {
 
     public static UserInfo getUser(){
         return user;
+    }
+
+    public static void refresh(){
+        mAdapter.notifyDataSetChanged();
     }
 
 }

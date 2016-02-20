@@ -168,14 +168,10 @@ public class ArrayListFragment extends ListFragment {
 
             if (check.equals(correct)) {
 
-                // Update view
 
                 Toast.makeText(MyApplication.getAppContext(), getString(R.string.strLevelPassed) +
                                 Integer.toString(ditloid.getDifficulty()),
                         Toast.LENGTH_SHORT).show();
-
-
-                tvCredits.setText(String.format("%d", user.getCredit()));
 
                 btnCheck.setClickable(false);
                 btnGetCategory.setClickable(false);
@@ -184,6 +180,9 @@ public class ArrayListFragment extends ListFragment {
 
                 //Update user data
                 user.addCredit(ditloid.getDifficulty());
+                tvCredits.setText(String.format("%d", user.getCredit()));
+                FragmentPagerSupport.refresh();
+
                 try {
                     user.addPassedDitloid(level, mNum);
                 } catch (Exception e) {
@@ -206,9 +205,6 @@ public class ArrayListFragment extends ListFragment {
 
             if (user.getCredit() >= 1) {
 
-                //Update view
-                tvCredits.setText(String.format("%d", user.getCredit()));
-
                 btnGetCategory.setClickable(false);
                 tvCategory.setVisibility(View.VISIBLE);
 
@@ -216,11 +212,12 @@ public class ArrayListFragment extends ListFragment {
                 user.subCredit(1);
                 user.addCategoryGet(level, mNum);
 
+                tvCredits.setText(String.format("%d", user.getCredit()));
+                FragmentPagerSupport.refresh();
 
             } else
                 Toast.makeText(MyApplication.getAppContext(), R.string.strNotEnoughCredit,
                         Toast.LENGTH_SHORT).show();
-
         }
     }
 
@@ -230,18 +227,18 @@ public class ArrayListFragment extends ListFragment {
         public void onClick(View v) {
             if (user.getCredit() >= 5) {
 
-
-                tvCredits.setText(String.format("%d", user.getCredit()));
                 btnGetHint.setClickable(false);
                 tvHelp.setVisibility(View.VISIBLE);
 
                 user.subCredit(5);
                 user.addHintGet(level, mNum);
 
+                tvCredits.setText(String.format("%d", user.getCredit()));
+                FragmentPagerSupport.refresh();
+
             } else
                 Toast.makeText(MyApplication.getAppContext(), R.string.strNotEnoughCredit,
                         Toast.LENGTH_SHORT).show();
-
         }
     }
 
