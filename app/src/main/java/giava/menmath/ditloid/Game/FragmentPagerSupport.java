@@ -28,7 +28,6 @@ public class FragmentPagerSupport extends FragmentActivity {
         if (extras != null)
             value =  Integer.valueOf(extras.getString("Level"));
 
-
         mAdapter = new MyAdapter(getSupportFragmentManager(), value);
         mPager = (ViewPager) findViewById(R.id.pager);
 
