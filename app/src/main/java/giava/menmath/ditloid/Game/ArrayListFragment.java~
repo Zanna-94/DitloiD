@@ -170,8 +170,11 @@ public class ArrayListFragment extends ListFragment {
             if (check.equals(correct)) {
 
                 // Update view
-
+<<<<<<< HEAD
                 Toast.makeText(MyApplication.getAppContext(), getString(R.string.strLevelPassed) +
+=======
+                Toast.makeText(MyApplication.getAppContext(), R.string.strLevelPassed +
+>>>>>>> a208414580992eeac1ecf9803d46e0e982f93e44
                                 Integer.toString(ditloid.getDifficulty()),
                         Toast.LENGTH_SHORT).show();
 
