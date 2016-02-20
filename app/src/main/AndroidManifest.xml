@@ -35,26 +35,6 @@
             android:label="@string/strRules"
             android:parentActivityName=".Main"/>
         <activity
-            android:name=".HelpUs"
-            android:label="@string/strHelpUs"
-            android:parentActivityName=".Main"/>
-        <activity
-            android:name=".NewDitloid"
-            android:label="@string/strNewDitloid"
-            android:parentActivityName=".HelpUs"/>
-        <activity
-            android:name=".NewDitloidSend"
-            android:label="@string/strNewDitloid"
-            android:parentActivityName=".NewDitloid"/>
-        <activity
-            android:name=".SignalError"
-            android:label="@string/strSignalError"
-            android:parentActivityName=".HelpUs"/>
-        <activity
-            android:name=".GiveTip"
-            android:label="@string/strGiveTip"
-            android:parentActivityName=".HelpUs"/>
-        <activity
             android:name=".Game.FragmentPagerSupport"
             android:label="@string/title_activity_game_level"
             android:screenOrientation="portrait"
