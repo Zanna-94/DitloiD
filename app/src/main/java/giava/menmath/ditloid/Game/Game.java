@@ -86,11 +86,10 @@ public class Game extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            int clickedLevel = position + 1;
-            if (clickedLevel <= user.getLastPassedLevel()) {
+            if (position <= user.getLastPassedLevel()) {
                 Intent startLevel = new Intent(Game.this, FragmentPagerSupport.class);
+                startLevel.putExtra("Level", position + 1);
                 startActivity(startLevel);
-                startLevel.putExtra("Level", clickedLevel);
             }
 
         }

@@ -26,7 +26,7 @@ public class FragmentPagerSupport extends FragmentActivity {
         Bundle extras = getIntent().getExtras();
         Integer value = 1;
         if (extras != null)
-            value =  Integer.valueOf(extras.getString("Level"));
+            value =  extras.getInt("Level");
 
 
         mAdapter = new MyAdapter(getSupportFragmentManager(), value);

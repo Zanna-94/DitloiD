@@ -72,7 +72,7 @@ class LevelAdapter extends BaseAdapter {
 
         Integer passedLevel = user.getLastPassedLevel();
 
-        if (position <= passedLevel - 1) {
+        if (position <= passedLevel ) {
             unlock.setVisibility(View.GONE);
 
             image_whStar1.setVisibility(View.VISIBLE);
@@ -122,7 +122,7 @@ class LevelAdapter extends BaseAdapter {
 
         }
 
-        if (position <= passedLevel - 1)
+        if (position <= passedLevel )
             image.setImageResource(R.drawable.ic_lock_open_black_24dp);
         else
             image.setImageResource(R.drawable.ic_lock_black_24dp);
