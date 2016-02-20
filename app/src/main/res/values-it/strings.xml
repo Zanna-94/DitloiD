@@ -19,7 +19,6 @@
     <string name="strRules">Regolamento</string>
     <string name="strSignalError">Segnalaci un problema dell\'applicazione</string>
     <string name="strTrophies">Trofei e Statistiche</string>
-    <string name="title_activity_game">Gioco</string>
     <string name="strCheckSolution">Prova!</string>
     <string name="strConnect">Connettiti con i tuoi amici</string>
     <string name="strBackToGame">Ritorna al gioco</string>
@@ -48,9 +47,10 @@
     <string name="strContinue">Tocca lo schermo per continuare</string>
     <string name="strImpossibleSave">Impossibile salvare i progressi</string>
     <string name="strOneCredit">Hai guadagnato 1 credito!</string>
-    <string name="strLevelPassed">Complimenti, hai risolto il ditloide!</string>
+    <string name="strLevelPassed">Complimenti, hai risolto il ditloide! Hai ottenuto </string>
     <string name="strLevelNotPassed">Hai sbagliato, riprova!</string>
     <string name="strNotEnoughCredit">Non hai abbastanza crediti!</string>
     <string name="strWaitConnection">In connessione...</string>
     <string name="strWaitFriend">Aspetta l\'altro partecipante!</string>
+    <string name="strNewCredits"> crediti</string>
 </resources>
