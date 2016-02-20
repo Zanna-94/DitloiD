@@ -26,4 +26,12 @@ dependencies {
 dependencies {
     compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
 }
+dependencies {
+    compile 'com.android.support:design:23.+'
+}
+dependencies {
+    compile 'com.android.support:support-v4:23.+'
+}
+
+
 

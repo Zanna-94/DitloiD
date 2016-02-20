@@ -53,8 +53,8 @@
         <activity
             android:name=".Bluetooth.BluetoothChallenge"
             android:label="@string/strChallenge"
-            android:windowSoftInputMode="adjustResize"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".Bluetooth.DeviceList"
             android:configChanges="orientation|keyboardHidden"
