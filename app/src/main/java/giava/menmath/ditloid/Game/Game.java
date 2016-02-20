@@ -33,6 +33,8 @@ public class Game extends AppCompatActivity {
     private ListView lvLevels;
     private String[] levelsList = new String[LEVEL_NUM];
 
+    private static LevelAdapter myAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,7 @@ public class Game extends AppCompatActivity {
 
         levelsList = alLevels.toArray(levelsList);
 
+
     }
 
     @Override
@@ -56,12 +59,13 @@ public class Game extends AppCompatActivity {
 
         deserializza();
 
-        LevelAdapter myAdapter = new LevelAdapter(this, levelsList, user);
+        myAdapter = new LevelAdapter(this, levelsList, user);
         lvLevels.setAdapter(myAdapter);
         lvLevels.setOnItemClickListener(new MyListener());
 
-    }
+        myAdapter.notifyDataSetChanged();
 
+    }
 
     public void serializza() {
         if (user != null) {
@@ -96,6 +100,7 @@ public class Game extends AppCompatActivity {
 
         }
     }
+    
 
 
 }

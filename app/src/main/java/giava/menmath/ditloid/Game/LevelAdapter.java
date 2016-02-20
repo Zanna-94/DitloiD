@@ -70,9 +70,9 @@ class LevelAdapter extends BaseAdapter {
 
         text.setText(level[position]);
 
-        Integer passedLevel = user.getLastPassedLevel();
 
-        if (position <= passedLevel ) {
+        //bad code to avoid exception
+        if (position == 0) {
             unlock.setVisibility(View.GONE);
 
             image_whStar1.setVisibility(View.VISIBLE);
@@ -109,8 +109,52 @@ class LevelAdapter extends BaseAdapter {
             else
                 image_whStar5.setImageResource(R.drawable.ic_whitestar_vuota);
 
+            image.setImageResource(R.drawable.ic_lock_open_black_24dp);
+
+
+        } else if (position > 0 && user.getPassedDitloids(position) != null &&
+                user.getPassedDitloids(position).size() >= 3) {
+
+            unlock.setVisibility(View.GONE);
+
+            image_whStar1.setVisibility(View.VISIBLE);
+            image_whStar2.setVisibility(View.VISIBLE);
+            image_whStar3.setVisibility(View.VISIBLE);
+            image_whStar4.setVisibility(View.VISIBLE);
+            image_whStar5.setVisibility(View.VISIBLE);
+
+            ArrayList ditloids = (ArrayList) user.getPassedDitloids(position + 1);
+            Integer numberPassed = ditloids != null ? ditloids.size() : 0;
+
+            if (numberPassed > 0)
+                image_whStar1.setImageResource(R.drawable.ic_black_star);
+            else
+                image_whStar1.setImageResource(R.drawable.ic_whitestar_vuota);
+
+            if (numberPassed > 1)
+                image_whStar2.setImageResource(R.drawable.ic_black_star);
+            else
+                image_whStar2.setImageResource(R.drawable.ic_whitestar_vuota);
+
+            if (numberPassed > 2)
+                image_whStar3.setImageResource(R.drawable.ic_black_star);
+            else
+                image_whStar3.setImageResource(R.drawable.ic_whitestar_vuota);
+
+            if (numberPassed > 3)
+                image_whStar4.setImageResource(R.drawable.ic_black_star);
+            else
+                image_whStar4.setImageResource(R.drawable.ic_whitestar_vuota);
+
+            if (numberPassed > 4)
+                image_whStar5.setImageResource(R.drawable.ic_black_star);
+            else
+                image_whStar5.setImageResource(R.drawable.ic_whitestar_vuota);
+
+            image.setImageResource(R.drawable.ic_lock_open_black_24dp);
 
         } else {
+
             image_whStar1.setVisibility(View.INVISIBLE);
             image_whStar2.setVisibility(View.INVISIBLE);
             image_whStar3.setVisibility(View.INVISIBLE);
@@ -118,14 +162,12 @@ class LevelAdapter extends BaseAdapter {
             image_whStar5.setVisibility(View.INVISIBLE);
 
             unlock.setVisibility(View.VISIBLE);
+
             unlock.setText((position * 3) + " more to unlock");
+            image.setImageResource(R.drawable.ic_lock_black_24dp);
 
         }
 
-        if (position <= passedLevel )
-            image.setImageResource(R.drawable.ic_lock_open_black_24dp);
-        else
-            image.setImageResource(R.drawable.ic_lock_black_24dp);
 
         return vi;
     }

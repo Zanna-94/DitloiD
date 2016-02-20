@@ -35,11 +35,11 @@ public class FragmentPagerSupport extends FragmentActivity {
 
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onPause(){
+        super.onPause();
         serializza();
     }
+
 
     @Override
     protected void onResume() {

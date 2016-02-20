@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
 import giava.menmath.ditloid.Database.DatabaseAccess;
 import giava.menmath.ditloid.Database.DatabaseAccessFactory;
 import giava.menmath.ditloid.Database.TypeDB;
@@ -116,10 +117,9 @@ public class ArrayListFragment extends ListFragment {
         btnGetHint.setOnClickListener(new HintListener());
 
 
-
         //if Level already passed by user
         if (user.getPassedLevel() != null &&
-                user.getPassedDitloids(level)!= null &&
+                user.getPassedDitloids(level) != null &&
                 user.getPassedDitloids(level).contains(mNum)) {
 
             etSolution.setText(ditloid.getSolution());
@@ -132,7 +132,7 @@ public class ArrayListFragment extends ListFragment {
                 user.getHintGet().containsKey(level)) {
 
             ArrayList<Integer> positions = user.getHintGet().get(level);
-            if (positions!= null && positions.contains(mNum)) {
+            if (positions != null && positions.contains(mNum)) {
                 tvHelp.setVisibility(View.VISIBLE);
                 btnGetHint.setClickable(false);
             }
@@ -142,7 +142,7 @@ public class ArrayListFragment extends ListFragment {
                 user.getCategoryGet().containsKey(level)) {
 
             ArrayList<Integer> positions = user.getCategoryGet().get(level);
-            if (positions!= null && positions.contains(mNum)) {
+            if (positions != null && positions.contains(mNum)) {
                 tvCategory.setVisibility(View.VISIBLE);
                 btnGetCategory.setClickable(false);
             }
@@ -152,7 +152,6 @@ public class ArrayListFragment extends ListFragment {
         return v;
 
     }
-
 
     @Override
     public void onDestroyView() {
