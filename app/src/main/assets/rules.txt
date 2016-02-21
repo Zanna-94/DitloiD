@@ -1,0 +1,10 @@
+Ditloids are riddle games, you have to guess a very common phrase having only the numbers, connectors
+(conjunctions, articles, prepositions) and initials of the words that form the phrase in question. 
+
+The app has two different game modes:
+
+-  Levels mode has 10 levels from 5 Ditloidi by one in ascending order of difficulty. To unlock a level you have to solve a certain number of Ditloids in the previous levels. Each Ditloid has a difficulty level ranging from 1 (easy) to 5 (very difficult), when you solve a Ditloid you get many credits as is the difficulty level  of the Ditloid just solved. If you can’t solve one, don’t worry! You can get the category at a cost of 1 credit, or if this is not enough you can also get an help, but it’ll costs you 5 credits.
+
+-  Challenge mode permits you challenge a friend through the Bluetooth connection. You have 3 minutes to solve the same Ditloid, the winner will have a credit that can spend in levels mode. 
+
+May the best man win!

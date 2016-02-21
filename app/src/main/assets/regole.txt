@@ -1,0 +1,8 @@
+Il Ditloide è un gioco enigmistico in cui si deve indovinare una frase molto comune avendo a disposizione solo i numeri, i connettivi (congiunzioni, articoli, preposizioni) e le iniziali delle parole che formano la frase in questione.
+
+L’applicazione prevede due diverse modalità di gioco:
+
+⁃  La modalità a livelli prevede 10 livelli da 5 Ditloidi l’uno in ordine crescente di difficoltà. Per sbloccare un livello si devono risolvere un certo numero di Ditloidi nei livelli precedenti. Ogni Ditloide ha un livello di difficoltà che varia da 1 (semplice) a 5 (molto difficile), la risoluzione di un Ditloide garantisce il guadagno di un numero di crediti pari al livello di difficoltà del Ditloide appena risolto. Se non riesci a risolvere un Ditloide non preoccuparti! Infatti è possibile richiedere la categoria al costo di 1 credito, o se questa non fosse sufficiente è possibile ottenere anche un aiuto, ma ti costerà 5 crediti.
+
+⁃  La modalità sfida consente di sfidare un amico tramite la connessione Bluetooth. Avete 3 minuti di tempo per risolvere lo stesso Ditloide, il vincitore avrà un credito che potrà spendere nella modalità a livelli. 
+Che vinca il migliore!
