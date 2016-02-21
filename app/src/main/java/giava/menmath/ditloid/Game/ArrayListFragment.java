@@ -153,11 +153,6 @@ public class ArrayListFragment extends ListFragment {
 
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
-
     private class CheckListener implements View.OnClickListener {
 
         @Override
@@ -181,8 +176,6 @@ public class ArrayListFragment extends ListFragment {
                 //Update user data
                 user.addCredit(ditloid.getDifficulty());
                 tvCredits.setText(String.format("%d", user.getCredit()));
-                FragmentPagerSupport.refresh();
-
                 try {
                     user.addPassedDitloid(level, mNum);
                 } catch (Exception e) {
@@ -190,6 +183,8 @@ public class ArrayListFragment extends ListFragment {
                     Toast.makeText(MyApplication.getAppContext(), R.string.strImpossibleSave,
                             Toast.LENGTH_SHORT).show();
                 }
+
+                FragmentPagerSupport.refresh();
 
             } else {
                 Toast.makeText(MyApplication.getAppContext(), R.string.strLevelNotPassed,
@@ -240,6 +235,11 @@ public class ArrayListFragment extends ListFragment {
                 Toast.makeText(MyApplication.getAppContext(), R.string.strNotEnoughCredit,
                         Toast.LENGTH_SHORT).show();
         }
+    }
+
+
+    public void update() {
+        tvCredits.setText(user.getCredit().toString());
     }
 
 

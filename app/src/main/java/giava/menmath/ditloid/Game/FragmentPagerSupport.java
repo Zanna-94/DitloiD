@@ -30,6 +30,7 @@ public class FragmentPagerSupport extends FragmentActivity {
 
         mAdapter = new MyAdapter(getSupportFragmentManager(), value);
         mPager = (ViewPager) findViewById(R.id.pager);
+        mPager.setAdapter(mAdapter);
 
         deserializza();
 
@@ -38,13 +39,6 @@ public class FragmentPagerSupport extends FragmentActivity {
     protected void onPause(){
         super.onPause();
         serializza();
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mPager.setAdapter(mAdapter);
     }
 
     public static void serializza(){
