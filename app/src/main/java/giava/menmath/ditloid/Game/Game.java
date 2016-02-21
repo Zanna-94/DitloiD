@@ -92,7 +92,7 @@ public class Game extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            if (position <= user.getLastPassedLevel()) {
+            if (user.getPassedDitloidsSize() >= 3*position) {
                 Intent startLevel = new Intent(Game.this, FragmentPagerSupport.class);
                 startLevel.putExtra("Level", position + 1);
                 startActivity(startLevel);

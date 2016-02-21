@@ -49,6 +49,7 @@ public class BluetoothChallenge extends AppCompatActivity {
     private String gameState = ChallengeState.INIT;
 
     /**
+     * Class contains data for user progress
      * {@link UserInfo}
      */
     private UserInfo userInfo;
@@ -73,6 +74,7 @@ public class BluetoothChallenge extends AppCompatActivity {
     private EditText etInput;
     private Button btnCheck;
 
+    //Provide a timer to
     private CountDownTimer timer;
 
     private ProgressDialog waitingDialog;
@@ -83,7 +85,6 @@ public class BluetoothChallenge extends AppCompatActivity {
      * Name of the connected device
      */
     private String mConnectedDeviceName = null;
-
 
     /**
      * String buffer for outgoing messages
@@ -159,7 +160,6 @@ public class BluetoothChallenge extends AppCompatActivity {
             userInfo = UserInfo.getInstance();
         }
 
-
         // Performing this check in onResume() covers the case in which BT was
         // not enabled during onStart(), so we were paused to enable it...
         // onResume() will be called when ACTION_REQUEST_ENABLE activity returns.
@@ -173,6 +173,9 @@ public class BluetoothChallenge extends AppCompatActivity {
 
     }
 
+    /**
+     * Initialize the state of the connection and the Bluetooth service class
+     */
     private void setup() {
 
         gameState = ChallengeState.INIT;
@@ -189,6 +192,10 @@ public class BluetoothChallenge extends AppCompatActivity {
 
     }
 
+    /**
+     * Listener for the Check button that verify if the solution typed by the user
+     * is correct. It performs also
+     */
     protected class MyCheckButtonListener implements View.OnClickListener {
 
         @Override
@@ -284,6 +291,10 @@ public class BluetoothChallenge extends AppCompatActivity {
                     case ChallengeState.INIT:
 
                         if (msg == null) {
+
+                            if(waitingDialog!=null)
+                                waitingDialog.dismiss();
+
                             waitingDialog(R.string.strWaitConnection);
 
                             //Init instance of random class

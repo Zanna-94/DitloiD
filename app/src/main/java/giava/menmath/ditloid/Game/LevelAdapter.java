@@ -164,7 +164,7 @@ class LevelAdapter extends BaseAdapter {
 
             unlock.setVisibility(View.VISIBLE);
 
-            unlock.setText(String.format("%s : %d", getString(R.string.strToUnlock, position*3););
+            unlock.setText(position*3 + " " + vi.getResources().getString(R.string.strToUnlock));
             image.setImageResource(R.drawable.ic_lock_black_24dp);
 
         }

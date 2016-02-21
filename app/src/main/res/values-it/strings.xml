@@ -43,5 +43,5 @@
     <string name="strWaitConnection">In connessione...</string>
     <string name="strWaitFriend">Aspetta l\'altro partecipante!</string>
     <string name="strNewCredits"> crediti</string>
-    <string name="strToUnlock">ditloidi risolti per sbloccare questo livello</string>
+    <string name="strToUnlock"> risolti per sbloccare</string>
 </resources>

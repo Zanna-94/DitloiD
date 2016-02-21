@@ -46,6 +46,6 @@
     <string name="strNotEnoughCredit">Not enough credit!</string>
     <string name="strWaitConnection">Wait for connection!</string>
     <string name="strWaitFriend">Wait your friend!</string>
-    <string name="strToUnlock">solved ditloids to unlock this level</string>
+    <string name="strToUnlock"> to unlock </string>
 </resources>
 
