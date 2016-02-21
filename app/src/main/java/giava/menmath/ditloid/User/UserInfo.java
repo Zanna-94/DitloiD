@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import giava.menmath.ditloid.Ditloid;
 
@@ -99,6 +100,27 @@ public class UserInfo implements Serializable {
             return passedLevel.get(level);
 
         return null;
+    }
+
+    public Integer getPassedDitloidsSize() {
+
+        Integer sum=0;
+
+        if (passedLevel == null || passedLevel.isEmpty())
+            return sum;
+
+        Set<Integer> keys = passedLevel.keySet();
+        for( Integer key : keys) {
+            List<Integer> ditloids = passedLevel.get(key);
+            if (ditloids != null && !ditloids.isEmpty()) {
+                for (Integer dit : ditloids) {
+                    if (dit != null)
+                        sum++;
+                }
+            }
+        }
+
+        return sum;
     }
 
     public Integer addCredit(Integer num) {

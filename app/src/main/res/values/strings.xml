@@ -15,21 +15,10 @@
         Choose one of these options:
     </string>
     <string name="strNewDitloid">Suggest a ditloid</string>
-    <string name="strSignalError">Inform us about a problem in the app</string>
-    <string name="strGiveTip">Give us a suggestion</string>
-    <string name="strNewEnigma">Insert your ditloid</string>
-    <string name="strNewSolution">Insert your ditloid solution</string>
-    <string name="strNewCategory">Insert a category for your ditloid</string>
-    <string name="strNewDitloidText">Congratulations! You\'ve just sent a new ditloid!\nYour ditloid will be evaluated by our team and other players! If it will be considered worthwhile, you\'ll be able to see it in the game!\nThanks for your collaboration!</string>
-    <string name="strNewSend">Send!</string>
-    <string name="strEstimate">Evaluate new ditloids from users</string>
     <string name="strCheckSolution">Check!</string>
     <string name="strGetHint">Get hint (5 cr.)</string>
     <string name="strGetCategory">Get Category (1 cr.)</string>
-    <string name="strSignalError2">Segnalaci qui l\'errore che hai riscontrato all\'interno dell\'applicazione:</string>
-    <string name="strActivityRules">Qui andremo a scriverci tutte le regole</string>
     <string name="strBackToGame">Back to Game</string>
-    <string name="strGiveTip2">Scrivi qui un tuo suggerimento che ci permetterà di migliorare la nostra app</string>
     <string name="strConnect">Connect with your friend!</string>
     <string name="strFriendConnection">Connection with friends</string>
     <string name="title_paired_devices">Paired Device</string>
@@ -51,11 +40,12 @@
     <string name="strContinue">Touch the screen to continue</string>
     <string name="strImpossibleSave">Not possible save progress</string>
     <string name="strOneCredit">You get 1 Credit!</string>
-    <string name="strLevelPassed">Congratulation, you have solved the ditloid! Credits obtained:  </string>
+    <string name="strLevelPassed">Congratulation, you have solved the ditloid! Credits obtained:</string>
     <string name="strNewCredits"> credits</string>
     <string name="strLevelNotPassed">I\'m sorry retry!</string>
     <string name="strNotEnoughCredit">Not enough credit!</string>
     <string name="strWaitConnection">Wait for connection!</string>
     <string name="strWaitFriend">Wait your friend!</string>
+    <string name="strToUnlock">solved ditloids to unlock this level</string>
 </resources>
 

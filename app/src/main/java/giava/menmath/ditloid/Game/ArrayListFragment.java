@@ -165,7 +165,7 @@ public class ArrayListFragment extends ListFragment {
 
 
                 Toast.makeText(MyApplication.getAppContext(), getString(R.string.strLevelPassed) +
-                                Integer.toString(ditloid.getDifficulty()),
+                                " " + Integer.toString(ditloid.getDifficulty()),
                         Toast.LENGTH_SHORT).show();
 
                 btnCheck.setClickable(false);

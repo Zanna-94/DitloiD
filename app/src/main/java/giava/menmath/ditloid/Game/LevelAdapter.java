@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -112,8 +113,8 @@ class LevelAdapter extends BaseAdapter {
             image.setImageResource(R.drawable.ic_lock_open_black_24dp);
 
 
-        } else if (position > 0 && user.getPassedDitloids(position) != null &&
-                user.getPassedDitloids(position).size() >= 3) {
+        } else if (position > 0 && user.getPassedLevel() != null &&
+                user.getPassedDitloidsSize() >= 3*position) {
 
             unlock.setVisibility(View.GONE);
 
@@ -163,7 +164,7 @@ class LevelAdapter extends BaseAdapter {
 
             unlock.setVisibility(View.VISIBLE);
 
-            unlock.setText((position * 3) + " more to unlock");
+            unlock.setText(String.format("%s : %d", getString(R.string.strToUnlock, position*3););
             image.setImageResource(R.drawable.ic_lock_black_24dp);
 
         }
