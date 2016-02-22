@@ -3,13 +3,14 @@ package giava.menmath.ditloid.Game;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-
 import java.io.IOException;
-
 import giava.menmath.ditloid.R;
 import giava.menmath.ditloid.User.UserDao;
 import giava.menmath.ditloid.User.UserInfo;
 
+/**
+ * Created by MenMath.GiaVa
+ */
 
 public class FragmentPagerSupport extends FragmentActivity {
 
@@ -55,11 +56,9 @@ public class FragmentPagerSupport extends FragmentActivity {
     public static void deserializza(){
         try {
             user = UserDao.deserializza();
-            System.out.println("deserializza ok");
         } catch (IOException e) {
             e.printStackTrace();
             user = UserInfo.getInstance();
-            System.out.println("deserializza failed");
         }
     }
 

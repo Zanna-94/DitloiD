@@ -22,7 +22,7 @@ import java.util.Locale;
 import giava.menmath.ditloid.User.UserInfo;
 
 /**
- * Created by tizianomenichelli on 02/02/16.
+ * Created by MenMath.GiaVa
  */
 
 public class Rules extends AppCompatActivity {

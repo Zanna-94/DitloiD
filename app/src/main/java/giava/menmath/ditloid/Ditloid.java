@@ -1,8 +1,9 @@
 package giava.menmath.ditloid;
 
 /**
- * Created by emanuele on 08/02/16.
+ * Created by MenMath.GiaVa
  */
+
 public class Ditloid {
 
     private Integer id;

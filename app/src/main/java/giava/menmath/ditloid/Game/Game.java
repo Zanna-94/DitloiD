@@ -6,16 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.TooManyListenersException;
-
 import giava.menmath.ditloid.R;
 import giava.menmath.ditloid.User.UserDao;
 import giava.menmath.ditloid.User.UserInfo;
 
+/**
+ * Created by MenMath.GiaVa
+ */
 
 public class Game extends AppCompatActivity {
 
@@ -30,6 +29,7 @@ public class Game extends AppCompatActivity {
      */
     private UserInfo user;
 
+
     private ListView lvLevels;
     private String[] levelsList = new String[LEVEL_NUM];
 
@@ -40,16 +40,14 @@ public class Game extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-
         lvLevels = (ListView) findViewById(R.id.lvLevels);
 
         ArrayList<String> alLevels = new ArrayList<>();
         for (int i = 1; i <= LEVEL_NUM; i++) {
-            alLevels.add("Level " + i);
+            alLevels.add(getString(R.string.strLevel) + " " + i);
         }
 
         levelsList = alLevels.toArray(levelsList);
-
 
     }
 

@@ -1,8 +1,6 @@
 package giava.menmath.ditloid.Bluetooth;
 
 /**
- * Created by emanuele on 09/02/16.
- * <p/>
  * Defines several constants used between {@link BluetoothService} and the UI.
  */
 public interface Constants {

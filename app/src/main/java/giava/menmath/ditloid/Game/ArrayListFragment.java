@@ -1,10 +1,12 @@
 package giava.menmath.ditloid.Game;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +21,9 @@ import giava.menmath.ditloid.MyApplication;
 import giava.menmath.ditloid.R;
 import giava.menmath.ditloid.User.UserInfo;
 
+/**
+ * Created by MenMath.GiaVa
+ */
 
 public class ArrayListFragment extends ListFragment {
 
@@ -102,7 +107,7 @@ public class ArrayListFragment extends ListFragment {
         btnGetCategory = (Button) v.findViewById(R.id.btnGetCategory);
         btnGetHint = (Button) v.findViewById(R.id.btnGetHint);
 
-        tvLevel.setText(String.format("Level %d.%d", level, mNum + 1));
+        tvLevel.setText(String.format(getString(R.string.strLevel) + " %d.%d", level, mNum + 1));
 
         tvCredits.setText(String.format("%d", user.getCredit()));
         tvNewDitloid.setText(ditloid.getEnigma());
@@ -126,6 +131,7 @@ public class ArrayListFragment extends ListFragment {
             btnCheck.setClickable(false);
             btnGetCategory.setClickable(false);
             btnGetHint.setClickable(false);
+            etSolution.setKeyListener(null);
         }
 
         if (user.getHintGet() != null &&
@@ -172,6 +178,9 @@ public class ArrayListFragment extends ListFragment {
                 btnGetCategory.setClickable(false);
                 btnGetHint.setClickable(false);
                 etSolution.setKeyListener(null);
+
+                InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(etSolution.getWindowToken(), 0);
 
                 //Update user data
                 user.addCredit(ditloid.getDifficulty());

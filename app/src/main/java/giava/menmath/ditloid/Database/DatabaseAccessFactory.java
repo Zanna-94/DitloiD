@@ -7,7 +7,7 @@ import java.util.Locale;
 import giava.menmath.ditloid.MyApplication;
 
 /**
- * @author Emanuele Vannacci
+ * @author MenMath.GiaVa
  *         <p/>
  *         This class provide an implementation of the pattern Factory method.
  *         It istantiates the class {@link DatabaseAccess} selecting the right database.

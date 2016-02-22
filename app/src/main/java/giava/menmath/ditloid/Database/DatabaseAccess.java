@@ -1,16 +1,14 @@
 package giava.menmath.ditloid.Database;
 
 /**
- * Created by tizianomenichelli on 30/01/16.
+ * Created by MenMath.GiaVa
  */
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import giava.menmath.ditloid.Ditloid;
 
 public class DatabaseAccess implements DBAccess {
@@ -84,7 +82,6 @@ public class DatabaseAccess implements DBAccess {
         cursor.close();
         return list;
     }
-
 
     public List<Integer> getDifficulty() {
         List<Integer> list = new ArrayList<>();

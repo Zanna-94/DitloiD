@@ -1,6 +1,5 @@
 package giava.menmath.ditloid;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +10,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
- * Created by simonemattogno on 05/02/16.
+ * Created by MenMath.GiaVa
  */
-
 
 public class MainActivity  extends AppCompatActivity {
 

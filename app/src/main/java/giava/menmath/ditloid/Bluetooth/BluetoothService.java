@@ -4,7 +4,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,7 +14,7 @@ import java.io.OutputStream;
 import java.util.UUID;
 
 /**
- * @author Emanuele Vannacci
+ * @author MenMath.GiaVa
  *         <p/>
  *         This class does all the work for setting up and managing Bluetooth
  *         connections with other devices. It has a thread that listens for

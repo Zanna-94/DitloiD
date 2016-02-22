@@ -10,7 +10,7 @@ import java.util.List;
 import giava.menmath.ditloid.Ditloid;
 
 /**
- * @author Emanuele Vannacci
+ * @author MenMath.GiaVa
  *
  * Interface for {@link DatabaseAccess}. It
  */

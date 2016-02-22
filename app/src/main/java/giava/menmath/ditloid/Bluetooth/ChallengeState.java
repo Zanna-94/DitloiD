@@ -1,7 +1,7 @@
 package giava.menmath.ditloid.Bluetooth;
 
 /**
- *@author Emanuele Vannacci
+ * @author MenMath.GiaVa
  *
  * String used in {@link BluetoothChallenge} to exchange message.
  */
@@ -15,9 +15,5 @@ public interface ChallengeState {
     public static final String BALANCE = "balance";
     public static final String LOST = "Lost";
     public static final String WIN = "Win";
-
-
-
-
 
 }

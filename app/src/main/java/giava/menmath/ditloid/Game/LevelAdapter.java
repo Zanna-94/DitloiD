@@ -7,19 +7,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.IOException;
 import java.util.ArrayList;
-
-import giava.menmath.ditloid.Ditloid;
 import giava.menmath.ditloid.R;
-import giava.menmath.ditloid.User.UserDao;
 import giava.menmath.ditloid.User.UserInfo;
 
 /**
- * Created by emanuele on 16/02/16.
+ * Created by MenMath.GiaVa
  */
+
 class LevelAdapter extends BaseAdapter {
 
     Context context;
@@ -164,11 +159,10 @@ class LevelAdapter extends BaseAdapter {
 
             unlock.setVisibility(View.VISIBLE);
 
-            unlock.setText(position*3 + " " + vi.getResources().getString(R.string.strToUnlock));
+            unlock.setText((position*3)-user.getPassedDitloidsSize() + " " + vi.getResources().getString(R.string.strToUnlock));
             image.setImageResource(R.drawable.ic_lock_black_24dp);
 
         }
-
 
         return vi;
     }

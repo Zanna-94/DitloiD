@@ -1,6 +1,5 @@
 package giava.menmath.ditloid.Bluetooth;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -32,7 +31,7 @@ import giava.menmath.ditloid.User.UserDao;
 import giava.menmath.ditloid.User.UserInfo;
 
 /**
- * @author Emanuele Vannacci
+ * @author MenMath.GiaVa
  * @see BluetoothService
  * @see DeviceList
  * @see ChallengeState
@@ -43,6 +42,7 @@ import giava.menmath.ditloid.User.UserInfo;
  * exchange. To perform this responsability it make use of the service of BluetoothService
  * class.
  */
+
 public class BluetoothChallenge extends AppCompatActivity {
 
     private String gameState = ChallengeState.INIT;
@@ -130,7 +130,7 @@ public class BluetoothChallenge extends AppCompatActivity {
 
         // If the adapter is null, then Bluetooth is not supported
         if (mBluetoothAdapter == null) {
-            Toast.makeText(BluetoothChallenge.this, "Bluetooth is not available",
+            Toast.makeText(BluetoothChallenge.this, getString(R.string.strBluetoothNoAvailable),
                     Toast.LENGTH_LONG).show();
             finish();
         }
@@ -221,7 +221,7 @@ public class BluetoothChallenge extends AppCompatActivity {
                     iDraw();
                 } else {
                     setGameState(ChallengeState.WAIT);
-                    Toast.makeText(BluetoothChallenge.this, "Hai indovinato!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BluetoothChallenge.this, getString(R.string.strCorrectSolution), Toast.LENGTH_SHORT).show();
                     waitingDialog(R.string.strWaitFriend);
                 }
 
@@ -458,10 +458,10 @@ public class BluetoothChallenge extends AppCompatActivity {
      */
     public void game() {
 
-        timer = new CountDownTimer(60000, 1000) {
+        timer = new CountDownTimer(180000, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                tvTimer.setText(String.format("seconds remaining: %d", millisUntilFinished / 1000));
+                tvTimer.setText(String.format(getString(R.string.strSecondsRemaining) + ": %d", millisUntilFinished / 1000));
             }
 
             public void onFinish() {
@@ -526,6 +526,8 @@ public class BluetoothChallenge extends AppCompatActivity {
 
         //reset state for new challenge
         gameState = ChallengeState.INIT;
+        myFriendGuessed = false;
+        myFriendTimeout = false;
 
         //stop timer if not already timeout
         if (timer != null) {
@@ -534,9 +536,9 @@ public class BluetoothChallenge extends AppCompatActivity {
 
         //Dialog to propose another challenge
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("You draw. Do you want retry?")
+        builder.setMessage(getString(R.string.strAfterDraw))
                 .setCancelable(false)
-                .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.strYes), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
 
@@ -546,7 +548,7 @@ public class BluetoothChallenge extends AppCompatActivity {
                     }
                 });
 
-        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(getString(R.string.strNo), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 dialog.dismiss();
 
@@ -584,7 +586,7 @@ public class BluetoothChallenge extends AppCompatActivity {
             }
 
         } catch (IOException e) {
-            Toast.makeText(BluetoothChallenge.this, "send Message error",
+            Toast.makeText(BluetoothChallenge.this, getString(R.string.strNoConnection),
                     Toast.LENGTH_SHORT).show();
 
             mService.stop();
@@ -678,7 +680,7 @@ public class BluetoothChallenge extends AppCompatActivity {
                 case Constants.MESSAGE_DEVICE_NAME:
                     // save the connected device's name
                     mConnectedDeviceName = msg.getData().getString(Constants.DEVICE_NAME);
-                    Toast.makeText(BluetoothChallenge.this, "Connected to "
+                    Toast.makeText(BluetoothChallenge.this, getString(R.string.strConnectedTo)
                             + mConnectedDeviceName, Toast.LENGTH_SHORT).show();
                     break;
 
@@ -705,9 +707,9 @@ public class BluetoothChallenge extends AppCompatActivity {
      */
     private void WaitOrSearch() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("do you want Wait for friend's request or Search neighbors device?")
+        builder.setMessage(getString(R.string.strRequest))
                 .setCancelable(false)
-                .setPositiveButton("Wait", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.strWait), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
 
@@ -722,7 +724,7 @@ public class BluetoothChallenge extends AppCompatActivity {
                     }
                 });
 
-        builder.setNegativeButton("Search", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(getString(R.string.strSearch), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
 
                 role = Constants.CLIENT;
@@ -746,7 +748,7 @@ public class BluetoothChallenge extends AppCompatActivity {
         waitingDialog = new ProgressDialog(BluetoothChallenge.this);
 
         waitingDialog.setMessage(getString(res));
-        waitingDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+        waitingDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.strCancel), new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
