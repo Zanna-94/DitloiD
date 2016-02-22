@@ -6,10 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-import giava.menmath.ditloid.Ditloid;
-
 /**
- * Created by emanuele on 15/02/16.
+ * Created by MenMath.Giava
  */
 public class UserInfo implements Serializable {
 

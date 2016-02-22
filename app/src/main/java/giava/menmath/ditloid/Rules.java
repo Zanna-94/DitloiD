@@ -1,28 +1,20 @@
 package giava.menmath.ditloid;
 
-import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Locale;
 
-import giava.menmath.ditloid.User.UserInfo;
-
 /**
  * Created by MenMath.GiaVa
+ *
+ * This class permits to choose the right file to view rules according to the lenguage setted
  */
 
 public class Rules extends AppCompatActivity {

@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 /**
  * Created by MenMath.GiaVa
+ *
+ *  This class is the first one to be called
+ *  Implement the start animation
  */
 
 public class MainActivity  extends AppCompatActivity {

@@ -35,6 +35,10 @@ public class Game extends AppCompatActivity {
 
     private static LevelAdapter myAdapter;
 
+    /**
+     * It provides to set levels' list view
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +54,10 @@ public class Game extends AppCompatActivity {
         levelsList = alLevels.toArray(levelsList);
 
     }
+    /**
+     * It provides to upgrade levels' list view
+     * by using class LevelAdapter and method notifyDataSetChanged()
+     */
 
     @Override
     protected void onResume() {
@@ -85,6 +93,10 @@ public class Game extends AppCompatActivity {
             System.out.println("deserializza failed");
         }
     }
+
+    /**
+     * This class controls if user unlocked a new level
+     */
 
     protected class MyListener implements AdapterView.OnItemClickListener {
         @Override

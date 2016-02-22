@@ -13,6 +13,8 @@ import giava.menmath.ditloid.User.UserInfo;
 
 /**
  * Created by MenMath.GiaVa
+ *
+ * This class is used to save, to know and to restore user state
  */
 
 class LevelAdapter extends BaseAdapter {
@@ -48,6 +50,9 @@ class LevelAdapter extends BaseAdapter {
         return position;
     }
 
+    /**
+     * It create the layout of level rows
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 

@@ -10,6 +10,8 @@ import giava.menmath.ditloid.Game.Game;
 
 /**
  * Created by MenMath.GiaVa
+ *
+ * This class implement the menu activity
  */
 
 public class Main extends AppCompatActivity {

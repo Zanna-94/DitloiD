@@ -158,7 +158,10 @@ public class ArrayListFragment extends ListFragment {
         return v;
 
     }
-
+    /**
+     * This class controls if the user answered is correct
+     * If it is it set all button not clickable, hide the keyboard and updates credits
+     */
     private class CheckListener implements View.OnClickListener {
 
         @Override
@@ -201,7 +204,10 @@ public class ArrayListFragment extends ListFragment {
             }
         }
     }
-
+    /**
+     * This class provides to show in the UI Ditloid's category
+     * updating credits
+     */
     private class CategoryListener implements View.OnClickListener {
 
         @Override
@@ -224,6 +230,10 @@ public class ArrayListFragment extends ListFragment {
                         Toast.LENGTH_SHORT).show();
         }
     }
+    /**
+     * This class provides to show in the UI Ditloid's hint
+     * updating credits
+     */
 
     private class HintListener implements View.OnClickListener {
 

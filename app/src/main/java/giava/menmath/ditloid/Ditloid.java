@@ -2,6 +2,9 @@ package giava.menmath.ditloid;
 
 /**
  * Created by MenMath.GiaVa
+ *
+ *  This class represents a ditloid
+ *  with this class is possible to get every information about a ditloid
  */
 
 public class Ditloid {

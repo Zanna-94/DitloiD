@@ -5,6 +5,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 /**
  * Created by MenMath.GiaVa
+ *
+ *  This class provide to create instances for fragments
  */
 
 public class MyAdapter extends FragmentPagerAdapter {

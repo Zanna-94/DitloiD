@@ -10,6 +10,8 @@ import giava.menmath.ditloid.User.UserInfo;
 
 /**
  * Created by MenMath.GiaVa
+ *
+ *      This class provides the fragment's implementation
  */
 
 public class FragmentPagerSupport extends FragmentActivity {
@@ -42,6 +44,10 @@ public class FragmentPagerSupport extends FragmentActivity {
         serializza();
     }
 
+    /**
+     *  It opens a file where user state is written
+     */
+
     public static void serializza(){
 
         if(user!=null){
@@ -52,6 +58,10 @@ public class FragmentPagerSupport extends FragmentActivity {
             }
         }
     }
+
+    /**
+     *  It's used to recover user state
+     */
 
     public static void deserializza(){
         try {

@@ -1,11 +1,8 @@
 package giava.menmath.ditloid.User;
 
 import android.content.Context;
-import android.content.res.AssetManager;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -15,6 +12,8 @@ import giava.menmath.ditloid.MyApplication;
 
 /**
  * Created by emanuele on 15/02/16.
+ *
+ *  This class create the file in which it'll be written user state
  */
 public class UserDao {
 

@@ -5,6 +5,8 @@ import android.content.Context;
 
 /**
  * Created by MenMath.GiaVa
+ *
+ *  This class get the application context
  */
 
 public class MyApplication extends Application {
