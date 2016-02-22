@@ -31,16 +31,16 @@ import giava.menmath.ditloid.User.UserDao;
 import giava.menmath.ditloid.User.UserInfo;
 
 /**
- * @author MenMath.GiaVa
- * @see BluetoothService
- * @see DeviceList
- * @see ChallengeState
- * <p/>
  * The Class provides all work to manage Bluetooth connection between the two users who
  * want compete.
  * It manage the UI updating it and syncronyzes the two application through message
  * exchange. To perform this responsability it make use of the service of BluetoothService
  * class.
+ *
+ * @author MenMath.GiaVa
+ * @see BluetoothService
+ * @see DeviceList
+ * @see ChallengeState
  */
 
 public class BluetoothChallenge extends AppCompatActivity {
@@ -78,6 +78,7 @@ public class BluetoothChallenge extends AppCompatActivity {
 
     /**
      * Ditloid chosen by device that performs the {@link #role} of Client
+     *
      * @see Ditloid
      */
     private Ditloid ditloid;
@@ -105,7 +106,7 @@ public class BluetoothChallenge extends AppCompatActivity {
     /**
      * Handler to communicate with {@link BluetoothService} and get messages from it
      */
-    private MyHandler mHandler ;
+    private MyHandler mHandler;
 
     private ProgressDialog waitingDialog;
 
@@ -159,7 +160,7 @@ public class BluetoothChallenge extends AppCompatActivity {
         super.onResume();
 
         //Obtain user info to modify credit in case of win
-        try{
+        try {
             userInfo = UserDao.deserializza();
 
         } catch (IOException e) {
@@ -273,7 +274,7 @@ public class BluetoothChallenge extends AppCompatActivity {
 
                         if (msg == null) {
 
-                            if(waitingDialog!=null)
+                            if (waitingDialog != null)
                                 waitingDialog.dismiss();
 
                             waitingDialog(R.string.strWaitConnection);
@@ -615,6 +616,7 @@ public class BluetoothChallenge extends AppCompatActivity {
      * Manage operation after the end of the called activity. After the intent for
      * {@link DeviceList} this method analyzes data returned and call {@link #connectDevice(Intent)}
      * to perform devices connection.
+     *
      * @param requestCode
      * @param resultCode
      * @param data
@@ -773,10 +775,10 @@ public class BluetoothChallenge extends AppCompatActivity {
     }
 
     @Override
-    public void onPause(){
+    public void onPause() {
         super.onPause();
 
-        try{
+        try {
             UserDao.serializza(userInfo);
         } catch (IOException e) {
             e.printStackTrace();

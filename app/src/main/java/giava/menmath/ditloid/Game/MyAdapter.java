@@ -4,9 +4,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 /**
- * Created by MenMath.GiaVa
+ * This class provide to create instances for fragments
  *
- *  This class provide to create instances for fragments
+ * @author MenMath.GiaVa
  */
 
 public class MyAdapter extends FragmentPagerAdapter {
@@ -32,9 +32,10 @@ public class MyAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getItemPosition(Object object) {
-        ArrayListFragment f = (ArrayListFragment ) object;
+        ArrayListFragment f = (ArrayListFragment) object;
         if (f != null) {
             f.update();
         }
-        return super.getItemPosition(object);    }
+        return super.getItemPosition(object);
+    }
 }

@@ -7,7 +7,12 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by MenMath.Giava
+ * This class keep information of the user. It memorize Level and ditloid solved, number of credits
+ * get and other data. It's implement Serializable to be saved by
+ * {@link UserDao#serializza(UserInfo)} and retrieve by {@link UserDao#deserializza()}
+ *
+ * @author MenMath.GiaVa
+ * @see UserDao
  */
 public class UserInfo implements Serializable {
 
@@ -36,6 +41,10 @@ public class UserInfo implements Serializable {
         credit = 20;
     }
 
+    /**
+     * Add a new solved ditloid to be saved. It keeps level and number of fragment in witch it's
+     * displayed
+     */
     public void addPassedDitloid(Integer level, Integer num) {
 
         ArrayList<Integer> positions;
@@ -43,15 +52,18 @@ public class UserInfo implements Serializable {
         if (!passedLevel.containsKey(level)) {
             positions = new ArrayList<>();
             positions.add(num);
-            passedLevel.put(level,positions);
-        } else{
+            passedLevel.put(level, positions);
+        } else {
             positions = passedLevel.get(level);
             positions.add(num);
-            passedLevel.put(level,positions);
+            passedLevel.put(level, positions);
         }
 
     }
 
+    /**
+     * Add a new
+     */
     public void addCategoryGet(Integer level, Integer num) {
 
         ArrayList<Integer> positions;
@@ -102,13 +114,13 @@ public class UserInfo implements Serializable {
 
     public Integer getPassedDitloidsSize() {
 
-        Integer sum=0;
+        Integer sum = 0;
 
         if (passedLevel == null || passedLevel.isEmpty())
             return sum;
 
         Set<Integer> keys = passedLevel.keySet();
-        for( Integer key : keys) {
+        for (Integer key : keys) {
             List<Integer> ditloids = passedLevel.get(key);
             if (ditloids != null && !ditloids.isEmpty()) {
                 for (Integer dit : ditloids) {

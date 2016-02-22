@@ -5,13 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
 import giava.menmath.ditloid.Bluetooth.BluetoothChallenge;
 import giava.menmath.ditloid.Game.Game;
 
 /**
- * Created by MenMath.GiaVa
- *
  * This class implement the menu activity
+ *
+ * @author MenMath.GiaVa
  */
 
 public class Main extends AppCompatActivity {

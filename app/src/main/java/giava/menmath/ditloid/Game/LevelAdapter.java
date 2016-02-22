@@ -7,14 +7,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.util.ArrayList;
+
 import giava.menmath.ditloid.R;
 import giava.menmath.ditloid.User.UserInfo;
 
 /**
- * Created by MenMath.GiaVa
- *
  * This class is used to save, to know and to restore user state
+ *
+ * @author MenMath.GiaVa
  */
 
 class LevelAdapter extends BaseAdapter {
@@ -114,7 +116,7 @@ class LevelAdapter extends BaseAdapter {
 
 
         } else if (position > 0 && user.getPassedLevel() != null &&
-                user.getPassedDitloidsSize() >= 3*position) {
+                user.getPassedDitloidsSize() >= 3 * position) {
 
             unlock.setVisibility(View.GONE);
 
@@ -164,7 +166,7 @@ class LevelAdapter extends BaseAdapter {
 
             unlock.setVisibility(View.VISIBLE);
 
-            unlock.setText((position*3)-user.getPassedDitloidsSize() + " " + vi.getResources().getString(R.string.strToUnlock));
+            unlock.setText((position * 3) - user.getPassedDitloidsSize() + " " + vi.getResources().getString(R.string.strToUnlock));
             image.setImageResource(R.drawable.ic_lock_black_24dp);
 
         }

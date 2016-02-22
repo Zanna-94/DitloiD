@@ -12,9 +12,10 @@ import java.io.InputStreamReader;
 import java.util.Locale;
 
 /**
- * Created by MenMath.GiaVa
+ * This class permits to choose the right file to view rules according to the set language on the
+ * device.
  *
- * This class permits to choose the right file to view rules according to the lenguage setted
+ * @author MenMath.GiaVa
  */
 
 public class Rules extends AppCompatActivity {

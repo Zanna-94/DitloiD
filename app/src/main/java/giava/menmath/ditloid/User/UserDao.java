@@ -11,13 +11,13 @@ import java.io.ObjectOutputStream;
 import giava.menmath.ditloid.MyApplication;
 
 /**
- * Created by emanuele on 15/02/16.
+ * This class create the file in which it'll be written user state
  *
- *  This class create the file in which it'll be written user state
+ * @author MenMath.GiaVa
  */
 public class UserDao {
 
-    private static String file_name="UserInfo";
+    private static String file_name = "UserInfo";
 
     public static void serializza(UserInfo info) throws IOException {
 
@@ -31,7 +31,7 @@ public class UserDao {
 
     }
 
-    public static UserInfo deserializza() throws IOException{
+    public static UserInfo deserializza() throws IOException {
 
         try {
 

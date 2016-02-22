@@ -22,7 +22,9 @@ import giava.menmath.ditloid.R;
 import giava.menmath.ditloid.User.UserInfo;
 
 /**
- * Created by MenMath.GiaVa
+ * his class retrieves {@link UserInfo} data to build dynamically the fragment's view
+ *
+ * @author MenMath.GiaVa
  */
 
 public class ArrayListFragment extends ListFragment {
@@ -158,6 +160,7 @@ public class ArrayListFragment extends ListFragment {
         return v;
 
     }
+
     /**
      * This class controls if the user answered is correct
      * If it is it set all button not clickable, hide the keyboard and updates credits
@@ -182,7 +185,7 @@ public class ArrayListFragment extends ListFragment {
                 btnGetHint.setClickable(false);
                 etSolution.setKeyListener(null);
 
-                InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(etSolution.getWindowToken(), 0);
 
                 //Update user data
@@ -204,6 +207,7 @@ public class ArrayListFragment extends ListFragment {
             }
         }
     }
+
     /**
      * This class provides to show in the UI Ditloid's category
      * updating credits
@@ -230,6 +234,7 @@ public class ArrayListFragment extends ListFragment {
                         Toast.LENGTH_SHORT).show();
         }
     }
+
     /**
      * This class provides to show in the UI Ditloid's hint
      * updating credits

@@ -4,9 +4,9 @@ import android.app.Application;
 import android.content.Context;
 
 /**
- * Created by MenMath.GiaVa
+ * This class get the application context
  *
- *  This class get the application context
+ * @author MenMath.GiaVa
  */
 
 public class MyApplication extends Application {

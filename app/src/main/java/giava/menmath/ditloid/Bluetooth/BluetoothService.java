@@ -14,12 +14,12 @@ import java.io.OutputStream;
 import java.util.UUID;
 
 /**
+ * This class does all the work for setting up and managing Bluetooth
+ * connections with other devices. It has a thread that listens for
+ * incoming connections, a thread for connecting with a device, and a
+ * thread for performing data transmissions when connected.
+ *
  * @author MenMath.GiaVa
- *         <p/>
- *         This class does all the work for setting up and managing Bluetooth
- *         connections with other devices. It has a thread that listens for
- *         incoming connections, a thread for connecting with a device, and a
- *         thread for performing data transmissions when connected.
  */
 public class BluetoothService {
 
@@ -429,11 +429,11 @@ public class BluetoothService {
          * @param buffer The bytes to write
          */
         public void write(byte[] buffer) throws IOException {
-                mmOutStream.write(buffer);
+            mmOutStream.write(buffer);
 
-                // Share the sent message back to the UI Activity
-                mHandler.obtainMessage(Constants.MESSAGE_WRITE, -1, -1, buffer)
-                        .sendToTarget();
+            // Share the sent message back to the UI Activity
+            mHandler.obtainMessage(Constants.MESSAGE_WRITE, -1, -1, buffer)
+                    .sendToTarget();
 
         }
 

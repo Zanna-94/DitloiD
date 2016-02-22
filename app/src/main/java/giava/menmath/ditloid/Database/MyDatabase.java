@@ -1,10 +1,14 @@
 package giava.menmath.ditloid.Database;
 
 import android.content.Context;
+
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 /**
- * This class
+ * @author MenMath.GiaVa
+ *         <p/>
+ *         This class represent the database. It's impelement {@link SQLiteAssetHelper} to manage
+ *         assets file .db and version control.
  */
 
 public class MyDatabase extends SQLiteAssetHelper {
