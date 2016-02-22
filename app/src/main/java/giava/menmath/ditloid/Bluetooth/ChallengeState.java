@@ -1,9 +1,9 @@
 package giava.menmath.ditloid.Bluetooth;
 
-/**
- * @author MenMath.GiaVa
- *
+/***
  * String used in {@link BluetoothChallenge} to exchange message.
+ *
+ * @author MenMath.GiaVa
  */
 public interface ChallengeState {
 

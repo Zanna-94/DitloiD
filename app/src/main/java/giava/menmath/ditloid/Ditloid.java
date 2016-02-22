@@ -1,10 +1,10 @@
 package giava.menmath.ditloid;
 
 /**
- * Created by MenMath.GiaVa
+ * This class represents a ditloid
+ * with this class is possible to get every information about a ditloid7
  *
- *  This class represents a ditloid
- *  with this class is possible to get every information about a ditloid
+ * @author MenMath.GiaVa
  */
 
 public class Ditloid {

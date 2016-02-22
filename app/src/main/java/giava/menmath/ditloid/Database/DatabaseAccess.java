@@ -1,19 +1,20 @@
 package giava.menmath.ditloid.Database;
 
-/**
- * Class provides method to access to the database and retrieve record.
- * It's comunicate with database represented by {@link giava.menmath.ditloid.Database.MyDatabase}
- *
- * Created by MenMath.GiaVa
- */
-
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import giava.menmath.ditloid.Ditloid;
 
+/**
+ * Class provides method to access to the database and retrieve record.
+ * It's comunicate with database represented by {@link giava.menmath.ditloid.Database.MyDatabase
+ *
+ * @author MenMath.GiaVa
+ */
 public class DatabaseAccess implements DBAccess {
 
     private MyDatabase db;
@@ -135,7 +136,7 @@ public class DatabaseAccess implements DBAccess {
 
         // in case of Challenge database not contains these columns
         if (cursor.getColumnIndex("Indizio") == -1 || cursor.getColumnIndex("Difficoltà") == -1 ||
-                cursor.getColumnIndex("Livello") == -1){
+                cursor.getColumnIndex("Livello") == -1) {
 
             cursor.close();
             return ditloid;
@@ -168,7 +169,7 @@ public class DatabaseAccess implements DBAccess {
 
             // in case of Challenge database not contains these columns
             if (cursor.getColumnIndex("Indizio") == -1 || cursor.getColumnIndex("Difficoltà") == -1 ||
-                    cursor.getColumnIndex("Livello") == -1){
+                    cursor.getColumnIndex("Livello") == -1) {
 
                 break;
             }
@@ -176,7 +177,6 @@ public class DatabaseAccess implements DBAccess {
             dit.setHint(cursor.getString(cursor.getColumnIndex("Indizio")));
             dit.setDifficulty(cursor.getInt(cursor.getColumnIndex("Difficoltà")));
             dit.setLevel(cursor.getInt(cursor.getColumnIndex("Livello")));
-
 
 
             ditloids.add(dit);

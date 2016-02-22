@@ -11,8 +11,8 @@ import giava.menmath.ditloid.Ditloid;
 
 /**
  * @author MenMath.GiaVa
- *
- * Interface for {@link DatabaseAccess}. It
+ *         <p/>
+ *         Interface for {@link DatabaseAccess}. It
  */
 public interface DBAccess {
 

@@ -7,12 +7,11 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by MenMath.Giava
- * <p/>
  * This class keep information of the user. It memorize Level and ditloid solved, number of credits
  * get and other data. It's implement Serializable to be saved by
  * {@link UserDao#serializza(UserInfo)} and retrieve by {@link UserDao#deserializza()}
  *
+ * @author MenMath.GiaVa
  * @see UserDao
  */
 public class UserInfo implements Serializable {
@@ -62,6 +61,9 @@ public class UserInfo implements Serializable {
 
     }
 
+    /**
+     * Add a new
+     */
     public void addCategoryGet(Integer level, Integer num) {
 
         ArrayList<Integer> positions;

@@ -6,14 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
 import java.io.IOException;
 import java.util.ArrayList;
+
 import giava.menmath.ditloid.R;
 import giava.menmath.ditloid.User.UserDao;
 import giava.menmath.ditloid.User.UserInfo;
 
 /**
- * Created by MenMath.GiaVa
+ * Game performs activity to visualize ListView with custom row items.
+ * On item click start an intent to {@link FragmentPagerSupport}
+ *
+ * @author MenMath.GiaVa
  */
 
 public class Game extends AppCompatActivity {
@@ -54,6 +59,7 @@ public class Game extends AppCompatActivity {
         levelsList = alLevels.toArray(levelsList);
 
     }
+
     /**
      * It provides to upgrade levels' list view
      * by using class LevelAdapter and method notifyDataSetChanged()
@@ -102,7 +108,7 @@ public class Game extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            if (user.getPassedDitloidsSize() >= 3*position) {
+            if (user.getPassedDitloidsSize() >= 3 * position) {
                 Intent startLevel = new Intent(Game.this, FragmentPagerSupport.class);
                 startLevel.putExtra("Level", position + 1);
                 startActivity(startLevel);
@@ -110,7 +116,6 @@ public class Game extends AppCompatActivity {
 
         }
     }
-
 
 
 }

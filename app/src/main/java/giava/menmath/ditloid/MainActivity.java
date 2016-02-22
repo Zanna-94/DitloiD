@@ -10,13 +10,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
- * Created by MenMath.GiaVa
+ * This class is the first one to be called
+ * Implement the start animation
  *
- *  This class is the first one to be called
- *  Implement the start animation
+ * @author MenMath.GiaVa
  */
 
-public class MainActivity  extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     private TextView start, end, center, touch;
     private Animation transition1, transition2, fade1, fade2;
