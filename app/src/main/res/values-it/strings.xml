@@ -56,4 +56,5 @@
     <string name="strWait">Aspetta</string>
     <string name="strRequest">Vuoi aspettare una richiesta di un tuo amico o procedere alla scansione?</string>
     <string name="strSearch">Scansiona</string>
+    <string name="strGoOn">Scorri per cambiare ditloide</string>
 </resources>

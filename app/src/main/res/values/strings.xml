@@ -60,5 +60,7 @@
     <string name="strSearch">Search</string>
     <string name="strCancel">Cancel</string>
     <string name="strD" translatable="false">D</string>
+    <string name="strGoOn">Swipe left or right to change ditloid</string>
+
 </resources>
 
