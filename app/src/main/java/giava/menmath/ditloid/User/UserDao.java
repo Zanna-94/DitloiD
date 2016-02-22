@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
 import giava.menmath.ditloid.MyApplication;
 
 /**
- * Created by emanuele on 15/02/16.
+ * Created by MenMath.Giava
  *
  *  This class create the file in which it'll be written user state
  */

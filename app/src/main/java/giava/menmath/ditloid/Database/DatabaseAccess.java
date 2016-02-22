@@ -1,6 +1,9 @@
 package giava.menmath.ditloid.Database;
 
 /**
+ * Class provides method to access to the database and retrieve record.
+ * It's comunicate with database represented by {@link giava.menmath.ditloid.Database.MyDatabase}
+ *
  * Created by MenMath.GiaVa
  */
 
