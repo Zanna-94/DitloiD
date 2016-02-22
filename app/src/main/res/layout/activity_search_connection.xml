@@ -19,6 +19,6 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/button"
         android:textStyle="bold"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textColor="#8a2b01" />
 </RelativeLayout>
