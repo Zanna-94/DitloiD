@@ -8,7 +8,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
@@ -48,12 +47,6 @@ public class BluetoothChallenge extends AppCompatActivity {
 
     private String gameState = ChallengeState.INIT;
 
-    /**
-     * Class contains data for user progress
-     * {@link UserInfo}
-     */
-    private UserInfo userInfo;
-
     // An user can have role of Client or Server in Bluetooth connection
     private String role;
 
@@ -61,7 +54,6 @@ public class BluetoothChallenge extends AppCompatActivity {
     private boolean myFriendGuessed = false;
     //Var to determinate if the other user has terminated the time to solve the ditolid
     private boolean myFriendTimeout = false;
-
 
     // Intent request codes
     private static final int REQUEST_CONNECT_DEVICE = 1;
@@ -74,11 +66,20 @@ public class BluetoothChallenge extends AppCompatActivity {
     private EditText etInput;
     private Button btnCheck;
 
-    //Provide a timer to
+    //Provide a timer
     private CountDownTimer timer;
 
-    private ProgressDialog waitingDialog;
 
+    /**
+     * Class contains data for user progress
+     * {@link UserInfo}
+     */
+    private UserInfo userInfo;
+
+    /**
+     * Ditloid chosen by device that performs the {@link #role} of Client
+     * @see Ditloid
+     */
     private Ditloid ditloid;
 
     /**
@@ -92,14 +93,21 @@ public class BluetoothChallenge extends AppCompatActivity {
     private StringBuffer mOutStringBuffer;
 
     /**
-     * Local Bluetooth adapter
+     * Local Bluetooth adapter that perform fundamental tasks
      */
     private BluetoothAdapter mBluetoothAdapter = null;
 
     /**
-     * Member object for the chat services
+     * @see BluetoothService
      */
     private BluetoothService mService = null;
+
+    /**
+     * Handler to communicate with {@link BluetoothService} and get messages from it
+     */
+    private MyHandler mHandler ;
+
+    private ProgressDialog waitingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +135,7 @@ public class BluetoothChallenge extends AppCompatActivity {
             finish();
         }
 
+        mHandler = new MyHandler();
 
         WaitOrSearch();
     }
@@ -152,11 +161,9 @@ public class BluetoothChallenge extends AppCompatActivity {
         //Obtain user info to modify credit in case of win
         try{
             userInfo = UserDao.deserializza();
-            System.out.println("deserializzazione success");
 
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("deserializzazione failed");
             userInfo = UserInfo.getInstance();
         }
 
@@ -185,7 +192,7 @@ public class BluetoothChallenge extends AppCompatActivity {
         btnCheck.setOnClickListener(new MyCheckButtonListener());
 
         // Initialize the BluetoothChatService to perform bluetooth connections
-        mService = new BluetoothService(BluetoothChallenge.this, mHandler);
+        mService = new BluetoothService(mHandler);
 
         // Initialize the buffer for outgoing messages
         mOutStringBuffer = new StringBuffer("");
@@ -194,7 +201,8 @@ public class BluetoothChallenge extends AppCompatActivity {
 
     /**
      * Listener for the Check button that verify if the solution typed by the user
-     * is correct. It performs also
+     * is correct. Depending on the state of the challenge in witch the application is,
+     * are performed action to change state.
      */
     protected class MyCheckButtonListener implements View.OnClickListener {
 
@@ -222,6 +230,7 @@ public class BluetoothChallenge extends AppCompatActivity {
                 Toast.makeText(BluetoothChallenge.this, R.string.retry, Toast.LENGTH_SHORT).show();
         }
     }
+
     /**
      * Check if solution typed by User is the correct solution for the ditloid.
      *
@@ -237,37 +246,6 @@ public class BluetoothChallenge extends AppCompatActivity {
         return false;
     }
 
-
-    /**
-     * Updates the status on the action bar.
-     *
-     * @param resId a string resource ID
-     */
-    private void setStatus(int resId) {
-        Activity activity = BluetoothChallenge.this;
-
-        final ActionBar actionBar = activity.getActionBar();
-        if (null == actionBar) {
-            return;
-        }
-        actionBar.setSubtitle(resId);
-    }
-
-    /**
-     * Updates the status on the action bar.
-     *
-     * @param subTitle status
-     */
-    private void setStatus(CharSequence subTitle) {
-        Activity activity = BluetoothChallenge.this;
-
-        final ActionBar actionBar = activity.getActionBar();
-        if (null == actionBar) {
-            return;
-        }
-        actionBar.setSubtitle(subTitle);
-    }
-
     /**
      * Makes this device discoverable.
      */
@@ -280,6 +258,9 @@ public class BluetoothChallenge extends AppCompatActivity {
         }
     }
 
+    /**
+     * @param msg: {@link Post}
+     */
     private void play(String msg) {
 
         int id;
@@ -471,6 +452,10 @@ public class BluetoothChallenge extends AppCompatActivity {
     }
 
 
+    /**
+     * Action to perform when the Challenge is in the state of {@link ChallengeState#GAMING}.
+     * In this method is initialized the timer thorgh the class {@link CountDownTimer}
+     */
     public void game() {
 
         timer = new CountDownTimer(60000, 1000) {
@@ -501,6 +486,9 @@ public class BluetoothChallenge extends AppCompatActivity {
         }.start();
     }
 
+    /**
+     * Action to perform in case of defeat
+     */
     private void iLose() {
 
         //reset state for new challenge
@@ -515,6 +503,9 @@ public class BluetoothChallenge extends AppCompatActivity {
 
     }
 
+    /**
+     * Action to perform in case of victory
+     */
     private void iWin() {
 
         //reset state for new challenge
@@ -526,12 +517,10 @@ public class BluetoothChallenge extends AppCompatActivity {
         }
 
         userInfo.addCredit(1);
-
-        Toast.makeText(BluetoothChallenge.this, R.string.strOneCredit, Toast.LENGTH_SHORT).show();
     }
 
     /**
-     * action to perform in case of balance
+     * Action to perform in case of balance
      */
     private void iDraw() {
 
@@ -571,7 +560,7 @@ public class BluetoothChallenge extends AppCompatActivity {
     }
 
     /**
-     * Sends a message.
+     * Sends a message thought {@link BluetoothService#write(byte[])}
      *
      * @param message A string of text to send.
      */
@@ -606,7 +595,7 @@ public class BluetoothChallenge extends AppCompatActivity {
 
 
     /**
-     * Establish connection with other divice
+     * Establish connection with other device through {@link BluetoothService}
      *
      * @param data An {@link Intent} with {@link DeviceList#EXTRA_DEVICE_ADDRESS} extra.
      */
@@ -620,6 +609,14 @@ public class BluetoothChallenge extends AppCompatActivity {
 
     }
 
+    /**
+     * Manage operation after the end of the called activity. After the intent for
+     * {@link DeviceList} this method analyzes data returned and call {@link #connectDevice(Intent)}
+     * to perform devices connection.
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
@@ -646,10 +643,14 @@ public class BluetoothChallenge extends AppCompatActivity {
     }
 
     /**
-     * The Handler that gets information back from the BluetoothChatService
+     * The Handler that gets information back from the {@link BluetoothService}
+     * The only {@link Message} that are handler are those that carry information about
+     * success connection with another device, data in input through the socket, information on
+     * the other connected device. Other Message are ignored.
      */
     @SuppressWarnings("all")
-    private final Handler mHandler = new Handler() {
+    private class MyHandler extends Handler {
+
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -657,18 +658,9 @@ public class BluetoothChallenge extends AppCompatActivity {
                     switch (msg.arg1) {
                         case BluetoothService.STATE_CONNECTED:
 
-                            setStatus(getString(R.string.title_connected_to, mConnectedDeviceName));
-
                             if (role == Constants.CLIENT)
                                 play(null);
 
-                            break;
-                        case BluetoothService.STATE_CONNECTING:
-                            setStatus(R.string.title_connecting);
-                            break;
-                        case BluetoothService.STATE_LISTEN:
-                        case BluetoothService.STATE_NONE:
-                            setStatus(R.string.title_not_connected);
                             break;
                         default:
                             break;
@@ -700,12 +692,16 @@ public class BluetoothChallenge extends AppCompatActivity {
                     break;
             }
         }
-    };
+    }
 
 
     /**
      * The system shows a dialog to the user. He can choose if wait for a friend's request
      * to play or search available devices in the place.
+     * If the user chooses to wait then the device will be the Server in the bluetooth connection.
+     * Instead if the user choose to research available devices, its device will be the Client.
+     * Depending on its role, the application performs different operation in the challenge.
+     * {@link #play(String)}
      */
     private void WaitOrSearch() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -743,7 +739,7 @@ public class BluetoothChallenge extends AppCompatActivity {
     }
 
     /**
-     * Show in the UI a Progress dialog
+     * Show in the UI a progress dialog
      */
     private void waitingDialog(int res) {
         //Waiting for a connection request
@@ -780,10 +776,8 @@ public class BluetoothChallenge extends AppCompatActivity {
 
         try{
             UserDao.serializza(userInfo);
-            System.out.println("serializzazione success");
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("serializzazione failed");
             Toast.makeText(BluetoothChallenge.this, R.string.strImpossibleSave,
                     Toast.LENGTH_SHORT).show();
         }

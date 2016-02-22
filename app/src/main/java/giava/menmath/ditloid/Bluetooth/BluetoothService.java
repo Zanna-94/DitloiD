@@ -50,10 +50,9 @@ public class BluetoothService {
     /**
      * Constructor. Prepares a new BluetoothChat session.
      *
-     * @param context The UI Activity Context
      * @param handler A Handler to send messages back to the UI Activity
      */
-    public BluetoothService(Context context, Handler handler) {
+    public BluetoothService(Handler handler) {
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         mHandler = handler;
         setState(STATE_NONE);
@@ -307,6 +306,7 @@ public class BluetoothService {
             try {
                 mmServerSocket.close();
             } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -331,6 +331,7 @@ public class BluetoothService {
 
                 tmp = device.createRfcommSocketToServiceRecord(MY_UUID);
             } catch (IOException e) {
+                e.printStackTrace();
             }
             mmSocket = tmp;
         }
@@ -351,6 +352,7 @@ public class BluetoothService {
                 try {
                     mmSocket.close();
                 } catch (IOException e2) {
+                    e2.printStackTrace();
                 }
                 connectionFailed();
                 return;
@@ -369,6 +371,7 @@ public class BluetoothService {
             try {
                 mmSocket.close();
             } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -392,6 +395,7 @@ public class BluetoothService {
                 tmpIn = socket.getInputStream();
                 tmpOut = socket.getOutputStream();
             } catch (IOException e) {
+                e.printStackTrace();
             }
 
             mmInStream = tmpIn;
@@ -438,8 +442,11 @@ public class BluetoothService {
             try {
                 mmSocket.close();
             } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
+
+
 }
 
