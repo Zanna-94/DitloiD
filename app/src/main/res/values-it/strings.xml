@@ -53,4 +53,7 @@
     <string name="strYes">Sì</string>
     <string name="strConnectedTo">Connesso con</string>
     <string name="strCancel">Annulla</string>
+    <string name="strWait">Aspetta</string>
+    <string name="strRequest">Vuoi aspettare una richiesta di un tuo amico o procedere alla scansione?</string>
+    <string name="strSearch">Scansiona</string>
 </resources>
